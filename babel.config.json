@@ -1,0 +1,13 @@
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-typescript",
+        [
+            "@babel/preset-react",
+            {
+                //автоматический импорт реакта 
+                "runtime": "automatic"
+            }
+        ]
+    ]
+}
