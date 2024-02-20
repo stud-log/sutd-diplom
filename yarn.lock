@@ -1669,6 +1669,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@stud-log/news-types@^1.0.36":
+  version "1.0.36"
+  resolved "https://npm.pkg.github.com/download/@stud-log/news-types/1.0.36/58f403601231012d521a0f6ba9c69c02213fcf40"
+  integrity sha512-2bQZqVE7ITALFOObaQAgCm9KoiTHdkNMYMd1GBP3StTJ7utfd/WiZGnxYoIpELjaTemze/cr+YUaTF4eI2LqdQ==
+
 "@svgr/babel-plugin-add-jsx-attribute@8.0.0":
   version "8.0.0"
   resolved "https://registry.npmjs.org/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-8.0.0.tgz"
