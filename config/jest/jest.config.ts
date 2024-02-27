@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-import path from 'path'
+import path from 'path';
 
 export default {
   // All imported modules in your tests should be mocked automatically
@@ -50,7 +50,7 @@ export default {
   testMatch: [
     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'
   ],
-  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+  setupFilesAfterEnv: [ '<rootDir>config/jest/setupTests.ts' ],
 
   moduleNameMapper: {
     // '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
@@ -207,4 +207,4 @@ export default {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-}
+};

@@ -26,7 +26,7 @@
     "src",
     "config",
     "./webpack.config.ts",
-    "./.eslintrc.js"
+    ".eslintrc.js"
   ],
   "ts-node": {
     "compilerOptions": {

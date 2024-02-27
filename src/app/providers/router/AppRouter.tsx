@@ -3,12 +3,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import routes from 'shared/config/routes';
 import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 
-
-
 export const AppRouter: FC = () => {
 
   return (
-    <div> 
+    <div>
       <Suspense fallback={<PageLoader />}>
         <Routes>
           {routes.map((route, idx) => {
@@ -19,4 +17,4 @@ export const AppRouter: FC = () => {
       </Suspense>
     </div>
   );
-}
+};

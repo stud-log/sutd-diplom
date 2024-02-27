@@ -1,13 +1,13 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { FC, ReactElement, useEffect, useState } from 'react';
 
-import classes from './MainPage.module.scss';
+import cls from './MainPage.module.scss';
 
-export const MainPage = () => {
+export const MainPage: FC = () => {
 
   return (
-    <div className={classes.MainPage}>
+    <div className={cls.MainPage}>
      
       Main Page
     </div>
   );
-}
+};

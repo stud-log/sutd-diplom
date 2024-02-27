@@ -4,7 +4,8 @@
     "prefix": "imrcc",
     "body": [
       "import { FC } from 'react';",
-      "import classes from './${TM_FILENAME_BASE}.module.scss';",
+      "import { classNames } from 'shared/lib/helpers/classNames/classNames';",
+      "import cls from './${TM_FILENAME_BASE}.module.scss';",
       "",
       "interface ${TM_FILENAME_BASE}Props {",
       "\tclassName?: string;",
@@ -13,7 +14,7 @@
       "export const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = ({className}) => {",
       "",
       " return (",
-      "\t<div className={classes.${TM_FILENAME_BASE}}> </div>",
+      "\t<div className={classNames(cls.${TM_FILENAME_BASE}, {}, [className])}> </div>",
       " );",
       "}"
     ],

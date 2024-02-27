@@ -2,7 +2,6 @@ import React, { LazyExoticComponent, ReactElement } from 'react';
 
 const MainPage = React.lazy(() => import('pages/MainPage'));
 
-
 export interface IRoute {
   path: string;
   exact?: boolean;

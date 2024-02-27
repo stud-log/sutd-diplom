@@ -1,14 +1,16 @@
+import './styles/index.scss';
 
 import { AppRouter } from './providers/router/AppRouter';
-import './styles/index.scss'
 import { FC } from 'react';
-
+import { Layout } from 'shared/ui/Layout';
 
 export const App: FC = () => {
   
   return (
     <div className='root'>
-      <AppRouter />
+      <Layout>
+        <AppRouter />
+      </Layout>
     </div>
   );
-}
+};

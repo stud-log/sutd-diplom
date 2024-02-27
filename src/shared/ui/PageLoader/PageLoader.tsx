@@ -1,13 +1,14 @@
 import { FC } from 'react';
-import classes from './PageLoader.module.scss';
+import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import cls from './PageLoader.module.scss';
 
 interface PageLoaderProps {
-    className?: string;
+  className?: string;
 }
 
-export const PageLoader: FC<PageLoaderProps> = ({className}) => {
+export const PageLoader: FC<PageLoaderProps> = ({ className }) => {
 
   return (
-    <div className={classes.PageLoader}>Loading...</div>
+    <div className={classNames(cls.PageLoader, {}, [ className ])}>Loading...</div>
   );
-}
+};

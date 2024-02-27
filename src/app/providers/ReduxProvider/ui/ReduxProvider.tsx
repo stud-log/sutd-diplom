@@ -5,14 +5,14 @@ import { RootStateSchema } from '../config/schema';
 import { createReduxStore } from '../config/config';
 
 interface ReduxProviderProps {
-    className?: string;
-    children: ReactNode;
-    initialState?: RootStateSchema
+  className?: string;
+  children: ReactNode;
+  initialState?: RootStateSchema;
 }
 
-export const store = createReduxStore()
+export const store = createReduxStore();
 
-export const ReduxProvider: FC<ReduxProviderProps> = ({children, className}) => {
+export const ReduxProvider: FC<ReduxProviderProps> = ({ children, className }) => {
   
   return (
     <Provider store={store}>
@@ -21,4 +21,4 @@ export const ReduxProvider: FC<ReduxProviderProps> = ({children, className}) => 
       }
     </Provider>
   );
-}
+};

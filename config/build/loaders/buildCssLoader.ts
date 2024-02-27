@@ -18,4 +18,4 @@ export const buildCssLoaders = (isDev: boolean) => ({
     // Compiles Sass to CSS
     'sass-loader'
   ]
-})
+});

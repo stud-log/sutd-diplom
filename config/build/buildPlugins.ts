@@ -1,8 +1,8 @@
-import { type BuildOptions } from './types/config'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpack from 'webpack'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import Dotenv from 'dotenv-webpack'
+import { type BuildOptions } from './types/config';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import Dotenv from 'dotenv-webpack';
 
 export function buildPlugins ({ paths, isDev, analyzer }: BuildOptions): webpack.WebpackPluginInstance[] {
   return [
@@ -20,5 +20,5 @@ export function buildPlugins ({ paths, isDev, analyzer }: BuildOptions): webpack
     new Dotenv({
       path: paths.env
     })
-  ]
+  ];
 }
