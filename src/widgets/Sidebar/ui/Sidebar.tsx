@@ -1,3 +1,4 @@
+import { Clock } from 'widgets/Clock';
 import { FC } from 'react';
 import Logo from 'shared/assets/img/logo.svg';
 import { RootStateSchema } from 'app/providers/ReduxProvider';
@@ -13,11 +14,12 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
   const { collapsed } = useSelector<RootStateSchema, RootStateSchema['sidebar']>(state => state.sidebar);
   return (
     <div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [ className ])}>
-      <div className={cls.inner}>
-        <div className={cls.row}>
-          <Logo />
-        </div>
+      
+      <div className={cls.row}>
+        <Logo className={cls.logo}/>
+        <Clock />
       </div>
+  
     </div>
   );
 };

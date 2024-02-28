@@ -1,0 +1,19 @@
+.Sidebar {
+    flex-shrink: 0;
+    width: var(--sidebar-width);
+}
+
+.collapsed {
+
+}
+
+
+.logo {
+    flex-shrink: 0;
+    height: 73px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}

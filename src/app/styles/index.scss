@@ -1,1 +1,33 @@
+@import './vars.css';
 @import './reset';
+@import '../../shared/assets/fonts/fonts.css';
+@import './mixins';
+
+html {
+    font-family: var(--ff);
+    font-weight: var(--fw);
+    font-size: var(--fz);
+}
+
+body {
+    background-color: var(--bg-main);
+}
+
+
+.h1, h1 {
+    font-weight: 600;
+    font-size: var(--fz-l);
+    line-height: 1.272em;
+    letter-spacing: 0%;
+    color: var(--black-main);
+    cursor: default;
+}
+
+.h3, h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.285em;
+    letter-spacing: 0%;
+    color: var(--black-translucent-subtitle);
+}
+

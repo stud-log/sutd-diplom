@@ -8,9 +8,10 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export const Layout: FC<LayoutProps> = ({ className, children }) => {
+export const StickyContent: FC<LayoutProps> = ({ className, children }) => {
 
   return (
-    <div className={classNames(cls.Layout, {}, [ className ])}>{children}</div>
+    <div className={classNames(cls.LayoutPageContent, {}, [ className ])}>{children}</div>
   );
 };
+

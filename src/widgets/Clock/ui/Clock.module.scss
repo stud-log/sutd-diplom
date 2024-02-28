@@ -1,0 +1,31 @@
+.Clock{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 11px;
+    width: 100%;
+    height: 73px;
+    background-color: var(--white);
+}
+
+.currentTime{
+    font-weight: 500;
+    font-size: var(--fz-l);
+    line-height: 1.272em;
+    color: var(--black-main);
+}
+
+.weekday {
+    width: max-content;
+}
+
+.dateMonth{
+    width: max-content;
+    color: var(--accent);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}

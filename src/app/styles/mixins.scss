@@ -1,0 +1,35 @@
+/* stylelint-disable */
+
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+@mixin moreThan($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+    @else {
+        @warn "К сожалению, не удалось получить значение для `#{$breakpoint}`. "
+            + "Доступные брейкпоинты: #{map-keys($breakpoints)}.";
+    }
+}
+
+@mixin lessThan($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+    @else {
+        @warn "К сожалению, не удалось получить значение для `#{$breakpoint}`. "
+            + "Доступные брейкпоинты: #{map-keys($breakpoints)}.";
+    }
+}
+

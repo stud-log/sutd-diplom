@@ -9,10 +9,11 @@ export const App: FC = () => {
   
   return (
     <div className='root'>
-      <Layout>
+      <Layout.App>
         <Sidebar />
         <AppRouter />
-      </Layout>
+        {/* Right sidebar (widgets) incoming with pages using `withWidget` hook */}
+      </Layout.App>
     </div>
   );
 };
