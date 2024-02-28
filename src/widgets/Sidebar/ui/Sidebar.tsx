@@ -2,6 +2,7 @@ import { Clock } from 'widgets/Clock';
 import { FC } from 'react';
 import Logo from 'shared/assets/img/logo.svg';
 import { RootStateSchema } from 'app/providers/ReduxProvider';
+import { UserProfile } from 'widgets/UserProfile';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './Sidebar.module.scss';
 import { useSelector } from 'react-redux';
@@ -19,6 +20,8 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         <Logo className={cls.logo}/>
         <Clock />
       </div>
+
+      <UserProfile className={cls.profile}/>
   
     </div>
   );
