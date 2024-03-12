@@ -11,7 +11,7 @@ const initialState: UserSchema = {
     id: 1,
     name: '4-МД-4'
   },
-  avatar: '',
+  avatarUrl: '',
   // id: -1,
   // groupId: '',
   // firstName: '',

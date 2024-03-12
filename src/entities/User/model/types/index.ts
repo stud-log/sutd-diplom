@@ -1,4 +1,14 @@
 import { User } from "@stud-log/news-types/models";
 
-/* Remove unnecessary properties for redux state */
-export interface UserSchema extends Omit<User, 'password' | 'roleId' | 'createdAt' | 'updatedAt' | 'role' | 'status' | 'groupId'> {}
+export interface UserSchema extends Partial<User> {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  group: {
+    id: number;
+    name: string;
+  };
+  avatarUrl: '';
+}
