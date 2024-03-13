@@ -15,6 +15,7 @@ const MainPage: FC = () => {
         start: <h1>Новости</h1>,
         end: <>
           <Dropdown options={dropdownFilterOptions} onSelect={(value) => console.log(value)}/>
+          
         </>
       }} />
       <Layout.StickyContent>

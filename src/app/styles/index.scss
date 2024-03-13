@@ -31,3 +31,92 @@ body {
     color: var(--black-translucent-subtitle);
 }
 
+.mySelect{
+    .ant-select{
+        width: 152px;
+        height: 40px;
+    }
+
+    .ant-select-selector{
+        border-color: var(--black-stroke-translucent) !important;
+        border-radius: 10px;
+        padding: 0 17px !important;
+        transition: .4s linear;
+
+        & + .ant-select-arrow {
+            svg {
+                transition: .25s linear;
+            }
+        }
+
+        &:hover{
+            background: var(--black-buttons-back) !important;
+
+            & + .ant-select-arrow {
+                svg {
+                    stroke: var(--accent) !important;
+                }
+            }
+        }
+    }
+
+    .ant-select-focused {
+        .ant-select-selector{
+            box-shadow: none !important;
+            background: var(--background-color-schedule) !important;
+
+            .myLabel{
+                color: var(--accent) !important;
+            }
+
+            & + .ant-select-arrow {
+                svg {
+                    stroke: var(--accent);
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
+    
+
+    &.justSelected{
+        .ant-select-selector{
+            background: var(--white) !important;
+
+            .myLabel{
+                color: var(--black-main) !important;
+            }
+
+            & + .ant-select-arrow {
+                svg {
+                    stroke: var(--black-main);
+                    transform: rotate(0deg);
+                }
+            }
+
+            &:hover{
+                background: var(--black-buttons-back) !important;
+    
+                & + .ant-select-arrow {
+                    svg {
+                        stroke: var(--accent) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ant-select-item.ant-select-item-option-active{
+    color: var(--white) !important;
+    background-color: var(--accent) !important;
+}
+
+.ant-select-item.ant-select-item-option{
+    font-weight: 600;
+}
+
+.ant-select-item.ant-select-item-group{
+
+}

@@ -1,1 +1,3 @@
-export { Dropdown, type Option } from "./ui/Dropdown";
+export { type DefaultOptionType } from "antd/es/select";
+
+export { Dropdown } from "./ui/Dropdown";
