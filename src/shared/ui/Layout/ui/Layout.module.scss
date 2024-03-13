@@ -20,10 +20,24 @@ $sticky-header-height: 94px;
 .LayoutPageHeader{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid var(--black-buttons-back);
     padding: 0 30px;
     width: 100%;
     height: $sticky-header-height;
+
+    .startSlot{
+        
+    }
+
+    .middleSlot {
+
+    }
+
+    .endSlot{
+        display: flex;
+        gap: 25px;
+    }
 }
 
 .LayoutPageContent{

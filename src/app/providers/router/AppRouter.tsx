@@ -2,7 +2,7 @@ import { FC, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
-import routes from 'shared/config/routes';
+import { routes } from 'shared/config/routes';
 
 export const AppRouter: FC = () => {
 

@@ -5,13 +5,21 @@ import cls from './Layout.module.scss';
 
 interface LayoutProps {
   className?: string;
-  children: ReactNode;
+  slots: {
+    start: ReactNode;
+    middle?: ReactNode;
+    end?: ReactNode;
+  };
 }
 
-export const StickyHeader: FC<LayoutProps> = ({ className, children }) => {
+export const StickyHeader: FC<LayoutProps> = ({ className, slots: { start, middle, end } }) => {
 
   return (
-    <div className={classNames(cls.LayoutPageHeader, {}, [ className ])}>{children}</div>
+    <div className={classNames(cls.LayoutPageHeader, {}, [ className ])}>
+      <div className={cls.startSlot}>{start}</div>
+      <div className={cls.middleSlot}>{middle}</div>
+      <div className={cls.endSlot}>{end}</div>
+    </div>
   );
 };
 

@@ -21,3 +21,36 @@
 .profile{
     margin-top: 10px;
 }
+
+menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    gap: 35px;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: var(--fz-m);
+    text-decoration: none;
+    color: var(--black-main);
+    gap: 13px;
+
+    &:hover {
+        color: var(--accent);
+
+        svg {
+            stroke: var(--accent);
+        }
+    }
+
+    &.active {
+        color: var(--accent);
+
+        svg {
+            stroke: var(--accent);
+        }
+    }
+}

@@ -1,0 +1,30 @@
+.Dropdown {
+
+}
+
+.menuWrapper {
+    position: relative;
+    perspective: 2000px;
+}
+  
+.subMenu {
+    position: absolute;
+    top: 30px;
+    z-index: 100000000;
+    border-radius: 6px;
+    padding: 15px;
+    background-color: #ccc;
+    transform-origin: 50% -30px;
+}
+  
+
+  
+.subMenuContainer {
+}
+  
+.subMenuItem {
+    margin-bottom: 5px;
+    cursor: pointer;
+    pointer-events: all;
+}
+  
