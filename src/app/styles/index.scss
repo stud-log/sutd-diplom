@@ -31,10 +31,59 @@ body {
     color: var(--black-translucent-subtitle);
 }
 
+
+/**
+    CHANGES FOR ANTD STEPS COMPONENT
+**/
+
+.mySteps{
+    .ant-steps-item-icon{
+        width: 20px;
+        height: 20px;
+        font-size: var(--fz-s);
+        line-height: 20px;
+
+        .ant-steps-icon{
+            top: -1.5px !important;
+        }
+    }
+
+    .ant-steps-item-content{
+        .ant-steps-item-title{
+            font-size: var(--fz);
+            line-height: 20px;
+
+            &::after{
+                top: 11px;
+            }
+        }
+    }
+
+    .ant-steps-item-active{
+        .ant-steps-item-content{
+            .ant-steps-item-title{
+                color: var(--accent) !important;
+            }
+        }
+    }
+}
+
+
+/**
+    CHANGES FOR ANTD SELECT COMPONENT
+**/
 .mySelect{
     .ant-select{
         width: 152px;
         height: 40px;
+    }
+
+    .ant-select-selection-search{
+        input {
+            font-family: var(--ff) !important;
+            font-weight: 500 !important;
+            font-size: var(--fz) !important;
+        }
     }
 
     .ant-select-selector{
@@ -119,4 +168,42 @@ body {
 
 .ant-select-item.ant-select-item-group{
 
+}
+
+/**
+    REDEFINE TOAST VARS
+*/
+
+:root {
+    --toastify-color-light: #fff;
+    --toastify-color-dark: #121212;
+    --toastify-color-info: var(--accent);
+    --toastify-color-success: #07bc0c;
+    --toastify-color-warning: #FFA000;
+    --toastify-color-error: #e74c3c;
+}
+
+/* OVERWRITE ANTD NOTIFICATIONS */
+
+.ant-notification-notice{
+    cursor: pointer;
+}
+
+.ant-notification{
+    font-family: var(--ff);
+}
+
+.ant-notification-notice-message{
+    font-weight: 600;
+}
+
+.ant-notification-notice-description{
+    font-weight: 500;
+}
+
+/* OVERWRITE ANT MODAL */
+
+.ant-modal-content{
+    border-radius: 20px !important;
+    padding: 0 !important;
 }

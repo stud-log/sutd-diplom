@@ -1,4 +1,4 @@
-import { DefaultOptionType } from "shared/ui/Dropdown";
+import { DefaultOptionType } from "shared/ui/Select";
 
 export const dropdownFilterOptions: DefaultOptionType[] = [
   {

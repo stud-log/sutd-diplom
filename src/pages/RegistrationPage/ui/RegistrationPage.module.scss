@@ -1,0 +1,77 @@
+.LoginPage{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+}
+
+.logo{
+    position: absolute;
+    left: 50%;
+    top: 43px;
+    width: 73px;
+    height: 73px;
+    transform: translate(-50%, 0);
+    
+}
+
+.formContainer{
+    position: absolute;
+    left: 50%;
+    top: 160px;
+    width: 590px;
+    transform: translate(-50%, 0);
+
+    .header{
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        gap: 12px;
+
+        
+    }
+
+    .headerActive {
+        cursor: pointer;
+    }
+
+    .field {
+        margin-bottom: 25px;
+    }
+    
+    .submitBtn{
+        margin-top: 15px; // because of field margin
+    }
+
+    .navigation{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        font-weight: 600;
+        color: var(--black-translucent-subtitle);
+
+        a{
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--black-translucent-subtitle);
+        }
+
+        a[href="/policy"]{
+            text-decoration: underline;
+        }
+    }
+}
+
+.steps {
+    margin-bottom: 13px;
+}
+
+.select{
+    margin-bottom: 25px;
+
+    & > div {
+        width: 100% !important;
+        height: 55px !important; 
+    }
+}

@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 
-import { Dropdown } from 'shared/ui/Dropdown';
 import { Layout } from 'shared/ui/Layout';
 import { Schedule } from 'widgets/Schedule';
+import { Select } from 'shared/ui/Select';
 import cls from './MainPage.module.scss';
 import { dropdownFilterOptions } from '../config';
 import { withWidget } from 'shared/hooks/withWidget';
@@ -14,7 +14,7 @@ const MainPage: FC = () => {
       <Layout.StickyHeader slots={{
         start: <h1>Новости</h1>,
         end: <>
-          <Dropdown options={dropdownFilterOptions} onSelect={(value) => console.log(value)}/>
+          <Select options={dropdownFilterOptions} onSelect={(value) => console.log(value)}/>
           
         </>
       }} />

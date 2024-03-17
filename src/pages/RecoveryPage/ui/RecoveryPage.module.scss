@@ -1,0 +1,52 @@
+.RecoveryPage{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+}
+
+.logo{
+    position: absolute;
+    left: 50%;
+    top: 43px;
+    width: 73px;
+    height: 73px;
+    transform: translate(-50%, 0);
+    
+}
+
+.formContainer{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 590px;
+    transform: translate(-50%, -50%);
+
+    .header{
+        margin-bottom: 30px;
+    }
+
+    .field {
+        margin-bottom: 25px;
+    }
+    
+    .submitBtn{
+        margin-top: 15px; // because of field margin
+    }
+
+    .navigation{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        a{
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--black-translucent-subtitle);
+        }
+    }
+}
+
+
+

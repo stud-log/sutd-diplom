@@ -6,30 +6,28 @@ const initialState: UserSchema = {
   firstName: 'Максим',
   lastName: 'Соболев',
   email: 'himax108@mail.ru',
-  phone: '+79213583245',
+  phone: '',
   group: {
     id: 1,
     name: '4-МД-4'
   },
   avatarUrl: '',
-  // id: -1,
-  // groupId: '',
-  // firstName: '',
-  // lastName: '',
-  // email: '',
-  // phone: '',
-  // group: {
-  //   id: -1,
-  //   name: ''
-  // },
-  // avatar: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    
+    setUser(state, { payload }: { payload: UserSchema }){
+      state.id = payload.id;
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
+      state.email = payload.email;
+      state.phone = payload.phone;
+      state.group = payload.group;
+      state.avatarUrl = payload.avatarUrl;
+      state.role = payload.role;
+    }
   },
 });
 

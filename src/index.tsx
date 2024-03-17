@@ -1,7 +1,15 @@
+import 'react-toastify/dist/ReactToastify.css';
+import './app/styles/index.scss';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import { App } from 'app/App';
-import { BrowserRouter } from 'react-router-dom';
+import LoginPage from 'pages/LoginPage';
 import ReactDOM from 'react-dom/client';
+import RecoveryPage from 'pages/RecoveryPage/';
 import { ReduxProvider } from 'app/providers/ReduxProvider';
+import RegistrationPage from 'pages/RegistrationPage';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,8 +17,14 @@ const root = ReactDOM.createRoot(
 root.render(
   <ReduxProvider>
     <BrowserRouter>
-      <App />
+      <Routes>
+        <Route path='/login' element={<LoginPage/>} />
+        <Route path='/reg' element={<RegistrationPage/>} />
+        <Route path='/recovery' element={<RecoveryPage/>} />
+        <Route path='/*' element={ <App />} />
+      </Routes>
     </BrowserRouter>
+    <ToastContainer />
   </ReduxProvider>
 );
 

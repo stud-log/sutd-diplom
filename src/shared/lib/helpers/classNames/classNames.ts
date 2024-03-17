@@ -2,7 +2,7 @@
 type Mods = Record<string, boolean | string>;
 
 /**
- *
+ * __NOTE__: Функция заменяет ВСЕ запятые на пробелы
  * @param cls - главный класс
  * @param mods - ключи - названия классов, значения - добавлять их или нет
  * @param additional - доп классы
@@ -15,5 +15,5 @@ export function classNames (cls: string, mods: Mods = {}, additional: Array<stri
     Object.entries(mods)
       .filter(([ className, value ]) => Boolean(value))
       .map(([ className, _ ]) => className)
-  ].join(' ').trim();
+  ].join(' ').replaceAll(',', ' ').trim();
 }

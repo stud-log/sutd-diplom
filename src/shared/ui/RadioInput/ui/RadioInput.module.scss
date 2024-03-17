@@ -1,0 +1,122 @@
+
+
+.radioInput {
+    // RADIO
+    --background: white;
+    --radio: var(--black-main);
+    --radio-checked: var(--black-main);
+    --radio-size: 18px;
+
+    display: flex;
+  
+    span {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      letter-spacing: 0;
+      cursor: pointer;
+    }
+  
+    input[type='radio'] {
+      appearance: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: end;
+      overflow: hidden;
+      margin: 0 10px 0 0;
+      outline: none;
+      border: 2px solid var(--radio);
+      border-radius: 50%;
+      width: var(--radio-size);
+      height: var(--radio-size);
+      background: transparent;
+      transition: border 0.5s ease;
+      cursor: pointer;
+  
+      &::before,
+      &::after {
+        content: '';
+        display: flex;
+        justify-self: center;
+        border-radius: 50%;
+      }
+  
+      &::before {
+        position: absolute;
+        z-index: 1;
+        width: 102%;
+        height: 102%;
+        background: var(--background);
+        opacity: var(--opacity, 1);
+      }
+  
+      &::after {
+        position: relative;
+        top: var(--y, 100%);
+        width: calc(102% / 1);
+        height: calc(102% / 1);
+        background: var(--radio-checked);
+        transition: top 0.5s cubic-bezier(0.48, 1.97, 0.5, 0.63);
+      }
+  
+      &:checked {
+        --radio: var(--radio-checked);
+  
+        background: var(--white);
+  
+        &::before {
+          --opacity: 0;
+        }
+  
+        &::after {
+          --y: 0;
+  
+          animation: stretch-animate 0.3s ease-out 0.17s;
+        }
+  
+        ~ input[type='radio'] {
+          &::after {
+            --y: -100%;
+          }
+        }
+      }
+  
+      /* stylelint-disable-next-line no-descending-specificity */
+      &:not(:checked) {
+        &::before {
+          --opacity: 1;
+  
+          transition: opacity 0s linear 0.5s;
+        }
+      }
+  
+      @media (width <= 370px) {
+        margin-right: 4px;
+      }
+    }
+  
+    @keyframes stretch-animate {
+      0% {
+        transform: scale(1, 1);
+      }
+  
+      28% {
+        transform: scale(1.15, 0.85);
+      }
+  
+      50% {
+        transform: scale(0.9, 1.1);
+      }
+  
+      100% {
+        transform: scale(1, 1);
+      }
+    }
+  }
+
+  .errored{
+    --radio: var(--red);
+    --radio-checked: var(--red);
+  }

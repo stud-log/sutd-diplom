@@ -14,9 +14,12 @@
     --bg-main: #F3F5FB;
     --accent: #2962FF;
     --white: #FFF;
+    --red: #EF2B2B;
+    --red-input-back:rgb(239 43 43 / 2%);
     --black-blue: #214ECC;
     --black-main: #1E1E1E;
     --black-buttons-back: rgb(30 30 30 / 7%);
+    --black-input-back: rgb(30 30 30 / 2%);
     --background-color-schedule: #EEF3FF;
     --black-translucent-subtitle: rgb(30 30 30 / 60%);
     --black-stroke-translucent: #E4E4E4;

@@ -1,0 +1,12 @@
+.modalInner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 80px;
+    gap: 20px;
+}
+
+.modalDesc{
+    font-size: var(--fz-m);
+    text-align: center;
+}
