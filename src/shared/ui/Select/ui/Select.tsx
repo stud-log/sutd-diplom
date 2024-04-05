@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 
 import { Select as ANTDSelect } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
@@ -13,21 +13,23 @@ interface SelectProps {
   options: DefaultOptionType[];
   defaultText?: string;
   needSearch?: boolean;
+  suffixIcon?: ReactNode;
 }
 
 // Filter `option.label` match the user type `input`
 const filterOption = (input: string, option?: DefaultOptionType) =>
   (option?.label as string ?? '').toLowerCase().includes(input.toLowerCase());
 
-export const Select: FC<SelectProps> = ({ className, options, onSelect, defaultText, needSearch = false }) => {
+export const Select: FC<SelectProps> = ({ className, options, onSelect, defaultText, needSearch = false, suffixIcon }) => {
   const [ isSelect, setIsSelect ] = useState(false);
   
   return (
-    <div className={classNames(cls.Dropdown, { 'justSelected': isSelect }, [ className, 'mySelect' ])}>
+    <div className={classNames(cls.Dropdown, { 'justSelected': isSelect, 'noRotateSuffixIcon': !!suffixIcon }, [ className, 'mySelect' ])}>
       <ANTDSelect
-        suffixIcon={<DropdownArrow />}
+        suffixIcon={suffixIcon || <DropdownArrow />}
         defaultValue={defaultText || "Показать все"}
         className={cls.select}
+        defaultActiveFirstOption={true}
         onChange={onSelect}
         onDropdownVisibleChange={(e) => e && setIsSelect(false)}
         onBlur={() => setIsSelect(false)}
@@ -35,7 +37,7 @@ export const Select: FC<SelectProps> = ({ className, options, onSelect, defaultT
         labelRender={({ value }) => <div className={classNames(cls.label, {}, [ 'myLabel' ])}>{value}</div>}
         {...(needSearch ? {
           showSearch: true,
-          filterOption: filterOption
+          filterOption
         } : {})}
         options={options}
         

@@ -14,17 +14,17 @@
 }
 
 
-$sticky-header-height: 94px;
+$header-height: 94px;
 
 
-.LayoutPageHeader{
+.LayoutPageStickyHeader{
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--black-buttons-back);
     padding: 0 30px;
     width: 100%;
-    height: $sticky-header-height;
+    height: $header-height;
 
     .startSlot{
         
@@ -40,10 +40,36 @@ $sticky-header-height: 94px;
     }
 }
 
-.LayoutPageContent{
-    position:absolute;
-    overflow-x: hidden;
-    overflow-y: auto;
+.LayoutPageStickyContent{
     padding: 10px 30px;
-    inset:$sticky-header-height 0 0 0;
+    inset:$header-height 0 0 0;
+}
+
+.LayoutPageBaseHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    // border-bottom: 1px solid var(--black-buttons-back);
+    padding: 0 30px;
+    width: 100%;
+    height: $header-height;
+
+    .startSlot{
+        
+    }
+
+    .middleSlot {
+
+    }
+
+    .endSlot{
+        display: flex;
+        gap: 25px;
+    }
+}
+
+.LayoutPageBaseContent{
+    padding: 10px 30px;
+    inset:$header-height 0 0 0;
 }

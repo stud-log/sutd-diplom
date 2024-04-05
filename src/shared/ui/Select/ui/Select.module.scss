@@ -3,9 +3,12 @@
 }
 
 .label {
+    overflow: hidden;
     font-weight: 600;
     font-size: var(--fz);
     letter-spacing: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .optRender{

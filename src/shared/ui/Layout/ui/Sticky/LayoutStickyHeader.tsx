@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import cls from './Layout.module.scss';
+import cls from '../Layout.module.scss';
 
 interface LayoutProps {
   className?: string;
@@ -15,7 +15,7 @@ interface LayoutProps {
 export const StickyHeader: FC<LayoutProps> = ({ className, slots: { start, middle, end } }) => {
 
   return (
-    <div className={classNames(cls.LayoutPageHeader, {}, [ className ])}>
+    <div className={classNames(cls.LayoutPageStickyHeader, {}, [ className ])}>
       <div className={cls.startSlot}>{start}</div>
       <div className={cls.middleSlot}>{middle}</div>
       <div className={cls.endSlot}>{end}</div>

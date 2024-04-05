@@ -74,7 +74,7 @@ body {
 **/
 .mySelect{
     .ant-select{
-        width: 152px;
+        width: 155px;
         height: 40px;
     }
 
@@ -89,7 +89,7 @@ body {
     .ant-select-selector{
         border-color: var(--black-stroke-translucent) !important;
         border-radius: 10px;
-        padding: 0 17px !important;
+        padding: 0 15px !important;
         transition: .4s linear;
 
         & + .ant-select-arrow {
@@ -127,7 +127,15 @@ body {
         }
     }
 
-    
+    &.noRotateSuffixIcon{
+        .ant-select-selector{
+            & + .ant-select-arrow {
+                svg {
+                    transform: none;
+                }
+            }
+        }
+    }
 
     &.justSelected{
         .ant-select-selector{
@@ -206,4 +214,66 @@ body {
 .ant-modal-content{
     border-radius: 20px !important;
     padding: 0 !important;
+}
+
+
+/* ANT TABS IN PROFILE PAGE */
+.profile-tabs{
+    .ant-tabs-nav {
+        margin: 0;
+
+        &::before {
+            border: none;
+        }
+
+        .ant-tabs-ink-bar-animated{
+            display: none;
+        }
+    }
+
+    .ant-tabs-nav-list{
+        gap: 24px;
+
+        
+    }
+
+    .ant-tabs-tab-active{
+        div {
+            color: var(--black-main) !important;
+        }    
+    }
+
+
+    .ant-tabs-tab{
+        position: relative;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-weight: 500 !important;
+        font-size: var(--fz-l);
+        line-height: 1.272em;
+        letter-spacing: 0%;
+        color: var(--black-translucent-subtitle);
+
+        &::after {
+            content: '';
+            position: absolute;
+            right: -12px; // half from gap in ant-tabs-nav-list
+            width: 2px;
+            height: 100%;
+            background: var(--black-stroke-translucent);
+        }
+
+        &:nth-last-child(2){
+            &::after{
+                display: none;
+            }
+        
+        }
+
+        &:hover {
+            color: var(--black-main);
+        }
+
+        
+    }
 }

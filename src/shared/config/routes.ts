@@ -5,6 +5,7 @@ import SchedulePageIcon from 'shared/assets/img/menu/schedule.svg';
 import TaskPageIcon from 'shared/assets/img/menu/hw.svg';
 
 const MainPage = React.lazy(() => import('pages/MainPage'));
+const ProfilePage = React.lazy(() => import('pages/ProfilePage'));
 const TaskPage = React.lazy(() => import('pages/TaskPage'));
 const SchedulePage = React.lazy(() => import('pages/SchedulePage'));
 
@@ -23,7 +24,9 @@ export const menuRoutes: IRoute[] = [
 
 ];
 
-const restRoutes: IRoute[] = [];
+const restRoutes: IRoute[] = [
+  { path: '/profile', name: 'Профиль', element: ProfilePage }
+];
 
 export const routes = menuRoutes.concat(restRoutes);
 
