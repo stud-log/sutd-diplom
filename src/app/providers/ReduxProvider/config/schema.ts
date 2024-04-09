@@ -1,7 +1,9 @@
-import { ActivityTimerSchema } from './../../../../widgets/ActivityTimer/model/types/index';
+import { ActivityTimerSchema } from 'widgets/ActivityTimer';
+import { AddAndEditModalSchema } from 'widgets/Modals/ProfileModals/AddAndEditModal';
 import { SidebarSchema } from "widgets/Sidebar";
 
 export interface RootStateSchema {
   sidebar: SidebarSchema;
-  activityTimer:ActivityTimerSchema;
+  activityTimer: ActivityTimerSchema;
+  addAndEditModal: AddAndEditModalSchema;
 }

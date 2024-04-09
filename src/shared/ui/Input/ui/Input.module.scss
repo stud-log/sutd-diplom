@@ -1,4 +1,5 @@
 .InputConrainer{
+    position: relative;
     width: 100%;
 }
 
@@ -56,4 +57,13 @@
     .inputField{
         border-color: var(--accent);
     }
+}
+
+.limit {
+    position: absolute;
+    right: 15px;
+    bottom: 9px;
+    font-weight: 500;
+    font-size: var(--fz-s);
+    color: var(--black-translucent-subtitle);
 }

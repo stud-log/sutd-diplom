@@ -1,3 +1,4 @@
+@import './ckeditor';
 @import './vars.css';
 @import './reset';
 @import '../../shared/assets/fonts/fonts.css';
@@ -127,12 +128,32 @@ body {
         }
     }
 
+    &.errored{
+        .ant-select-selector {
+            border-color: var(--red) !important;
+        }
+    }
+
     &.noRotateSuffixIcon{
         .ant-select-selector{
             & + .ant-select-arrow {
                 svg {
                     transform: none;
                 }
+            }
+        }
+    }
+
+    &.prefixIcon{
+        .ant-select-selection-item{ 
+            padding-inline-end: 0;
+            padding-inline-start: 18px;
+        }
+
+        .ant-select-selector{
+            & + .ant-select-arrow {
+                inset-inline-end: auto;
+                inset-inline-start: 11px;
             }
         }
     }
@@ -275,5 +296,49 @@ body {
         }
 
         
+    }
+}
+
+
+/* CKEDITOR OVERWRITE */
+
+.myCKEDITOR {
+    .ck-rounded-corners {
+        border-radius:  10px !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    .ck-toolbar{
+        border-radius:  10px !important;
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    .ck-editor__editable_inline {
+        padding: 0 15px !important;
+        min-height: 100px;
+        background: var(--black-input-back) !important;
+    }
+}
+
+/* ANTD RANGEPICKER OVERWRITE */
+.myRangePicker{
+    &.ant-picker {
+        border-color: var(--black-stroke-translucent) !important;
+        border-radius:  10px !important;
+        padding: 0 15px !important;
+        width: 100%;
+        height: 55px;
+
+        input::placeholder {
+            color: var(--black-translucent-subtitle) !important;
+        }
+    }
+
+    &.errored {
+        &.ant-picker {
+            border-color: var(--red) !important;
+        }
     }
 }

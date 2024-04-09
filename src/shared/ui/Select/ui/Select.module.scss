@@ -1,5 +1,5 @@
 .Dropdown {
-
+    position: relative;
 }
 
 .label {
@@ -15,4 +15,21 @@
     &:hover {
         background: var(--accent);
     }
+}
+
+.label2 {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--black-translucent-subtitle);
+    pointer-events: none;
+}
+
+.error{
+    font-weight: 500;
+    font-size: var(--fz-s);
+    color: var(--red);
 }

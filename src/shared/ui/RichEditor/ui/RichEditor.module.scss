@@ -1,0 +1,59 @@
+.InputConrainer{
+    width: 100%;
+}
+
+.inputField{
+    border: 1px solid var(--black-stroke-translucent);
+    border-radius: 10px;
+    padding: 0 15px;
+    width: 100%;
+    height: 55px;
+    font-family: var(--ff);
+    font-weight: 500;;
+    font-size: var(--fz);
+    background: var(--black-input-back);
+
+    &:focus{ 
+        outline: none;
+    }
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--black-translucent-subtitle);
+    pointer-events: none;
+}
+
+.required{
+    position: relative;
+
+    &::after{
+        content: "*";
+        position: absolute;
+        right: -10px;
+        color: var(--accent);
+    }
+}
+
+.error{
+    font-weight: 500;
+    font-size: var(--fz-s);
+    color: var(--red);
+}
+
+.errored{
+    .inputField{
+        border-color: var(--red);
+        background-color: var(--red-input-back);
+    }
+}
+
+.passed{
+    .inputField{
+        border-color: var(--accent);
+    }
+}

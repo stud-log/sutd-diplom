@@ -27,6 +27,7 @@ const LoginPage: FC = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={async (values) => {
+            console.log('asd');
             setLoading(true);
             const result = await userService.login(values.email, values.password);
             setLoading(false);
@@ -35,7 +36,7 @@ const LoginPage: FC = () => {
           enableReinitialize
           validationSchema={validationSchema}
         >{
-            ({ values, submitForm }) => (
+            ({ submitForm }) => (
               <Form>
                 <h1 className={cls.header}>Войти в аккаунт</h1>
                 <Input name='email' label='E-mail' className={cls.field} />

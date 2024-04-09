@@ -39,6 +39,7 @@ module.exports = {
         "objectsInObjects": true
       }
     ],
+    "@typescript-eslint/no-explicit-any": [ 1 ],
     "@stylistic/array-bracket-spacing": [ "error", "always" ],
     "@stylistic/semi-spacing": [ "error", { "before": false, "after": true } ],
     "@stylistic/semi": [ "error", "always" ],

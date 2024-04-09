@@ -1,5 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 
+import { EditProfile } from 'features/Profile/EditProfile/EditProfile';
 import { FavoriteTab } from '../tabs/FavoriteTab/FavoriteTab';
 import { Layout } from 'shared/ui/Layout';
 import { ProfileTab } from '../tabs/ProfileTab/ProfileTab';
@@ -29,8 +30,8 @@ const ProfilePage: FC = () => {
     <Layout.Base className={cls.SchedulePage}>
       <Layout.BaseHeader slots={{
         start: <Tabs defaultActiveKey="profile" className='profile-tabs' items={TabsItems} onChange={(v) => setActiveTab(v as TabsItemsKeys)} />,
-        end: <SubjectFilter onSelect={console.log}/>
-      }}/>
+        end: <EditProfile />
+      }} className={cls.header}/>
       <Layout.BaseContent>
         {renderTab}
       </Layout.BaseContent>

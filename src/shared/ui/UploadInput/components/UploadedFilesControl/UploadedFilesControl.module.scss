@@ -1,0 +1,61 @@
+.UploadedFilesControl{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.file{
+    display: flex;
+    gap: 10px;
+}
+
+.cross {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    transform: translate(25%, -25%);
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.fileExt {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: var(--fz-s);
+    color: var(--black-blue);
+    background: var(--background-color-schedule);
+    pointer-events: none;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    
+
+    .fileName {
+        overflow: hidden;
+        max-width: 200px;
+        font-weight: 600;
+        letter-spacing: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: var(--black-main);
+    }
+
+    .fileSize {
+        color: var(--black-translucent-subtitle);
+    }
+}

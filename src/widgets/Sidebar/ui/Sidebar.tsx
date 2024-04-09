@@ -23,7 +23,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         <Clock />
       </div>
 
-      <UserProfile className={cls.profile}/>
+      <UserProfile size='small' className={cls.profile}/>
 
       <menu>
         {menuRoutes.map((item, index) => {

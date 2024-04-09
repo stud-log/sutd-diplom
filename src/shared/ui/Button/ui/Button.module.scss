@@ -48,6 +48,18 @@
     }
 }
 
+.withIcon{
+    display: flex;
+    gap: 10px;
+}
+
+.withIcon.outline{
+    &:active {
+        svg {
+            stroke: var(--accent);
+        }
+    }
+}
 
 .pressed.loading {
     color: transparent; // to avoid btn height "jumping"

@@ -22,6 +22,8 @@
     "source.fixAll.stylelint": "explicit"
   },
   "cSpell.words": [
-    "Formik"
+    "CKEDITOR",
+    "Formik",
+    "домашки"
   ],
 }

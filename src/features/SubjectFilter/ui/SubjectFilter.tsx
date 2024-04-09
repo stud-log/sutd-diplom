@@ -6,7 +6,7 @@ import useGroupSubjects from 'shared/hooks/useGroupSubjects';
 
 interface SubjectFilterProps {
   className?: string;
-  onSelect: (value: string) => void;
+  onSelect: (value: DefaultOptionType) => void;
 }
 
 export const SubjectFilter: FC<SubjectFilterProps> = ({ className, onSelect }) => {

@@ -1,4 +1,6 @@
+import { Button } from 'shared/ui/Button';
 import { FC } from 'react';
+import { UserProfile } from 'widgets/UserProfile';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './ProfileTab.module.scss';
 
@@ -9,6 +11,8 @@ interface ProfileTabProps {
 export const ProfileTab: FC<ProfileTabProps> = ({ className }) => {
 
   return (
-    <div className={classNames(cls.ProfileTab, {}, [ className ])}> Profile </div>
+    <div className={classNames(cls.ProfileTab, {}, [ className ])}>
+      <UserProfile size='big' />
+    </div>
   );
 };

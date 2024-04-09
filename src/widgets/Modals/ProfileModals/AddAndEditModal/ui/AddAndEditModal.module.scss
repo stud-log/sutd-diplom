@@ -1,0 +1,38 @@
+.AddAndEditModal{
+    
+}
+
+.formWrapper{
+    margin-top: 30px;
+    
+}
+
+.selectWrapper {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    gap: 20px;
+}
+
+.select{
+    margin-bottom: 25px;
+
+    & > div {
+        width: 100% !important;
+        height: 55px !important; 
+    }
+}
+
+.mb, {
+    margin-bottom: 25px;
+}
+
+.headerInput {
+    height: 65px;
+}
+
+.uploadSection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}

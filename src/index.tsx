@@ -3,6 +3,7 @@ import './app/styles/index.scss';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { AddAndEditModal } from 'widgets/Modals/ProfileModals/AddAndEditModal';
 import { App } from 'app/App';
 import LoginPage from 'pages/LoginPage';
 import ReactDOM from 'react-dom/client';
@@ -25,6 +26,7 @@ root.render(
       </Routes>
     </BrowserRouter>
     <ToastContainer />
+    <AddAndEditModal />
   </ReduxProvider>
 );
 
