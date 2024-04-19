@@ -1,8 +1,10 @@
 import { $api } from "shared/http/host";
 import { AxiosError } from "axios";
+import { EmojiClickData } from "emoji-picker-react";
 import { ErrorResponse } from "@stud-log/news-types/server";
 import { HomeworkType } from "@stud-log/news-types/enums";
 import { NewsLabelsOptions } from "widgets/Modals/ProfileModals/AddAndEditModal/types";
+import { UserReaction } from "@stud-log/news-types/models";
 import { notification } from "antd";
 
 export interface CreateNewPostFromValues {
@@ -53,6 +55,23 @@ class PostService {
         description: `Запись ${isNewRecord ? 'создана' : 'изменена'}`,
       });
       return true;
+    } catch (e) {
+      const error = e as AxiosError<ErrorResponse>;
+      notification.warning({
+        message: 'Что-то пошло не так...',
+        description: error.response?.data.message,
+      });
+      return false;
+    }
+  }
+
+  async reactPost (
+    recordId: number,
+    reaction: EmojiClickData
+  ) {
+    try {
+      return (await $api.post<UserReaction>(`/api/record/post/react`, { recordId, type: reaction.unified, imageUrl: reaction.imageUrl })).data;
+      
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
       notification.warning({

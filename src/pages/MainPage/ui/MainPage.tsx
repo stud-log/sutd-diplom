@@ -19,7 +19,7 @@ const MainPage: FC = () => {
         </>
       }} />
       <Layout.StickyContent>
-        в
+        main
       </Layout.StickyContent>
     </Layout.Sticky>
   );

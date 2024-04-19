@@ -41,8 +41,22 @@ $header-height: 94px;
 }
 
 .LayoutPageStickyContent{
-    padding: 10px 30px;
+    position:absolute;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20px 30px;
     inset:$header-height 0 0 0;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 3px;
+        background-color: var(--white);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: var(--black-stroke-translucent);
+    }
 }
 
 .LayoutPageBaseHeader{
@@ -72,4 +86,8 @@ $header-height: 94px;
 .LayoutPageBaseContent{
     padding: 10px 30px;
     inset:$header-height 0 0 0;
+}
+
+.emptyData {
+    pointer-events: none;
 }

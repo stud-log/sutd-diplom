@@ -1,3 +1,16 @@
+@import '../../../app/styles/mixins';
+
 .TaskPage{
     
+}
+
+.hwWrapper{
+    display: grid;
+    grid-gap: 28px;
+    grid-template-columns: repeat(auto-fit, 228px);
+  
+
+    @include moreThan(xxl) {
+        grid-gap: 20px;
+    }
 }

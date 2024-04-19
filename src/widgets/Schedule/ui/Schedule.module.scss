@@ -2,3 +2,30 @@
     flex-shrink: 0;
     width: var(--schedule-width);
 }
+
+.weekdayWrapper{
+    
+}
+
+.weekday{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: var(--black-main);
+
+    .weekdayName{
+        text-transform: capitalize;
+    }
+
+    .weekdayDate {
+
+    }
+}
+
+.elementsWrapper{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+    gap: 12px;
+}

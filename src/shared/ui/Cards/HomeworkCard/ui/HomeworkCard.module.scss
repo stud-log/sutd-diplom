@@ -1,0 +1,103 @@
+.HomeworkCard{
+    border: 1px solid var(--black-stroke-translucent);
+    border-radius: 20px;
+    width: 230px;
+    height: 288px;
+    min-width: 230px;
+    max-width: 230px;
+    cursor: pointer;
+
+    @media (width <= 700px) {
+        width: 100%;
+        height: 250px;
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    @media (width <= 375px) {
+        height: 200px;
+    }
+}
+
+.block{
+    display: grid;
+    grid-template-rows: 30px 22px 45px 85px 43px 30px;
+    padding: 15px;
+    height: 100%;
+    box-sizing: border-box;
+
+    .cardHeader{
+        .createdAt {
+            font-weight: 600;
+            font-size: var(--fz-s);
+            color: var(--black-translucent-subtitle2);
+        }
+
+        .status{
+
+        }
+    }
+
+    .subject{
+        font-weight: 600;
+        font-size: var(--fz-s);
+        color: var(--black-translucent-subtitle2);
+    }
+
+    .title{
+        font-weight: 600;
+        color: var(--black-main);
+    }
+
+    .content{
+        overflow-wrap: anywhere;
+        color: var(--black-main);
+    }
+
+    @media (width <= 700px) {
+        grid-template-rows: 28px 35px 40px 65px 40px;
+        padding: 10px 12px;
+    }
+
+    @media (width <= 375px) {
+        grid-template-rows: 28px 35px 40px 35px 8px;
+        padding: 10px 12px;
+    }
+}
+
+.deadline{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    width: 100%;
+    height: 37px;
+    font-weight: 500;
+
+    &.less100 {
+        color: #319E4A;
+        background: #E7F8EB;
+    }
+
+    &.less75 {
+        color: #DC491B;
+        background: #F4511E;
+    }
+
+    &.less40 {
+        color: #D72727;
+        background: rgba(#EF2B2B, 0.12);
+    }
+}
+
+.controls{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+
+    .reactions {
+        
+        
+    }
+}

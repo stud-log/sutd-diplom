@@ -1,0 +1,29 @@
+.CommentCounter{
+   
+}
+
+.meFavorited{
+    svg {
+        fill: var(--accent);
+    }
+}
+
+.bubble {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    gap: 5px;
+
+    svg {
+        transition: .5s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            fill: var(--accent);
+            
+        }
+    }
+
+    
+
+}

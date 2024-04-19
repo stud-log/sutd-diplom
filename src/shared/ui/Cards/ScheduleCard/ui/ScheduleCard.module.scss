@@ -1,0 +1,61 @@
+.ScheduleCard{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 9px 18px;
+    font-size: var(--fz-s);
+    color: var(--accent);
+    background: var(--white);
+
+    &.DO {
+        // TODO: replace with vars
+        border: 1px solid transparent;
+        color: #FF6F00;
+        background: #FFF8E1;
+    }
+
+    &.custom {
+        border: 1px solid transparent;
+        color: var(--black-blue);
+        background: var(--background-color-schedule);
+    }
+
+    &.active {
+        border: 1px solid transparent;
+        color: var(--white);
+        background: var(--accent);
+    }
+    
+}
+
+.leftSide{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.type{
+
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.start {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.end {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}

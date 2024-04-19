@@ -18,7 +18,7 @@ function useGroupSubjects() {
         if (isMounted) {
           const preparedSubjects = response.data.map((item) => ({
             id: item.id,
-            value: item.title,
+            value: item.id,
             label: item.title,
             teacherName: item.teacherName,
           }));

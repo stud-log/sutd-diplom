@@ -45,10 +45,10 @@
   resolved "https://registry.npmjs.org/@ant-design/icons-svg/-/icons-svg-4.4.2.tgz"
   integrity sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==
 
-"@ant-design/icons@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.npmjs.org/@ant-design/icons/-/icons-5.3.1.tgz"
-  integrity sha512-85zROTJCCApQn0Ee6L9561+Vd7yVKtSWNm2TpmOsYMrumchbzaRK83x1WWHv2VG+Y1ZAaKkDwcnnSPS/eSwNHA==
+"@ant-design/icons@^5.3.1", "@ant-design/icons@^5.3.6":
+  version "5.3.6"
+  resolved "https://registry.npmjs.org/@ant-design/icons/-/icons-5.3.6.tgz"
+  integrity sha512-JeWsgNjvkTTC73YDPgWOgdScRku/iHN9JU0qk39OSEmJSCiRghQMLlxGTCY5ovbRRoXjxHXnUKgQEgBDnQfKmA==
   dependencies:
     "@ant-design/colors" "^7.0.0"
     "@ant-design/icons-svg" "^4.4.0"
@@ -1969,10 +1969,10 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@stud-log/news-types@^1.1.22":
-  version "1.1.22"
-  resolved "https://npm.pkg.github.com/download/@stud-log/news-types/1.1.22/94a749536ccc7367d446d87d24689bb8d10d0bb5"
-  integrity sha512-CQTK/LBbxdHIfOds3HoWKR6E2jojLXV4jo+HrUh+48AEPjpC8ib3Tzl1mU36+3t8VT6cdqpkfd4TKByWYIeSlw==
+"@stud-log/news-types@^1.1.28":
+  version "1.1.28"
+  resolved "https://npm.pkg.github.com/download/@stud-log/news-types/1.1.28/7d56023f8dba0f8fa4dfd3d9774f10c2f42005c8"
+  integrity sha512-SUw+36HcNJIZ/UVCcKpaHpxqd1ONoGJSHArL3qMxF1Xc2BfRMBj3Qbs0ygRs+GXmD1ugiZKflWqeBU4u1QZowQ==
 
 "@stylistic/eslint-plugin-js@^1.6.2", "@stylistic/eslint-plugin-js@1.6.2":
   version "1.6.2"
@@ -4183,6 +4183,13 @@ emittery@^0.13.1:
   resolved "https://registry.npmjs.org/emittery/-/emittery-0.13.1.tgz"
   integrity sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==
 
+emoji-picker-react@^4.9.2:
+  version "4.9.2"
+  resolved "https://registry.npmjs.org/emoji-picker-react/-/emoji-picker-react-4.9.2.tgz"
+  integrity sha512-pdvLKpto0DMrjE+/8V9QeYjrMcOkJmqBn3GyCSG2zanY32rN2cnWzBUmzArvapAjzBvgf7hNmJP8xmsdu0cmJA==
+  dependencies:
+    flairup "0.0.38"
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz"
@@ -4343,7 +4350,7 @@ escalade@^3.1.1:
   resolved "https://registry.npmjs.org/escalade/-/escalade-3.1.1.tgz"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
 
-escape-html@~1.0.3:
+escape-html@^1.0.3, escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz"
   integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
@@ -4754,6 +4761,11 @@ find-up@^6.3.0:
   dependencies:
     locate-path "^7.1.0"
     path-exists "^5.0.0"
+
+flairup@0.0.38:
+  version "0.0.38"
+  resolved "https://registry.npmjs.org/flairup/-/flairup-0.0.38.tgz"
+  integrity sha512-W9QA5TM7eYNlGoBYwfVn/o6v4yWBCxfq4+EJ5w774oFeyWvVWnYq6Dgt4CJltjG9y/lPwbOqz3jSSr8K66ToGg==
 
 flat-cache@^3.0.4:
   version "3.1.0"
@@ -5321,6 +5333,13 @@ interpret@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/interpret/-/interpret-2.2.0.tgz"
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
+
+interweave@^13.1.0:
+  version "13.1.0"
+  resolved "https://registry.npmjs.org/interweave/-/interweave-13.1.0.tgz"
+  integrity sha512-JIDq0+2NYg0cgL7AB26fBcV0yZdiJvPDBp+aF6k8gq6Cr1kH5Gd2/Xqn7j8z+TGb8jCWZn739jzalCz+nPYwcA==
+  dependencies:
+    escape-html "^1.0.3"
 
 ipaddr.js@^2.0.1:
   version "2.1.0"
