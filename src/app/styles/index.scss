@@ -342,3 +342,59 @@ body {
         }
     }
 }
+
+
+/* SCHEDULE TOOLTIP */
+.event-desc {
+    z-index: 10;
+    border-radius: 15px;
+    padding: 13px;
+    width: 170px;
+    height: min-content;
+    font-size: var(--fz-s);
+    background: #e1ecf9;
+  
+    &__date {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+
+      .date {
+        font-weight: bold;
+      }
+
+      .time {
+      }
+    }
+  
+    &__title {
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+  
+    .info {
+      .li {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+
+        .marker {
+          margin-right: 5px;
+          font-size: 1.5rem;
+
+          &_yellow {
+            color: #ffbb0b;
+          }
+
+          &_green {
+            color: #57da6c;
+          }
+
+          &_blue {
+            color: #5794da;
+          }
+        }
+      }
+    }
+  }
