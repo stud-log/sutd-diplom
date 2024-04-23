@@ -1,3 +1,5 @@
+import { TimetableWeekparities } from "@stud-log/news-types/enums";
+
 export interface FCEvent{
   title: string;
   date: string;
@@ -7,11 +9,14 @@ export interface FCEvent{
 }
 
 export interface FCExtendedProps {
-    
+  recordId: number;
+  isActiveNow: boolean;
+  weekparity: keyof typeof TimetableWeekparities;
   isDO: boolean;
   isCustom: boolean;
   room: string;
   teacher: string | null;
   type: string;
-    
+  fullTitle: string;
+  link: string;
 }

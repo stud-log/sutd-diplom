@@ -22,8 +22,10 @@
     "source.fixAll.stylelint": "explicit"
   },
   "cSpell.words": [
+    "ANTD",
     "CKEDITOR",
     "Formik",
+    "Weekparity",
     "домашки"
   ],
 }

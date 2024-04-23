@@ -1,3 +1,72 @@
 .SchedulePage{
     
 }
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.headerWeekparity{
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: unset;
+    background: var(--black-buttons-back);
+}
+
+.commonEventClass{
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 5px 7px;
+    font-family: var(--ff);
+    font-size: var(--fz-s);
+    color: var(--accent);
+    background: var(--white);
+}
+
+
+
+.doEvent {
+    // TODO: replace with vars
+    border: 1px solid transparent;
+    border-color: transparent;
+    color: #FF6F00;
+    background: #FFF8E1;
+}
+
+
+.customEvent {
+    border: 1px solid transparent;
+    border-color: transparent;
+    color: var(--black-blue);
+    background: var(--background-color-schedule);
+}
+
+.activeEvent {
+    border: 1px solid transparent;
+    border-color: transparent;
+    color: var(--white);
+    background: var(--accent);
+}
+
+.notEqualTodayWeekparity{
+    display: none;
+}
+
+.calendarHeaderMiddle{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    button {
+        padding: 9px;
+        max-width: max-content;
+    }
+}
