@@ -19,6 +19,7 @@ export interface CreateNewPostFromValues {
   recordId: number;
   startDate: string;
   endDate: string;
+  filesToDelete: number[];
 }
 
 class PostService {
@@ -32,11 +33,18 @@ class PostService {
       formData.append('recordTable', values.recordTable);
       formData.append('title', values.title);
       formData.append('content', values.content);
+      formData.append('filesToDelete', JSON.stringify(values.filesToDelete));
       values.files.forEach((file) => {
-        formData.append(`files`, file);
+        if(!(file as any).id){
+          /** means we load new files */
+          formData.append(`files`, file);
+        }
       });
       // News properties
-      formData.append('cover', values.cover);
+      if(!(values.cover as any).id) {
+        /** means we load new image */
+        formData.append('cover', values.cover);
+      }
       formData.append('label', values.label || NewsLabelsOptions[0].value);
       // Homework properties
       formData.append('subjectId', values.subjectId.toString());
@@ -65,6 +73,44 @@ class PostService {
     }
   }
 
+  async commentPost (values: {recordId: number; content: string; title: string; parentId: number; isNote: boolean; files: File[]}) {
+    try {
+
+      const formData = new FormData();
+      formData.append('recordId', values.recordId.toString());
+      formData.append('title', values.title);
+      formData.append('content', values.content);
+      formData.append('parentId', values.parentId.toString());
+      formData.append('isNote', `${values.isNote}`);
+
+      values.files.forEach((file) => {
+        if(!(file as any).id){
+          /** means we load new files */
+          formData.append(`files`, file);
+        }
+      });
+
+      await $api.post(`/api/record/post/comment`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      
+      // notification.success({
+      //   message: 'Успешно!',
+      //   description: `Запись ${isNewRecord ? 'создана' : 'изменена'}`,
+      // });
+      return true;
+    } catch (e) {
+      const error = e as AxiosError<ErrorResponse>;
+      notification.warning({
+        message: 'Что-то пошло не так...',
+        description: error.response?.data.message,
+      });
+      return false;
+    }
+  }
+
   async reactPost (
     recordId: number,
     reaction: EmojiClickData
@@ -72,6 +118,21 @@ class PostService {
     try {
       return (await $api.post<UserReaction>(`/api/record/post/react`, { recordId, type: reaction.unified, imageUrl: reaction.imageUrl })).data;
       
+    } catch (e) {
+      const error = e as AxiosError<ErrorResponse>;
+      notification.warning({
+        message: 'Что-то пошло не так...',
+        description: error.response?.data.message,
+      });
+      return false;
+    }
+  }
+
+  async favoritePost (
+    recordId: number,
+  ) {
+    try {
+      return (await $api.post(`/api/record/post/favorite`, { recordId })).data;
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
       notification.warning({

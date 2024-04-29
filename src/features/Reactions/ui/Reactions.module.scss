@@ -34,10 +34,16 @@
 }
 
 .reactWrapper{
+    display: flex;
+    align-items: center;
     border-radius: 40px;
     padding: 3px 8px;
+    width: max-content;
+    font-weight: 600;
     color: var(--black-main);
     background: var(--black-buttons-back);
+    cursor: pointer;
+    gap: 5px;
 }
 
 .meReacted{
@@ -45,4 +51,12 @@
         color: var(--white);
         background: var(--accent);
     }    
+}
+
+.small {
+
+}
+
+.expanded {
+
 }

@@ -8,6 +8,7 @@ import useSWR, { SWRResponse } from 'swr';
 import { $apiGet } from 'shared/http/helpers/apiGet';
 import { Button } from 'shared/ui/Button';
 import CloseIcon from 'shared/assets/img/icons/x-close.svg';
+import { GetEntity } from '@stud-log/news-types/server/post.response';
 import { Input } from 'shared/ui/Input';
 import { RangePicker } from 'shared/ui/DatePicker/RangePicker/RangePicker';
 import { RichEditor } from 'shared/ui/RichEditor';
@@ -34,10 +35,11 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
   const closeModal = () => dispatch(addAndEditModalActions.closeModal());
   const subjects = useGroupSubjects();
 
-  const { data: post, error, mutate }: SWRResponse = useSWR(
+  const { data: post, error, mutate }: SWRResponse<GetEntity> = useSWR(
     recordId != -1 ? `/api/record/post/${recordTable}/${recordId}` : null,
     $apiGet,
   );
+  
   const isPostExists = !!post;
   const isNews = recordTable == 'News';
   const isHomework = recordTable == 'Homework';
@@ -49,21 +51,23 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
       <div className={cls.formWrapper}>
         <Formik
           initialValues={{
-            label: isPostExists && isNews ? post.label : '',
-            title: isPostExists ? post.title : '',
-            subjectId: isPostExists && isHomework ? post.subjectId : '',
-            content: isPostExists ? post.content : '',
-            type: isPostExists && isHomework ? post.type : HomeworksTypeOptions[0].value,
-            files: [] as File[],
-            cover: {} as File,
-            startDate: isPostExists && isHomework ? post.startDate : '',
-            endDate: isPostExists && isHomework ? post.endDate : '',
+            label: (isPostExists && isNews ? post.news?.label || '' : '') as string,
+            title: (isPostExists ? isHomework ? post.homework?.title : post.news?.title : '') as string,
+            subjectId: (isPostExists && isHomework ? post.homework?.subjectId : '') as any,
+            content: (isPostExists ? isHomework ? post.homework?.content : post.news?.content : '') as string,
+            type: (isPostExists && isHomework ? post.homework?.type : HomeworksTypeOptions[0].value) as string,
+            files: isPostExists ? post.files.map(file => ({ name: file.fileName, size: file.fileSize, id: file.id })) as unknown as File[] : [] as File[],
+            filesToDelete: [],
+            cover: isPostExists && isNews ? { name: 'Заменить обложку', id: post.news?.coverImage } as unknown as File : {} as File,
+            startDate: (isPostExists && isHomework ? post.homework?.startDate : '') as string,
+            endDate: (isPostExists && isHomework ? post.homework?.endDate : '') as string,
             recordTable,
             recordId,
           }}
           validationSchema={validationSchema}
           enableReinitialize
           onSubmit={async (values) => {
+            
             setLoading(true);
             const result = await postService.sendPost(values);
             setLoading(false);
@@ -75,11 +79,19 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
           {({ setFieldValue, submitForm, values, errors, touched }) =>
             <Form>
               {isHomework && <div className={cls.selectWrapper}>
-                <Select asFormikField={{ error: touched.subjectId ? errors.subjectId as string : undefined, passed: !!touched.subjectId && !errors.subjectId }} className={cls.select} options={subjects} onSelect={v => setFieldValue('subjectId', v.id)} defaultOption={subjects?.find(i => i.id == values.subjectId)} defaultText='Выбрать предмет'/>
+                <Select
+                  asFormikField={{ error: touched.subjectId ? errors.subjectId as string : undefined, passed: !!touched.subjectId && !errors.subjectId }}
+                  className={cls.select}
+                  options={subjects}
+                  onSelect={v => setFieldValue('subjectId', v.id)}
+                  defaultOption={subjects?.find(i => i.id == values.subjectId)}
+                  defaultText='Выбрать предмет'
+                />
                 <Select asFormikField={{ error: touched.type ? errors.type as string : undefined, passed: !!touched.type && !errors.type }} className={cls.select} options={HomeworksTypeOptions} onSelect={v => setFieldValue('type', v.value)} defaultOption={HomeworksTypeOptions.find(i => i.value == values.type)}/>
               </div>}
               {isHomework && <div className={cls.mb}>
-                <RangePicker showTime
+                <RangePicker
+                  showTime
                   defaultValue={isPostExists ? [ values.startDate, values.endDate ] : undefined}
                   asFormikField={{ error: touched.startDate ? errors.startDate as string || errors.endDate as string : undefined, passed: !!touched.startDate && !errors.startDate }}
                   onChange={([ startDate, endDate ]) => {

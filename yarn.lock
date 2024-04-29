@@ -2003,10 +2003,10 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@stud-log/news-types@^1.1.30":
-  version "1.1.30"
-  resolved "https://npm.pkg.github.com/download/@stud-log/news-types/1.1.30/365a85718e1278657298aad9cd3ccc81428ef346"
-  integrity sha512-9aeOJb2oUQ6qyV4QZB1yFp2T14/yECyv6fXhtERlKVg8UuHT9VLhVS3CxK1NtqhTFaUEd4O6DYbXXinWFodAXA==
+"@stud-log/news-types@^1.1.32":
+  version "1.1.32"
+  resolved "https://npm.pkg.github.com/download/@stud-log/news-types/1.1.32/f8f998d501fa59e74a62113de98e992a338f5f4f"
+  integrity sha512-C+PUhTMLrCRAseCCiKQE8RFOuzpWXwsCW6TThuWxITGJQ5EbMfg3iqbU0ld6RUQNRHBmMhFaYPvO65ocnRhNdw==
 
 "@stylistic/eslint-plugin-js@^1.6.2", "@stylistic/eslint-plugin-js@1.6.2":
   version "1.6.2"

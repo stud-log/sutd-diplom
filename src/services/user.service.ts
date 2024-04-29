@@ -47,6 +47,7 @@ class UserService {
       lastName: user.lastName,
       avatarUrl: user.avatarUrl,
       group: user.group,
+      id: user.id,
       role: user.role
     }));
   }

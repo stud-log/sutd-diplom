@@ -1,0 +1,28 @@
+.Comments{
+
+}
+
+.empty{
+    margin: 10px 0;
+    color: var(--black-translucent-subtitle);
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    gap: 12px;
+
+    button {
+        width: max-content;
+    }
+}
+
+.uploadedFiles{
+    margin-top: 12px;
+    max-width: 60%;
+}
+
+.fileControls{
+
+}

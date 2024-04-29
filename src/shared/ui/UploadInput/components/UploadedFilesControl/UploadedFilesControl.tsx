@@ -15,7 +15,7 @@ interface UploadedFilesControlProps {
  * __NOTE__: Formik initial values must have `{files: File[]}` as one of available properties
  */
 export const UploadedFilesControl: FC<UploadedFilesControlProps> = ({ className }) => {
-  const { values } = useFormikContext<{files: File[]}>();
+  const { values, setFieldValue } = useFormikContext<{files: File[]; filesToDelete: number[]}>();
   
   return (
     <div className={classNames(cls.UploadedFilesControl, {}, [ className ])}>
@@ -30,7 +30,15 @@ export const UploadedFilesControl: FC<UploadedFilesControlProps> = ({ className 
                 <div className={cls.file} key={index}>
                   <div className={cls.fileExt}>
                     {ext}
-                    <div className={cls.cross} onClick={() => arrayHelpers.remove(index)}><CrossIcon /></div>
+                    <div className={cls.cross} onClick={() => {
+                      arrayHelpers.remove(index);
+                      /** if file was from server and we click 'delete' - push it's id to array */
+                      if((file as any).id){
+                        const anArray = ([] as number[]).concat(values.filesToDelete);
+                        anArray.push((file as any).id);
+                        setFieldValue('filesToDelete', anArray);
+                      }
+                    }}><CrossIcon /></div>
                   </div>
                   <div className={cls.info}>
                     <div className={cls.fileName}>{filename}</div>

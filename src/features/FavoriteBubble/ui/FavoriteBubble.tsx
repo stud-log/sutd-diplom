@@ -1,49 +1,30 @@
-import EmojiPicker, { Emoji } from 'emoji-picker-react';
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
+import { UserFavorite, UserReaction } from '@stud-log/news-types/models';
 
-import HeartIcon from 'shared/assets/img/icons/heart.svg';
-import { UserReaction } from '@stud-log/news-types/models';
+import FavoriteIcon from 'shared/assets/img/icons/favorite.svg';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './FavoriteBubble.module.scss';
 import postService from 'services/post.service';
-import { useOutsideClick } from 'shared/hooks/useClickOutside';
+import userService from 'services/user.service';
 
 interface ReactionProps {
   className?: string;
   recordId: number;
-  meReacted: UserReaction[];
-  reactions: UserReaction[];
+  meFavorite: boolean;
+  favorites: UserFavorite[];
 }
 
-export const FavoriteBubble: FC<ReactionProps> = ({ className, meReacted, recordId, reactions }) => {
-  const [ meReact, setMyReact ] = useState<UserReaction | boolean>(meReacted.length == 0 ? false : meReacted[0]);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-      
-  const ref = useOutsideClick(handleClose);
-  const [ open, setOpen ] = useState(false);
+export const FavoriteBubble: FC<ReactionProps> = ({ className, meFavorite, recordId, favorites }) => {
+  const { id } = userService.getUser();
+  const [ _meFavorite, setMeFavorite ] = useState<boolean>(meFavorite);
+  const favoritesCount = favorites.filter(i => i.userId != id).length;
   
   return (
-    <div ref={ref} className={classNames(cls.Reaction, { [cls.meReacted]: !!meReact }, [ className ])}>
-      <div className={cls.reactWrapper}>
-        {!meReact && <div className={cls.heart}><HeartIcon onClick={() => setOpen(true)} /> {reactions.length} </div>}
-        {meReact && <div className={cls.liked} onClick={() => setOpen(true)} ><Emoji size={16} unified={(meReact as UserReaction).type} /> {reactions.filter(i => i.type == (meReact as UserReaction).type).length} </div>}
-      </div>
-      <div className={cls.pickerWrapper} >
-        <EmojiPicker
-          open={open}
-          reactionsDefaultOpen
-          onReactionClick={async reaction => {
-            setOpen(false);
-            await postService.reactPost(recordId, reaction)
-              .then(r => setMyReact(r));
-            
-          }}
-          allowExpandReactions={false}
-        />
-      </div>
+    <div className={classNames(cls.Favorite, { [cls.meFavorite]: _meFavorite }, [ className ])}>
+      <FavoriteIcon onClick={() => {
+        setMeFavorite(!_meFavorite);
+        postService.favoritePost(recordId);
+      }}/> {_meFavorite ? favoritesCount + 1 : favoritesCount}
     </div>
   );
 };
