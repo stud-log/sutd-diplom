@@ -1,9 +1,10 @@
 import 'moment/locale/ru';
 
+import ClockIcon from 'shared/assets/img/icons/clock.svg';
 import { FC } from 'react';
 import { GetEntity } from '@stud-log/news-types/server/post.response';
 import { Interweave } from 'interweave';
-import { Reaction } from 'features/Reaction';
+import { Reactions } from 'features/Reactions';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkCard.module.scss';
 import { getRemainDeadline } from 'shared/lib/helpers/getRemainDeadline';
@@ -18,11 +19,11 @@ interface HomeworkCardProps extends GetEntity {
 
 export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) => {
   const hw = record.homework!;
-  const startDate = moment(hw.createdAt).format('D MMM YYYY').replace('.', '');
-  const endDate = moment(hw.createdAt).format('D MMM').replace('.', '');
+  const startDate = moment(hw.startDate).format('D MMM YYYY').replace('.', '');
+  const endDate = moment(hw.endDate).format('D MMM').replace('.', '');
   const { remainTime, progress, remainShort } = getRemainDeadline(hw.startDate, hw.endDate);
   const navigate = useNavigate();
-
+  console.log(progress);
   return (
     <div className={classNames(cls.HomeworkCard, {}, [ className ])} >
       <div className={cls.block}>
@@ -38,13 +39,11 @@ export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) =>
         <div className={classNames(cls.deadline, {
           [cls.less40]: progress > 40,
           [cls.less75]: progress > 75,
-        }, [ cls.less100 ])}>дедлайн {endDate}</div>
+          [cls.deadlineGone]: progress == 100,
+        }, [ cls.less100 ])}><ClockIcon /> {progress < 100 ? `${endDate} (${remainTime})` : 'Срок сдачи прошел'}</div>
         <div className={cls.controls}>
-          <div>
-            
-            <Reaction className={cls.reactions} meReacted={record.meReacted} reactions={record.reactions} recordId={record.id}/>
-            
-          </div>
+          <Reactions className={cls.reactions} meReacted={record.meReacted} reactions={record.reactions} recordId={record.id}/>
+          
         </div>
       </div>
     </div>

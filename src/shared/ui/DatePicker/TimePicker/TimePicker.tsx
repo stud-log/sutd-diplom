@@ -1,9 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs';
 
-import { DatePicker } from 'antd';
+import { TimePicker as ANTDTimePicker } from 'antd';
 import { FC } from 'react';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import cls from './RangePicker.module.scss';
+import cls from './TimePicker.module.scss';
 import ru from 'antd/es/date-picker/locale/ru_RU';
 
 const buddhistLocale: typeof ru = {
@@ -16,10 +16,9 @@ const buddhistLocale: typeof ru = {
   
 };
 
-interface RangePickerProps {
+interface TimePickerProps {
   className?: string;
-  onChange: ((dates: any, dateStrings: [string, string]) => void);
-  showTime?: boolean;
+  onChange: ((dates: any, dateStrings: string | string[]) => void);
   defaultValue?: [string, string];
   asFormikField?: {
     error?: string;
@@ -28,17 +27,18 @@ interface RangePickerProps {
   };
 }
 
-export const RangePicker: FC<RangePickerProps> = ({ className, onChange, defaultValue, showTime = false, asFormikField }) => {
+export const TimePicker: FC<TimePickerProps> = ({ className, onChange, defaultValue, asFormikField }) => {
 // Convert default values to dayjs objects if provided
-  const defaultValues = defaultValue ? defaultValue.map(date => dayjs(date)) : undefined;
+  const defaultValues = defaultValue ? defaultValue.map(date => {
+    const [ hours, minutes ] = date.split(':');
+    return dayjs().hour(Number(hours)).minute(Number(minutes)).second(0);
+  
+  }) : undefined;
   return (
-    <DatePicker.RangePicker
+    <ANTDTimePicker.RangePicker
       locale={buddhistLocale}
+      format={"HH:mm"}
       {...(defaultValues && defaultValues.length == 2 ? { defaultValue: (defaultValues as any) } : {})}
-      showTime={showTime ? {
-        format: 'HH:mm'
-      } : false}
-      
       onChange={onChange}
       className={classNames(cls.RangePicker, { 'errored': !!asFormikField?.error }, [ className, 'myRangePicker' ])}
     />

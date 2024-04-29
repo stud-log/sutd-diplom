@@ -26,7 +26,7 @@ export function getRemainDeadline(publishDate: any, deadline: any) {
     deadline = moment(deadline);
     wholeRopeWidth = deadline.diff(publicDate, 'minutes');
     fromStartToNow = moment().diff(pubicDate_startPoint, 'minutes');
-    progress = (fromStartToNow / wholeRopeWidth) * 100;
+    progress = Math.min((fromStartToNow / wholeRopeWidth) * 100, 100);
   }
   if (moment(deadline).isAfter(moment())) {
     const remain_actual_time = moment(deadline).diff(moment(), 'hours');

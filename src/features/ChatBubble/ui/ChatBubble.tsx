@@ -1,10 +1,10 @@
 import EmojiPicker, { Emoji } from 'emoji-picker-react';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 import HeartIcon from 'shared/assets/img/icons/heart.svg';
 import { UserReaction } from '@stud-log/news-types/models';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import cls from './Reaction.module.scss';
+import cls from './ChatBubble.module.scss';
 import postService from 'services/post.service';
 import { useOutsideClick } from 'shared/hooks/useClickOutside';
 
@@ -15,7 +15,7 @@ interface ReactionProps {
   reactions: UserReaction[];
 }
 
-export const Reaction: FC<ReactionProps> = ({ className, meReacted, recordId, reactions }) => {
+export const ChatBubble: FC<ReactionProps> = ({ className, meReacted, recordId, reactions }) => {
   const [ meReact, setMyReact ] = useState<UserReaction | boolean>(meReacted.length == 0 ? false : meReacted[0]);
 
   const handleClose = () => {

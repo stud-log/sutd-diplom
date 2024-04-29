@@ -29,7 +29,6 @@ root.render(
         </Routes>
       </BrowserRouter>
       <ToastContainer />
-      <AddAndEditModal />
     </AntdConfigProvider>
   </ReduxProvider>
 );

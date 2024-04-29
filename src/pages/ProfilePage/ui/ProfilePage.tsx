@@ -11,8 +11,8 @@ import type { TabsProps } from 'antd';
 import cls from './ProfilePage.module.scss';
 import { withWidget } from 'shared/hooks/withWidget';
 
-enum TabsItemsKeys { profile = 'profile', favorite = 'favorite' }
-const TabsItems: TabsProps['items'] = [ { key: TabsItemsKeys.profile, label: 'Профиль' }, { key: TabsItemsKeys.favorite, label: 'Избранное' } ];
+enum TabsItemsKeys { profile = 'profile', favorite = 'favorite', todo = 'todo'}
+const TabsItems: TabsProps['items'] = [ { key: TabsItemsKeys.profile, label: 'Профиль' }, { key: TabsItemsKeys.favorite, label: 'Избранное', }, { key: TabsItemsKeys.todo, label: 'To do' } ];
 
 const ProfilePage: FC = () => {
   const [ activeTab, setActiveTab ] = useState<TabsItemsKeys>(TabsItemsKeys.profile);
@@ -29,7 +29,7 @@ const ProfilePage: FC = () => {
   return (
     <Layout.Base className={cls.SchedulePage}>
       <Layout.BaseHeader slots={{
-        start: <Tabs defaultActiveKey="profile" className='profile-tabs' items={TabsItems} onChange={(v) => setActiveTab(v as TabsItemsKeys)} />,
+        start: <Tabs type='line' activeKey={activeTab} className='profile-tabs' items={TabsItems} onChange={(v) => setActiveTab(v as TabsItemsKeys)} />,
         end: <EditProfile />
       }} className={cls.header}/>
       <Layout.BaseContent>

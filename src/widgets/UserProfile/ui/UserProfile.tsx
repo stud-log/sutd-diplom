@@ -7,6 +7,7 @@ import { Select } from 'shared/ui/Select';
 import { addAndEditModalActions } from 'widgets/Modals/ProfileModals/AddAndEditModal/slice';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './UserProfile.module.scss';
+import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal/slice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import userService from 'services/user.service';
@@ -39,10 +40,10 @@ export const UserProfile: FC<UserProfileProps> = ({ className, size }) => {
                   className={cls.select}
                   options={[ { label: 'Новость', value: 'News' }, { label: 'Домашку', value: 'Homework' } ]}
                   prefixIcon={<AddIcon />}
-                  onSelect={selected => {console.log(selected); dispatch(addAndEditModalActions.openModal({ recordId: -1, recordTable: selected.value as "News" | "Homework" }));}}
+                  onSelect={selected => {dispatch(addAndEditModalActions.openModal({ recordId: -1, recordTable: selected.value as "News" | "Homework" }));}}
                 />
                 <Button size='md' outline purpose='editGroup'>Управление группой</Button>
-                <Button size='md' outline purpose='editSchedule'>Изменить расписание</Button>
+                <Button size='md' outline purpose='editSchedule' onClick={() => dispatch(scheduleModalActions.openModal())}>Изменить расписание</Button>
               </>
             )}
           </div>

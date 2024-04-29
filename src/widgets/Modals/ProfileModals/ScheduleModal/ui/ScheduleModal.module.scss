@@ -1,0 +1,32 @@
+.ScheduleModal{
+    position: relative;
+}
+
+.formWrapper{
+    margin-top: 30px;
+    
+}
+
+
+
+.mb, {
+    margin-bottom: 25px;
+}
+
+.headerInput {
+    height: 65px;
+}
+
+.uploadSection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.saveBtn{
+    position: fixed;
+    left: 50%;
+    bottom: 50px;
+    width: 590px;
+    transform: translate(-50%, 0);
+}

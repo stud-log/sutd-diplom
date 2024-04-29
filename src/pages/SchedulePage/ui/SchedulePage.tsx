@@ -17,14 +17,18 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from '@fullcalendar/list';
 import moment from 'moment';
 import ruLocalce from '@fullcalendar/core/locales/ru';
+import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal/slice';
 import timeGridPlugin from "@fullcalendar/timegrid";
 import tippy from 'tippy.js';
+import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
 
 const SchedulePage: FC = () => {
-  const { id } = userService.getGroup();
+  const { group, role } = userService.getUser();
   const calendar = useRef<FullCalendar | null>(null);
   const [ currentDatesRange, setCurrentDatesRange ] = useState('');
+
+  const dispatch = useDispatch();
 
   const weekParity = moment().week() % 2;
 
@@ -33,7 +37,7 @@ const SchedulePage: FC = () => {
     error,
     mutate,
   }: SWRResponse<GetSchedule[]> = useSWR(
-    `/api/schedule/${id}?wholeTable=true`,
+    `/api/schedule/${group.id}?wholeTable=true`,
     url => $apiGet(url).then(r => {
       
       return r;
@@ -78,6 +82,7 @@ const SchedulePage: FC = () => {
           <span className={cls.headerWeekparity}>{weekParity ? 'Неч.' : 'Чет.'}</span>
         </h1>,
         middle: <div className={cls.calendarHeaderMiddle}>
+          {role.permissions.canEdit && <Button outline size='md' purpose='edit' onClick={() => {dispatch(scheduleModalActions.openModal());}}>Изменить расписание</Button>}
           <Button size='md' purpose='back' outline onClick={() => go('back')} />
           {currentDatesRange}
           <Button size='md' purpose='back' style={{ transform: 'rotate(180deg)' }} outline onClick={() => go('next')} />
@@ -110,7 +115,7 @@ const SchedulePage: FC = () => {
             }}
             plugins={[ dayGridPlugin, timeGridPlugin, listPlugin ]}
             height='calc(100vh - 160px)'
-            events={schedule ? constructCalendar(schedule) as any : [] }
+            events={schedule ? constructCalendar(schedule) as any : undefined }
             //displayEventTime={false} //убираем время начала
             eventDisplay="list-item"
             eventClassNames={(args) => {

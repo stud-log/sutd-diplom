@@ -33,11 +33,11 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@stud-log/news-types": "^1.1.30",
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.22.15",
-    "@stud-log/news-types": "^1.1.28",
     "@stylistic/eslint-plugin": "^1.6.2",
     "@stylistic/eslint-plugin-js": "^1.6.2",
     "@stylistic/eslint-plugin-jsx": "^1.6.2",
@@ -82,7 +82,7 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "start": "webpack serve --env port=3000",
+    "start": "webpack serve --env port=4000",
     "build": "webpack --env mode=production",
     "build:dev": "webpack  --env mode=development",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",

@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from 'react';
+import { CSSProperties, FC, ReactNode, useState } from 'react';
 
 import { Select as ANTDSelect } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
@@ -20,23 +20,28 @@ interface SelectProps {
    * defaultText must be set
    */
   shouldChangeValueOnSelect?: boolean;
+  dropdownStyle?: CSSProperties;
   asFormikField?: {
     error?: string;
     passed?: boolean;
     required?: boolean;
   };
+  optionRender?: ((oriOption: DefaultOptionType, info: {
+    index: number;
+  }) => ReactNode);
+  popupMatchSelectWidth?: boolean;
 }
 
 // Filter `option.label` match the user type `input`
 const filterOption = (input: string, option?: DefaultOptionType) =>
   (option?.label as string ?? '').toLowerCase().includes(input.toLowerCase());
 
-export const Select: FC<SelectProps> = ({ className, options, onSelect, defaultOption, defaultText, needSearch = false, suffixIcon, prefixIcon, shouldChangeValueOnSelect = true, asFormikField }) => {
+export const Select: FC<SelectProps> = ({ className, options, onSelect, defaultOption, defaultText, popupMatchSelectWidth = true, needSearch = false, optionRender, suffixIcon, dropdownStyle, prefixIcon, shouldChangeValueOnSelect = true, asFormikField }) => {
   const [ isSelect, setIsSelect ] = useState(false);
-  
   return (
     <div className={classNames(cls.Dropdown, { 'errored': !!asFormikField?.error, 'justSelected': isSelect, 'noRotateSuffixIcon': !!suffixIcon || !!prefixIcon, 'prefixIcon': !!prefixIcon }, [ className, 'mySelect' ])}>
       <ANTDSelect
+        popupMatchSelectWidth={popupMatchSelectWidth}
         labelInValue={true}
         suffixIcon={suffixIcon || prefixIcon || <DropdownArrow />}
         defaultValue={defaultOption ? defaultOption : defaultText ? { label: defaultText, value: defaultText } : options[0].value }
@@ -47,11 +52,15 @@ export const Select: FC<SelectProps> = ({ className, options, onSelect, defaultO
         onDropdownVisibleChange={(e) => e && setIsSelect(false)}
         onBlur={() => setIsSelect(false)}
         onSelect={() => setIsSelect(true)}
+        
         labelRender={({ label }) => <div className={classNames(cls.label, {}, [ 'myLabel' ])}>{label}</div>}
+        
         {...(needSearch ? {
           showSearch: true,
           filterOption
         } : {})}
+        {...(dropdownStyle ? { dropdownStyle } : {})}
+        {...(optionRender ? { optionRender } : {})}
         options={options}
         
       />

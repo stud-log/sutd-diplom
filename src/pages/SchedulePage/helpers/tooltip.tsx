@@ -30,7 +30,7 @@ export function TooltipTemplate(eventDesc: FCEvent) {
     }
             </div>
             ${eventDesc.info.room == 'ДО' && eventDesc.info.link ? `<a class="event-desc__button event-desc__button_do" target="_blank" href="${eventDesc.info.link}">Зайти на пару</a>` : ''}
-            <a class="event-desc__button" target="_blank" href="/schedule/${eventDesc.info.recordId}">Открыть отдельно</a>
+            <!-- <a class="event-desc__button" target="_blank" href="/schedule/${eventDesc.info.recordId}">Открыть отдельно</a> -->
 
     </div>`
   );

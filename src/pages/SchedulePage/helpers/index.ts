@@ -12,31 +12,35 @@ export const constructCalendar = (schedule: GetSchedule[]) => {
     const isTT = type == CalendarActivityType.timetable;
     const calendarElement = type == CalendarActivityType.custom ? record.calendar.customActivity[0] : record.calendar.timetable[0];
       
-    const tt = calendarElement as Timetable;
-    const ca = calendarElement as CustomActivity;
+    if(calendarElement) {
     
-    const start = record.calendar.startDate;
-    const end = record.calendar.endDate;
-    const isActiveNow = moment().isBetween(moment(start), moment(end));
-    const isDO = isTT && tt.classroom == 'ДО';
+      const tt = calendarElement as Timetable;
+      const ca = calendarElement as CustomActivity;
+    
+      const start = record.calendar.startDate;
+      const end = record.calendar.endDate;
+      const isActiveNow = moment().isBetween(moment(start), moment(end));
+      const isDO = isTT && tt.classroom == 'ДО';
 
-    return ({
-      id: record.id,
-      title: truncate.apply(isTT ? tt.subject.title : ca.title, [ 44, false ]),
-      start,
-      end,
-      extendedProps: {
-        isActiveNow,
-        isDO,
-        isCustom: !isTT,
-        weekparity: isTT ? tt.weekparity : 'both',
-        recordId: record.id,
-        room: isTT ? `${tt.classroom}` : 'Событие',
-        link: isTT ? tt.link : '',
-        teacher: isTT ? tt.subject.teacherName : '',
-        type: isTT ? tt.type : '',
-        fullTitle: isTT ? tt.subject.title : ca.title
-      } as FCExtendedProps,
-    });
-  });
+      return ({
+        id: record.id,
+        title: truncate.apply(isTT ? tt.subject.title : ca.title, [ 44, false ]),
+        start,
+        end,
+        extendedProps: {
+          isActiveNow,
+          isDO,
+          isCustom: !isTT,
+          weekparity: isTT ? tt.weekparity : 'both',
+          recordId: record.id,
+          room: isTT ? `${tt.classroom}` : 'Событие',
+          link: isTT ? tt.link : '',
+          teacher: isTT ? tt.subject.teacherName : '',
+          type: isTT ? tt.type : '',
+          fullTitle: isTT ? tt.subject.title : ca.title
+        } as FCExtendedProps,
+      });
+    }
+    return undefined;
+  }).filter(item => !!item);
 };

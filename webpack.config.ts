@@ -6,7 +6,7 @@ export default (env: BuildEnv) => {
 
   const mode = env.mode ?? 'development';
   const isDev = mode === 'development';
-  const PORT = env.port ?? 3000;
+  const PORT = env.port ?? 4000;
 
   const paths: BuildPaths = {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
