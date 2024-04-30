@@ -26,3 +26,21 @@
 .fileControls{
 
 }
+
+.commentAuthor {
+    .avatar{
+        flex-shrink: 0;
+        width: 23px;
+        height: 23px;
+        
+        img, svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .name {
+        
+    }
+}

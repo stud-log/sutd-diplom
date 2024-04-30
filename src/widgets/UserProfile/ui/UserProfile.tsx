@@ -7,6 +7,7 @@ import { Select } from 'shared/ui/Select';
 import { addAndEditModalActions } from 'widgets/Modals/ProfileModals/AddAndEditModal/slice';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './UserProfile.module.scss';
+import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
 import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal/slice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -26,7 +27,7 @@ export const UserProfile: FC<UserProfileProps> = ({ className, size }) => {
     <div className={classNames(cls.UserProfile, {}, [ className, cls[size] ])} onClick={() => navigator('/profile')}>
       <div className={cls.wrapper}>
         <div className={cls.avatar}>
-          {avatarUrl ? <img src={avatarUrl} alt="user-avatar" /> : <AvatarPlaceholder /> }
+          {avatarUrl ? <img src={getStaticLink(avatarUrl)} alt="user-avatar" /> : <AvatarPlaceholder /> }
         </div>
         <div className={cls.userInfo}>
           <div className={cls.userInfoGroup}>{size == 'big' && role.title} {group.name}</div>
