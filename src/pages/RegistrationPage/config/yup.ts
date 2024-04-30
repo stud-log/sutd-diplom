@@ -6,11 +6,13 @@ export const validationSchema = Yup.object().shape({
   passwordConfirmation: Yup.string().test('password-match', 'пароли должны совпадать', function (value) {
     return this.parent.password === value;
   }).required('заполните поле'),
-  firstName: Yup.string().trim().required('заполните поле'),
-  lastName: Yup.string().trim().required('заполните поле'),
-  phone: Yup.string().trim().min(11, 'введите корректный номер').required('заполните поле'),
-  patronymic: Yup.string().trim(),
-  group: Yup.string().trim().required('заполните поле'),
+  firstName: Yup.string().required('заполните поле'),
+  lastName: Yup.string().required('заполните поле'),
+  phone: Yup.string().min(11, 'введите корректный номер').required('заполните поле'),
+  patronymic: Yup.string(),
+  groupId: Yup.number().test('group-selected', 'выберите группу', function (value) {
+    return value !== -1;
+  }).required('заполните поле'),
   policy: Yup.string().test('password-match', 'нужно принять политику', function (value) {
     return value === '1';
   }).required('заполните поле'),

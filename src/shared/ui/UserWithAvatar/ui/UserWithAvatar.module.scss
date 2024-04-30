@@ -1,0 +1,21 @@
+.UserWithAvatar{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.avatar{
+    flex-shrink: 0;
+    width: 23px;
+    height: 23px;
+    
+    img, svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.name {
+    font-weight: 600;
+}

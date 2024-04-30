@@ -38,7 +38,7 @@ export const ScheduleModal: FC<ScheduleModalProps> = ({ className }) => {
   const closeModal = () => dispatch(scheduleModalActions.closeModal());
 
   const { data: timetable, error }: SWRResponse<Timetable[]> = useSWR(
-    groupId != -1 ? `/api/schedule/timetable/${groupId}` : null,
+    groupId != -1 && isModalOpen ? `/api/schedule/timetable/${groupId}` : null,
     $apiGet,
   );
   

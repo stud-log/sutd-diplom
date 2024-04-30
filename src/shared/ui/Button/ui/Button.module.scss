@@ -111,3 +111,8 @@
 @keyframes l13{ 
     100%{transform: translate(-50%, -50%) rotate(1turn)}
 }
+
+.disabled{
+    opacity: .8;
+    pointer-events: none;
+}

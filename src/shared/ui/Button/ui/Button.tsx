@@ -26,6 +26,7 @@ export const Button: FC<ButtonProps> = ({ size, outline = false, className, chil
     [cls.loading]: loading,
     [cls.withIcon]: !!purpose,
     [cls.purposeDelete]: purpose == 'delete',
+    [cls.disabled]: !!rest.disabled
   }, [ className, cls[size] ]);
   const Icon = purpose == 'edit' ?
     EditIcon : purpose == 'back' ?

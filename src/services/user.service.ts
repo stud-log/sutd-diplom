@@ -1,11 +1,11 @@
-import { ErrorResponse, UserAfterLoginOrRegistrationResponse } from "@stud-log/news-types/server";
-import { Group, User } from "@stud-log/news-types/models";
+import { Achievement, Group, User } from "@stud-log/news-types/models";
+import { ErrorResponse, StudlogEvent, UserAfterLoginOrRegistrationResponse } from "@stud-log/news-types/server";
 import axios, { AxiosError } from 'axios';
+import { message, notification } from 'antd';
 
 import { $api } from 'shared/http/host';
 import { RegDTO } from "@stud-log/news-types/dto/reg.dto";
 import { ResetPasswordDTO } from "@stud-log/news-types/dto";
-import { notification } from 'antd';
 
 class UserService {
 
@@ -132,11 +132,50 @@ class UserService {
       const response = await axios.get<UserAfterLoginOrRegistrationResponse>(`${process.env.API_URL}/api/users/refresh`, { withCredentials: true });
       localStorage.setItem('token', response.data.accessToken);
       this.saveLocalUser(response.data.user);
+      return true;
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
       if(error.response && error.response.status === 401) {
         window.location.href = `${process.env.THIS_URL}/login`;
       }
+    }
+  }
+
+  async isGuideSeen() {
+    try {
+      const guide = localStorage.getItem('guide');
+      if(guide && guide == '1') { return true; }
+      const response = await $api.get<boolean>(`/api/users/checkGuide`);
+      if(response.data == true) {
+        localStorage.setItem('guide', '1');
+        return true;
+      } else {
+        localStorage.setItem('guide', '0');
+        return false;
+      }
+    } catch (e) {
+      console.log(e);
+
+    }
+  }
+
+  async subscribeOnServerEvents() {
+    try {
+      const es = new EventSource(`${process.env.API_URL}/api/events/subscribe/${this.getUser().id}`, { withCredentials: true, });
+      es.onmessage = (event) => {
+        const data = JSON.parse(event.data) as StudlogEvent;
+        switch(data.type){
+          case 'achievementReceived':
+            message.info({
+              content: `Получено новое достижение: "${(data.body as Achievement).title}"`,
+              onClick: () => {window.location.href = `${process.env.THIS_URL}/profile`; },
+            });
+            break;
+        }
+      };
+     
+    } catch (e) {
+      console.error('Error while subscribing: ', e);
     }
   }
 }

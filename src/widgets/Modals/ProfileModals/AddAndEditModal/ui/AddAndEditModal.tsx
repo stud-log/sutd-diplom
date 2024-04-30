@@ -36,7 +36,7 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
   const subjects = useGroupSubjects();
 
   const { data: post, error, mutate }: SWRResponse<GetEntity> = useSWR(
-    recordId != -1 ? `/api/record/post/${recordTable}/${recordId}` : null,
+    recordId != -1 && isModalOpen ? `/api/record/post/${recordTable}/${recordId}` : null,
     $apiGet,
   );
   

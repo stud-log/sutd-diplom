@@ -1,16 +1,14 @@
 import { FC, useState } from 'react';
 import { Form, Formik } from 'formik';
 
-import AvatarPlaceholder from 'shared/assets/img/avatar-placeholder.svg';
 import { Button } from 'shared/ui/Button';
-import { EmptyData } from 'shared/ui/EmptyData';
 import { Input } from 'shared/ui/Input';
 import { UploadInput } from 'shared/ui/UploadInput/ui/UploadInput';
 import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
 import { UserComment } from '@stud-log/news-types/models';
+import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './Comments.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
 import { mutate as globalMutate } from 'swr';
 import postService from 'services/post.service';
 
@@ -23,7 +21,6 @@ interface CommentsProps {
 
 export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isNote = false }) => {
   const [ loading, setLoading ] = useState(false);
-
   return (
     <div className={classNames(cls.Comments, {}, [ className ])}>
       <div className="h1">Комментарии</div>
@@ -57,8 +54,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
                   <div className={cls.comment} key={comment.id}>
                     <div className={cls.commentHeader}>
                       <div className={cls.commentAuthor}>
-                        <div className={cls.avatar}>{comment.user.avatarUrl ? <img src={getStaticLink(comment.user.avatarUrl)} alt="user-avatar" /> : <AvatarPlaceholder /> }</div>
-                        <div className={cls.name}>{comment.user.firstName} {comment.user.lastName}</div>
+                        <UserWithAvatar user={comment.user}/>
                       </div>
                       <div className={cls.commentDate}>{comment.createdAt}</div>
                     </div>

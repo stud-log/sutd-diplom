@@ -47,7 +47,7 @@ const RegistrationPage: FC = () => {
     firstName: '',
     lastName: '',
     patronymic: '',
-    group: '',
+    groupId: -1,
     phone: '',
     email: '',
     password: '',
@@ -90,7 +90,7 @@ const RegistrationPage: FC = () => {
                   {
                     currentStep == 0 && (
                       <>
-                        <Select options={groups} onSelect={(v) => { setFieldValue('group', v);}} defaultText={values.group || 'Выбрать группу'} className={cls.select} needSearch/>
+                        <Select defaultOption={groups.find(i => i.id == values.groupId)} options={groups} onSelect={(v) => { setFieldValue('groupId', v.id);}} defaultText={'Выбрать группу'} className={cls.select} needSearch/>
                         <Input name='firstName' label='Имя' className={cls.field} required />
                         <Input name='lastName' label='Фамилия' className={cls.field} required />
                         <Input name='patronymic' label='Отчество' className={cls.field} />
@@ -110,7 +110,7 @@ const RegistrationPage: FC = () => {
                   {/* </Form inner> */}
                   <Button onClick={() => {
                     if(currentStep == steps.length - 1) {
-                      if(errors['group'] || errors['firstName'] || errors['lastName']) {noteErrors();}
+                      if(errors['groupId'] || errors['firstName'] || errors['lastName']) {noteErrors();}
                       submitForm();
                       console.log(errors);
                     }

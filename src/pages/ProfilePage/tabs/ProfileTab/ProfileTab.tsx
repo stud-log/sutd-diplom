@@ -12,7 +12,7 @@ export const ProfileTab: FC<ProfileTabProps> = ({ className }) => {
 
   return (
     <div className={classNames(cls.ProfileTab, {}, [ className ])}>
-      <UserProfile size='big' />
+      <UserProfile variant='expanded' />
     </div>
   );
 };

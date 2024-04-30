@@ -1,0 +1,45 @@
+.AddAndEditModal{
+    
+}
+
+.formWrapper{
+    margin-top: 30px;
+    
+}
+
+.usersWrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 40px;
+    gap: 25px;
+}
+
+.userWrapper{
+
+}
+
+.checkbox {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.waiter{
+    position: absolute;
+    left: 4.5em;
+    bottom: -1.2em;
+    width: max-content;
+    font-size: var(--fz-s);
+    color: var(--black-translucent-subtitle);
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.empty{
+    font-weight: 500;
+    color: var(--black-translucent-subtitle);
+}
