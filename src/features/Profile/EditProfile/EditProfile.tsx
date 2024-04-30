@@ -10,6 +10,6 @@ interface EditProfileProps {
 export const EditProfile: FC<EditProfileProps> = ({ className }) => {
 
   return (
-    <Button size='md' outline className={classNames(cls.EditProfile, {}, [ className ])} purpose='edit'>Редактировать профиль</Button>
+    <Button size='md' outline className={classNames(cls.EditProfile, {}, [ className ])} purpose='settings'>Настройки</Button>
   );
 };

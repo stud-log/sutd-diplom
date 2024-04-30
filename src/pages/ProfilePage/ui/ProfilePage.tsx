@@ -1,4 +1,5 @@
 import { FC, useMemo, useState } from 'react';
+import { Segmented, Tabs } from 'antd';
 
 import { EditProfile } from 'features/Profile/EditProfile/EditProfile';
 import { FavoriteTab } from '../tabs/FavoriteTab/FavoriteTab';
@@ -6,7 +7,6 @@ import { Layout } from 'shared/ui/Layout';
 import { ProfileTab } from '../tabs/ProfileTab/ProfileTab';
 import { Schedule } from 'widgets/Schedule';
 import { SubjectFilter } from 'features/SubjectFilter';
-import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import cls from './ProfilePage.module.scss';
 import { withWidget } from 'shared/hooks/withWidget';
@@ -16,21 +16,31 @@ const TabsItems: TabsProps['items'] = [ { key: TabsItemsKeys.profile, label: 'П
 
 const ProfilePage: FC = () => {
   const [ activeTab, setActiveTab ] = useState<TabsItemsKeys>(TabsItemsKeys.profile);
+  const [ favoriteTable, setFavoriteTable ] = useState<'Домашка' | 'Новости'>('Домашка');
+
   const renderTab = useMemo(() => {
     switch (activeTab) {
       case TabsItemsKeys.profile:
         return <ProfileTab />;
       case TabsItemsKeys.favorite:
-        return <FavoriteTab />;
+        return <FavoriteTab favoriteTable={favoriteTable}/>;
       default:
         return <ProfileTab />;
     }
-  }, [ activeTab ]);
+  }, [ activeTab, favoriteTable ]);
   return (
     <Layout.Base className={cls.SchedulePage}>
       <Layout.BaseHeader slots={{
         start: <Tabs type='line' activeKey={activeTab} className='profile-tabs' items={TabsItems} onChange={(v) => setActiveTab(v as TabsItemsKeys)} />,
-        end: <EditProfile />
+        end: <>
+          {activeTab == TabsItemsKeys.profile && <EditProfile />}
+          {activeTab == TabsItemsKeys.favorite && <Segmented
+            defaultValue="Домашка"
+            className='mySegmented'
+            onChange={(value: 'Домашка' | 'Новости') => setFavoriteTable(value)}
+            options={[ 'Домашка', 'Новости' ]}
+          />}
+        </>
       }} className={cls.header}/>
       <Layout.BaseContent>
         {renderTab}

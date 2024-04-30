@@ -5,6 +5,7 @@ import BackIcon from 'shared/assets/img/icons/back.svg';
 import EditGroupIcon from 'shared/assets/img/icons/edit-group.svg';
 import EditIcon from 'shared/assets/img/icons/edit.svg';
 import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
+import SettingsIcon from 'shared/assets/img/icons/settings.svg';
 import TrashIcon from 'shared/assets/img/icons/trash.svg';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './Button.module.scss';
@@ -13,7 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   size: "md" | "lg";
   outline?: boolean;
-  purpose?: "back" | "edit" | "add" | "editGroup" | "editSchedule" | "delete";
+  purpose?: "back" | "edit" | "add" | "editGroup" | "editSchedule" | "delete" | 'settings';
   loading?: boolean;
 }
 
@@ -34,7 +35,8 @@ export const Button: FC<ButtonProps> = ({ size, outline = false, className, chil
         AddIcon : purpose == 'editGroup' ?
           EditGroupIcon : purpose == 'editSchedule' ?
             EditScheduleIcon : purpose == 'delete' ?
-              TrashIcon : null;
+              TrashIcon : purpose == 'settings' ?
+                SettingsIcon : null;
   return (
     <button className={classes} type='button' disabled={loading} {...rest}>{loading && <Loader/>}{Icon && <Icon />}{children}</button>
   );

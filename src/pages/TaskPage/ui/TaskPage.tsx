@@ -30,7 +30,7 @@ const TaskPage: FC = () => {
       }}/>
       <Layout.StickyContent loading={!tasks} emptyData={tasks && tasks.rows.length == 0 ? 'Здесь пока ничего нет' : undefined}>
         <div className={cls.hwWrapper}>
-          {tasks?.rows.map((record, index) => (
+          {tasks && tasks.rows.map((record, index) => (
             <HomeworkCard key={index} {...record}/>
           ))}
         </div>

@@ -33,8 +33,8 @@ const MainPage: FC = () => {
         </>
       }} />
       <Layout.StickyContent loading={!news} emptyData={news && news.rows.length == 0 ? 'Здесь пока ничего нет' : undefined}>
-        <div className={cls.hwWrapper}>
-          {news?.rows.map((record, index) => (
+        <div className={cls.newsWrapper}>
+          {news && news.rows.map((record, index) => (
             <NewsCard key={index} {...record}/>
           ))}
         </div>
