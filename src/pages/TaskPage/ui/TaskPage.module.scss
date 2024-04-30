@@ -11,6 +11,7 @@
   
 
     @include moreThan(xxl) {
+        justify-content: space-between;
         grid-gap: 20px;
     }
 }

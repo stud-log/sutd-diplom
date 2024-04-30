@@ -16,9 +16,10 @@ interface ReactionProps {
   meReacted: UserReaction[];
   reactions: UserReaction[];
   variant?: 'small' | 'expanded';
+  afterChange?: () => void;
 }
 
-export const Reactions: FC<ReactionProps> = ({ className, meReacted, recordId, reactions, variant = 'small' }) => {
+export const Reactions: FC<ReactionProps> = ({ className, meReacted, recordId, reactions, variant = 'small', afterChange }) => {
   const { id } = userService.getUser();
   const [ meReact, setMyReact ] = useState<UserReaction | boolean>(meReacted.length == 0 ? false : meReacted[0]);
   
@@ -44,6 +45,7 @@ export const Reactions: FC<ReactionProps> = ({ className, meReacted, recordId, r
           <div className={cls.reactWrapper} onClick={async () => {
             setMyReact(false);
             postService.reactPost(recordId, { unified: (meReact as UserReaction).type, imageUrl: (meReact as UserReaction).type || '' } as EmojiClickData);
+            afterChange?.();
           }}>
             <Emoji size={16} unified={(meReact as UserReaction).type} /> {similarReactionsCount + 1}
           </div>
@@ -57,6 +59,7 @@ export const Reactions: FC<ReactionProps> = ({ className, meReacted, recordId, r
             <div key={type} className={cls.reactWrapper} onClick={async () => {
               setMyReact({ type } as UserReaction);
               postService.reactPost(recordId, { unified: type, imageUrl: typeReactions.at(0)?.imageUrl || '' } as EmojiClickData);
+              afterChange?.();
             }}>
               <Emoji size={16} unified={type} /> {typeReactions.length}
             </div>
@@ -72,6 +75,7 @@ export const Reactions: FC<ReactionProps> = ({ className, meReacted, recordId, r
             setMyReact({ type: reaction.unified } as UserReaction);
             setOpen(false);
             postService.reactPost(recordId, reaction);
+            afterChange?.();
           }}
           allowExpandReactions={false}
         />

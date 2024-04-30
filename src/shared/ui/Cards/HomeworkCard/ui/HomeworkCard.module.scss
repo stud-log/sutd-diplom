@@ -21,12 +21,16 @@
 
 .block{
     display: grid;
-    grid-template-rows: 30px 22px 45px 85px 50px 30px;
+    grid-template-rows: 35px 20px 43px 82px 50px 30px;
     padding: 15px;
     height: 100%;
     box-sizing: border-box;
 
-    .cardHeader{
+    .cardHeaderInner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
         .createdAt {
             font-weight: 600;
             font-size: var(--fz-s);

@@ -1,16 +1,20 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Form, Formik } from 'formik';
 
 import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
+import { Reactions } from 'features/Reactions';
+import ReplyIcon from 'shared/assets/img/icons/reply.svg';
 import { UploadInput } from 'shared/ui/UploadInput/ui/UploadInput';
 import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
 import { UserComment } from '@stud-log/news-types/models';
 import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './Comments.module.scss';
+import { formatDate } from '../helpers';
 import { mutate as globalMutate } from 'swr';
 import postService from 'services/post.service';
+import userService from 'services/user.service';
 
 interface CommentsProps {
   className?: string;
@@ -19,8 +23,11 @@ interface CommentsProps {
   isNote?: boolean;
 }
 
+//TODO: Write normal recursion comments.
 export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isNote = false }) => {
+  const { id: myUserId } = userService.getUser();
   const [ loading, setLoading ] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   return (
     <div className={classNames(cls.Comments, {}, [ className ])}>
       <div className="h1">Комментарии</div>
@@ -32,40 +39,87 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
           files: [] as File[],
           recordId,
           title: '',
-          isNote
+          isNote: isNote ? 1 : 0,
         }}
         onSubmit={async (values, { resetForm }) => {
-          console.log(values);
+          if(values.content.length == 0) return;
+          
+          if(!values.content.startsWith('@')) {
+            values.parentId = -1;
+          }
           setLoading(true);
           const result = await postService.commentPost(values);
           setLoading(false);
           if(result == true) {
-            globalMutate((key: string) => key.includes('api/record/post/Homework'));
+            globalMutate((key: string) => key.includes('api/record'));
             resetForm();
           }
         }}
         enableReinitialize
       >
-        {({ values, submitForm }) =>
+        {({ values, submitForm, setFieldValue }) =>
           <Form>
             <div className={cls.commentsWrapper}>
               {comments.length == 0 ? <div className={cls.empty}>Здесь пока ничего нет</div>
-                : comments.map(comment =>
-                  <div className={cls.comment} key={comment.id}>
-                    <div className={cls.commentHeader}>
-                      <div className={cls.commentAuthor}>
-                        <UserWithAvatar user={comment.user}/>
+                : comments.filter(i => i.parentId == null).map(comment =>
+                {
+
+                  /** FIRST COMMENTS LEVEL */
+                  const meReacted = comment.myRecord.reactions.find( react => react.userId == myUserId);
+                  return (
+                    <div className={cls.withChildrenWrapper} key={comment.id}>
+                      <div className={cls.comment}>
+                        <div className={cls.commentHeader}>
+                          <div className={cls.commentAuthor}><UserWithAvatar user={comment.user}/></div>
+                          <div className={cls.labelSpanCircle}>&#9679;</div>
+                          <div className={cls.commentDate}>{formatDate(comment.createdAt)}</div>
+                        </div>
+                        <div className={cls.commentContent}>
+                          {comment.content}
+                        </div>
+                        <div className={cls.commentControls}>
+                          <Reactions meReacted={meReacted ? [ meReacted ] : []} reactions={comment.myRecord.reactions} recordId={comment.myRecordId}/>
+                          <div className={cls.replyBtn} role='button' onClick={() => {
+                            setFieldValue('parentId', comment.id);
+                            setFieldValue('content', `@${comment.user.nickname || comment.user.firstName}, `);
+                            inputRef.current?.focus();
+                          }}><ReplyIcon /> Ответить</div>
+                        </div>
                       </div>
-                      <div className={cls.commentDate}>{comment.createdAt}</div>
+                      <div className={cls.children}>
+                        {
+                        /** SECOND COMMENTS LEVEL */
+                          comment.children.map(childComment => {
+                            const meChildReacted = childComment.myRecord.reactions.find( react => react.userId == myUserId);
+                            return (
+                              <div className={cls.comment} key={childComment.id}>
+                                <div className={cls.commentHeader}>
+                                  <div className={cls.commentAuthor}><UserWithAvatar user={childComment.user}/></div>
+                                  <div className={cls.labelSpanCircle}>&#9679;</div>
+                                  <div className={cls.commentDate}>{formatDate(childComment.createdAt)}</div>
+                                </div>
+                                <div className={cls.commentContent}>
+                                  {childComment.content}
+                                </div>
+                                <div className={cls.commentControls}>
+                                  <Reactions meReacted={meChildReacted ? [ meChildReacted ] : []} reactions={childComment.myRecord.reactions} recordId={childComment.myRecordId}/>
+                                  <div className={cls.replyBtn} role='button' onClick={() => {
+                                    setFieldValue('parentId', comment.id);
+                                    setFieldValue('content', `@${childComment.user.nickname || childComment.user.firstName}, `);
+                                    inputRef.current?.focus();
+                                  }}><ReplyIcon /> Ответить</div>
+                                </div>
+                              </div>
+                            );
+                          })
+                        }
+                      </div>
                     </div>
-                    <div className={cls.commentContent}>
-                      {comment.content}
-                    </div>
-                  </div>)}
+                  );})}
               
             </div>
             <div className={cls.inputWrapper}>
-              <Input name='content' />
+              <Input innerRef={inputRef} name='content' autoComplete='off'/>
             </div>
             <div className={cls.controls}>
               <UploadInput name='files' multiple maxWeight={10} >Добавить файлы</UploadInput>

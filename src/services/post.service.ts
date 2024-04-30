@@ -1,8 +1,9 @@
+import { HomeworkType, UserTaskStatus } from "@stud-log/news-types/enums";
+
 import { $api } from "shared/http/host";
 import { AxiosError } from "axios";
 import { EmojiClickData } from "emoji-picker-react";
 import { ErrorResponse } from "@stud-log/news-types/server";
-import { HomeworkType } from "@stud-log/news-types/enums";
 import { NewsLabelsOptions } from "widgets/Modals/ProfileModals/AddAndEditModal/types";
 import { UserReaction } from "@stud-log/news-types/models";
 import { notification } from "antd";
@@ -73,7 +74,7 @@ class PostService {
     }
   }
 
-  async commentPost (values: {recordId: number; content: string; title: string; parentId: number; isNote: boolean; files: File[]}) {
+  async commentPost (values: {recordId: number; content: string; title: string; parentId: number; isNote: number; files: File[]}) {
     try {
 
       const formData = new FormData();
@@ -95,11 +96,6 @@ class PostService {
           'Content-Type': 'multipart/form-data',
         },
       });
-      
-      // notification.success({
-      //   message: 'Успешно!',
-      //   description: `Запись ${isNewRecord ? 'создана' : 'изменена'}`,
-      // });
       return true;
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
@@ -133,6 +129,38 @@ class PostService {
   ) {
     try {
       return (await $api.post(`/api/record/post/favorite`, { recordId })).data;
+    } catch (e) {
+      const error = e as AxiosError<ErrorResponse>;
+      notification.warning({
+        message: 'Что-то пошло не так...',
+        description: error.response?.data.message,
+      });
+      return false;
+    }
+  }
+
+  async viewPost (
+    recordId: number,
+  ) {
+    try {
+      return (await $api.post(`/api/record/post/view`, { recordId })).data;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
+  async changeHomeworkStatus (
+    recordId: number,
+    status: keyof typeof UserTaskStatus,
+  ) {
+    try {
+      await $api.post(`/api/record/post/Homework/changeStatus`, { recordId, status });
+      notification.success({
+        message: 'Успешно!',
+        description: `Статус успешно изменен`,
+      });
+      return true;
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
       notification.warning({

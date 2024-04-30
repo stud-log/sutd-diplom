@@ -44,6 +44,17 @@
     margin: 25px 0 15px;
 }
 
+.bottomInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.views{
+    font-size: var(--fz-s);
+    color: var(--black-translucent-subtitle);
+}
+
 .controls {
     display: flex;
     align-items: center;
@@ -52,4 +63,8 @@
 
 .comments {
     margin: 30px 0;
+}
+
+.selectWithStatuses{
+    
 }

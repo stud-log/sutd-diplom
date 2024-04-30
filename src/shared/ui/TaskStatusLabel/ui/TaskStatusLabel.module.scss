@@ -1,0 +1,32 @@
+.TaskStatusLabel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--black-stroke-translucent);
+    border-radius: 8px;
+    width: 100px;
+    height: 28px;
+    font-size: var(--fz-s);
+    color: var(--black-main);
+}
+
+.noStatus{
+
+}
+
+.inProgress {
+    border-color: transparent;
+    color: var(--white);
+    background-color: var(--accent);
+
+}
+
+.feedback{
+    border-color: transparent;
+    color: var(--white);
+    background-color: var(--accent);
+}
+
+.passed{
+    background-color: var(--black-stroke-translucent);
+}

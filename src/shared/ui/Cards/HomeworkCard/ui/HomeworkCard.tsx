@@ -7,6 +7,7 @@ import { FavoriteBubble } from 'features/FavoriteBubble';
 import { GetEntity } from '@stud-log/news-types/server/post.response';
 import { Interweave } from 'interweave';
 import { Reactions } from 'features/Reactions';
+import { TaskStatusLabel } from 'shared/ui/TaskStatusLabel';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkCard.module.scss';
 import moment from 'moment';
@@ -28,8 +29,10 @@ export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) =>
     <div className={classNames(cls.HomeworkCard, {}, [ className ])} >
       <div className={cls.block}>
         <div className={cls.cardHeader}>
-          <div className={cls.createdAt}>от {startDate}</div>
-          <div className={cls.status}></div>
+          <div className={cls.cardHeaderInner}>
+            <div className={cls.createdAt}>от {startDate}</div>
+            <div className={cls.status}><TaskStatusLabel recordId={record.id} status={record.meWorked.at(0)?.status}/></div>
+          </div>
         </div>
         <div className={cls.subject} onClick={goToTask}>{truncate.apply(hw.subject.title, [ 27, false ])}</div>
         <div className={cls.title} onClick={goToTask}>{truncate.apply(hw.title, [ 45, false ])}</div>
