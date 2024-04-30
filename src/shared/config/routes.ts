@@ -8,6 +8,7 @@ const MainPage = React.lazy(() => import('pages/MainPage'));
 const ProfilePage = React.lazy(() => import('pages/ProfilePage'));
 const TaskPage = React.lazy(() => import('pages/TaskPage'));
 const SingleTaskPage = React.lazy(() => import('pages/SingleTaskPage'));
+const SingleNewsPage = React.lazy(() => import('pages/SingleNewsPage'));
 const SchedulePage = React.lazy(() => import('pages/SchedulePage'));
 
 export interface IRoute {
@@ -27,7 +28,8 @@ export const menuRoutes: IRoute[] = [
 
 const restRoutes: IRoute[] = [
   { path: '/profile', name: 'Профиль', element: ProfilePage },
-  { path: '/task/:recordId', name: 'Домашка', element: SingleTaskPage }
+  { path: '/task/:recordId', name: 'Домашка', element: SingleTaskPage },
+  { path: '/news/:recordId', name: 'Новость', element: SingleNewsPage }
 ];
 
 export const routes = menuRoutes.concat(restRoutes);

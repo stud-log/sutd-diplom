@@ -56,6 +56,7 @@ export const UploadInput: FC<UploadInputProps> = ({ className, children, require
           const newFiles = event.currentTarget.files;
           const prevFiles = (values as any)[field.name] as File[];
           const updatedFiles: File[] = Array.from(prevFiles);
+          
           if(!newFiles || newFiles.length == 0) {
             return;
           }

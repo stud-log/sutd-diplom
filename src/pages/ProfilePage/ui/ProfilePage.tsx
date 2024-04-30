@@ -39,4 +39,4 @@ const ProfilePage: FC = () => {
   );
 };
 
-export default withWidget(ProfilePage, Schedule);
+export default withWidget(ProfilePage, [ Schedule ]);

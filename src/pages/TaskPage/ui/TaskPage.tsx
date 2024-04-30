@@ -39,4 +39,4 @@ const TaskPage: FC = () => {
   );
 };
 
-export default withWidget(TaskPage, Schedule);
+export default withWidget(TaskPage, [ Schedule ]);

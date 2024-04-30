@@ -36,7 +36,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
         initialValues={{
           content: '',
           parentId: -1,
-          files: [] as File[],
+          commentFiles: [] as File[],
           recordId,
           title: '',
           isNote: isNote ? 1 : 0,
@@ -122,11 +122,11 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
               <Input innerRef={inputRef} name='content' autoComplete='off'/>
             </div>
             <div className={cls.controls}>
-              <UploadInput name='files' multiple maxWeight={10} >Добавить файлы</UploadInput>
+              <UploadInput name='commentFiles' multiple maxWeight={10} >Добавить файлы</UploadInput>
               <Button size='md' onClick={submitForm} loading={loading}>Отправить</Button>
             </div>
             <div className={cls.uploadedFiles}>
-              <UploadedFilesControl className={cls.fileControls}/>
+              <UploadedFilesControl name='commentFiles' className={cls.fileControls}/>
             </div>
           </Form>
         }

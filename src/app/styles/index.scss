@@ -27,6 +27,10 @@ body {
     background-color: var(--bg-main);
 }
 
+.widgetsWrapper{
+    display: grid;
+    gap: 20px;
+}
 
 .h1, h1 {
     font-weight: 600;

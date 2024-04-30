@@ -14,7 +14,7 @@ export interface CreateNewPostFromValues {
   subjectId: number;
   content: string;
   type: string;
-  files: File[];
+  modalFiles: File[];
   cover: File;
   recordTable: 'Homework' | 'News';
   recordId: number;
@@ -35,7 +35,7 @@ class PostService {
       formData.append('title', values.title);
       formData.append('content', values.content);
       formData.append('filesToDelete', JSON.stringify(values.filesToDelete));
-      values.files.forEach((file) => {
+      values.modalFiles.forEach((file) => {
         if(!(file as any).id){
           /** means we load new files */
           formData.append(`files`, file);
@@ -74,7 +74,7 @@ class PostService {
     }
   }
 
-  async commentPost (values: {recordId: number; content: string; title: string; parentId: number; isNote: number; files: File[]}) {
+  async commentPost (values: {recordId: number; content: string; title: string; parentId: number; isNote: number; commentFiles: File[]}) {
     try {
 
       const formData = new FormData();
@@ -84,7 +84,7 @@ class PostService {
       formData.append('parentId', values.parentId.toString());
       formData.append('isNote', `${values.isNote}`);
 
-      values.files.forEach((file) => {
+      values.commentFiles.forEach((file) => {
         if(!(file as any).id){
           /** means we load new files */
           formData.append(`files`, file);
@@ -155,7 +155,7 @@ class PostService {
     status: keyof typeof UserTaskStatus,
   ) {
     try {
-      await $api.post(`/api/record/post/Homework/changeStatus`, { recordId, status });
+      await $api.post(`/api/record/post/Homework-changeStatus`, { recordId, status });
       notification.success({
         message: 'Успешно!',
         description: `Статус успешно изменен`,

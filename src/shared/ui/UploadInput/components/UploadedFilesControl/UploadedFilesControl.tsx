@@ -8,22 +8,19 @@ import { getFilenameAndExtension } from 'shared/lib/helpers/getFileNameAndExt';
 
 interface UploadedFilesControlProps {
   className?: string;
-  name?: string;
+  name: string;
 }
 
-/**
- * __NOTE__: Formik initial values must have `{files: File[]}` as one of available properties
- */
-export const UploadedFilesControl: FC<UploadedFilesControlProps> = ({ className }) => {
-  const { values, setFieldValue } = useFormikContext<{files: File[]; filesToDelete: number[]}>();
-  
+export const UploadedFilesControl: FC<UploadedFilesControlProps> = ({ className, name }) => {
+  const { values, setFieldValue } = useFormikContext<{filesToDelete: number[]}>();
+
   return (
     <div className={classNames(cls.UploadedFilesControl, {}, [ className ])}>
       <FieldArray
-        name='files'
+        name={name}
         render={arrayHelpers => {
           return (
-            values.files.map( (file, index) => {
+            (values[name as keyof typeof values] as unknown as File[]).map( (file, index) => {
               const [ filename, ext ] = getFilenameAndExtension(file.name);
               const sizeInMB = (file.size / 1024 / 1024).toFixed(2);
               return (

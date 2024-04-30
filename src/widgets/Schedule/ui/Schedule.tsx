@@ -27,12 +27,16 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
     $apiGet,
   );
   const groupedData = schedule ? groupByDay(schedule) : {};
-
+  const weekParity = moment().week() % 2;
+  
   return (
     <div className={classNames(cls.Schedule, {}, [ className ])}>
       <Layout.Sticky>
         <Layout.StickyHeader slots={{
-          start: <h2 className='h1'>Расписание</h2>
+          start: <h2 className={classNames(cls.header, {}, [ 'h1' ])}>
+            <span>Расписание</span>
+            <span className={cls.headerWeekparity}>{weekParity ? 'Неч.' : 'Чет.'}</span>
+          </h2>
         }}/>
         <Layout.StickyContent loading={!schedule} emptyData={schedule && schedule.length == 0 ? 'Здесь пока ничего нет' : undefined}>
           

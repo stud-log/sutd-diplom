@@ -19,6 +19,7 @@ import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedF
 import { addAndEditModalActions } from '../slice';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './AddAndEditModal.module.scss';
+import { mutate as globalMutate } from 'swr';
 import modalCls from '../../../Modals.module.scss';
 import postService from 'services/post.service';
 import { truncate } from 'shared/lib/helpers/truncateWords';
@@ -56,7 +57,7 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
             subjectId: (isPostExists && isHomework ? post.homework?.subjectId : '') as any,
             content: (isPostExists ? isHomework ? post.homework?.content : post.news?.content : '') as string,
             type: (isPostExists && isHomework ? post.homework?.type : HomeworksTypeOptions[0].value) as string,
-            files: isPostExists ? post.files.map(file => ({ name: file.fileName, size: file.fileSize, id: file.id })) as unknown as File[] : [] as File[],
+            modalFiles: isPostExists ? post.files.map(file => ({ name: file.fileName, size: file.fileSize, id: file.id })) as unknown as File[] : [] as File[],
             filesToDelete: [],
             cover: isPostExists && isNews ? { name: 'Заменить обложку', id: post.news?.coverImage } as unknown as File : {} as File,
             startDate: (isPostExists && isHomework ? post.homework?.startDate : '') as string,
@@ -72,6 +73,7 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
             const result = await postService.sendPost(values);
             setLoading(false);
             if(result == true) {
+              globalMutate((key: string) => key.includes('api/record'));
               closeModal();
             }
           }}
@@ -103,10 +105,10 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
               <Input name='title' label='Заголовок' className={cls.mb} inputClassName={cls.headerInput} maxLength={65} required/>
               <RichEditor name="content" label='Описание' className={cls.mb} required/>
               <div className={cls.uploadSection}>
-                <UploadInput name='files' multiple maxWeight={10} >Добавить файлы</UploadInput>
+                <UploadInput name='modalFiles' multiple maxWeight={10} >Добавить файлы</UploadInput>
                 {isNews && <UploadInput name='cover' maxWeight={1} accept='image/*' >{truncate.apply(values.cover.name ?? 'Добавить обложку', [ 16, false ])}</UploadInput>}
               </div>
-              <UploadedFilesControl className={cls.mb}/>
+              <UploadedFilesControl name='modalFiles' className={cls.mb}/>
               <Button onClick={submitForm} size='md' loading={loading}>Опубликовать</Button>
             </Form>
           }
