@@ -2,6 +2,23 @@
     
 }
 
+.avatarsBlock{
+    margin-bottom: 30px;
+}
+
+.inputsWrapper{
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: 1fr 1fr;
+}
+
 .header{
-    margin-bottom: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: var(--fz-l);
+}
+
+.formWrapper{
+    margin-top: 30px;
+    margin-bottom: 40px;
 }

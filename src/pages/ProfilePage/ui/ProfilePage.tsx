@@ -1,6 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { Segmented, Tabs } from 'antd';
 
+import { Button } from 'shared/ui/Button';
 import { EditProfile } from 'features/Profile/EditProfile/EditProfile';
 import { FavoriteTab } from '../tabs/FavoriteTab/FavoriteTab';
 import { Layout } from 'shared/ui/Layout';
@@ -9,6 +10,7 @@ import { Schedule } from 'widgets/Schedule';
 import type { TabsProps } from 'antd';
 import { TodoTab } from '../tabs/TodoTab/TodoTab';
 import cls from './ProfilePage.module.scss';
+import userService from 'services/user.service';
 import { withWidget } from 'shared/hooks/withWidget';
 
 enum TabsItemsKeys { profile = 'profile', favorite = 'favorite', todo = 'todo'}
@@ -36,6 +38,7 @@ const ProfilePage: FC = () => {
         start: <Tabs type='line' activeKey={activeTab} className='profile-tabs' items={TabsItems} onChange={(v) => setActiveTab(v as TabsItemsKeys)} />,
         end: <>
           {activeTab == TabsItemsKeys.profile && <EditProfile />}
+          {activeTab == TabsItemsKeys.profile && <Button purpose='logout' size='md' outline onClick={() => {userService.logout();}}>Выйти</Button>}
           {activeTab == TabsItemsKeys.favorite && <Segmented defaultValue="Домашка" className='mySegmented' onChange={(value: 'Домашка' | 'Новости') => setFavoriteTable(value)} options={[ 'Домашка', 'Новости' ]}
           />}
         </>

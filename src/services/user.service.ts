@@ -118,6 +118,25 @@ class UserService {
       await $api.post<UserAfterLoginOrRegistrationResponse>('/api/users/logout');
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      window.location.href = `${process.env.THIS_URL}/login`;
+    } catch (e) {
+      const error = e as AxiosError<ErrorResponse>;
+      notification.warning({
+        message: 'Что-то пошло не так...',
+        description: error.response?.data.message,
+      });
+    }
+  }
+
+  async updateUser(values: Partial<User>) {
+    try {
+      const user = await $api.post<User>('/api/users/update', values);
+      localStorage.removeItem('user');
+      this.saveLocalUser(user.data);
+      notification.success({
+        message: 'Успешно!',
+        description: 'Изменения сохранены',
+      });
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
       notification.warning({
