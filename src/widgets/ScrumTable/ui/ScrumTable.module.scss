@@ -1,0 +1,35 @@
+.ScrumTable{
+
+}
+
+.columnsWrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.columnWrapper{
+    border: 1px solid var(--black-stroke-translucent);
+    border-top-color: transparent;
+
+    .columnTitle {
+        border-bottom: 1px solid var(--black-stroke-translucent);
+        padding: 0 13px 13px;
+        font-weight: 600;
+
+    }
+
+    .column {
+        display: grid;
+        padding: 14px;
+        height: calc(100vh - 177px);
+        gap: 15px
+    }
+
+    &:first-child {
+        border-left-color: transparent;
+    }
+
+    &:last-child {
+        border-right-color: transparent;
+    }
+}

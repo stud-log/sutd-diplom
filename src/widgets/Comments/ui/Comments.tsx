@@ -20,17 +20,18 @@ interface CommentsProps {
   className?: string;
   comments: UserComment[];
   recordId: number;
-  isNote?: boolean;
+  variant?: 'comments' | 'notes';
+  afterChange?: () => void;
 }
 
 //TODO: Write normal recursion comments.
-export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isNote = false }) => {
+export const Comments: FC<CommentsProps> = ({ className, comments, recordId, variant = 'comments', afterChange }) => {
   const { id: myUserId } = userService.getUser();
   const [ loading, setLoading ] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   return (
     <div className={classNames(cls.Comments, {}, [ className ])}>
-      <div className="h1">Комментарии</div>
+      <div className="h1">{variant == 'comments' ? 'Комментарии' : 'Заметки'}</div>
       
       <Formik
         initialValues={{
@@ -39,7 +40,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
           commentFiles: [] as File[],
           recordId,
           title: '',
-          isNote: isNote ? 1 : 0,
+          isNote: variant == 'comments' ? 0 : 1,
         }}
         onSubmit={async (values, { resetForm }) => {
           if(values.content.length == 0) return;
@@ -52,6 +53,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
           setLoading(false);
           if(result == true) {
             globalMutate((key: string) => key.includes('api/record'));
+            afterChange?.();
             resetForm();
           }
         }}
@@ -65,7 +67,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
                 {
 
                   /** FIRST COMMENTS LEVEL */
-                  const meReacted = comment.myRecord.reactions.find( react => react.userId == myUserId);
+                  
                   return (
                     <div className={cls.withChildrenWrapper} key={comment.id}>
                       <div className={cls.comment}>
@@ -78,18 +80,18 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, isN
                           {comment.content}
                         </div>
                         <div className={cls.commentControls}>
-                          <Reactions meReacted={meReacted ? [ meReacted ] : []} reactions={comment.myRecord.reactions} recordId={comment.myRecordId}/>
-                          <div className={cls.replyBtn} role='button' onClick={() => {
+                          {variant == 'comments' && <Reactions meReacted={comment.myRecord.reactions.find( react => react.userId == myUserId) ? [ comment.myRecord.reactions.find( react => react.userId == myUserId)! ] : []} reactions={comment.myRecord.reactions} recordId={comment.myRecordId}/>}
+                          {variant == 'comments' && <div className={cls.replyBtn} role='button' onClick={() => {
                             setFieldValue('parentId', comment.id);
                             setFieldValue('content', `@${comment.user.nickname || comment.user.firstName}, `);
                             inputRef.current?.focus();
-                          }}><ReplyIcon /> Ответить</div>
+                          }}><ReplyIcon /> Ответить</div> }
                         </div>
                       </div>
                       <div className={cls.children}>
                         {
                         /** SECOND COMMENTS LEVEL */
-                          comment.children.map(childComment => {
+                          variant == 'comments' && comment.children.map(childComment => {
                             const meChildReacted = childComment.myRecord.reactions.find( react => react.userId == myUserId);
                             return (
                               <div className={cls.comment} key={childComment.id}>

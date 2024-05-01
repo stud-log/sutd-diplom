@@ -6,8 +6,8 @@ import { FavoriteTab } from '../tabs/FavoriteTab/FavoriteTab';
 import { Layout } from 'shared/ui/Layout';
 import { ProfileTab } from '../tabs/ProfileTab/ProfileTab';
 import { Schedule } from 'widgets/Schedule';
-import { SubjectFilter } from 'features/SubjectFilter';
 import type { TabsProps } from 'antd';
+import { TodoTab } from '../tabs/TodoTab/TodoTab';
 import cls from './ProfilePage.module.scss';
 import { withWidget } from 'shared/hooks/withWidget';
 
@@ -24,6 +24,8 @@ const ProfilePage: FC = () => {
         return <ProfileTab />;
       case TabsItemsKeys.favorite:
         return <FavoriteTab favoriteTable={favoriteTable}/>;
+      case TabsItemsKeys.todo:
+        return <TodoTab />;
       default:
         return <ProfileTab />;
     }
@@ -34,11 +36,7 @@ const ProfilePage: FC = () => {
         start: <Tabs type='line' activeKey={activeTab} className='profile-tabs' items={TabsItems} onChange={(v) => setActiveTab(v as TabsItemsKeys)} />,
         end: <>
           {activeTab == TabsItemsKeys.profile && <EditProfile />}
-          {activeTab == TabsItemsKeys.favorite && <Segmented
-            defaultValue="Домашка"
-            className='mySegmented'
-            onChange={(value: 'Домашка' | 'Новости') => setFavoriteTable(value)}
-            options={[ 'Домашка', 'Новости' ]}
+          {activeTab == TabsItemsKeys.favorite && <Segmented defaultValue="Домашка" className='mySegmented' onChange={(value: 'Домашка' | 'Новости') => setFavoriteTable(value)} options={[ 'Домашка', 'Новости' ]}
           />}
         </>
       }} className={cls.header}/>

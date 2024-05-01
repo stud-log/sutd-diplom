@@ -1,0 +1,44 @@
+.TaskCard{
+
+}
+
+.card {
+    border: 1px solid var(--black-stroke-translucent);
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.innerWrapper {
+    display: grid;
+    grid-template-rows: 32px 23px 47px 35px;
+    height: 100%;
+}
+
+.cardHeader {
+    .cardHeaderInner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+        .createdAt {
+            font-weight: 600;
+            font-size: var(--fz-s);
+            color: var(--black-translucent-subtitle2);
+        }
+    
+        .label{
+    
+        }
+    }
+}
+
+.subject{
+    font-weight: 600;
+    font-size: var(--fz-s);
+    color: var(--black-translucent-subtitle2);
+}
+
+.title{
+    font-weight: 600;
+    color: var(--black-main);
+}

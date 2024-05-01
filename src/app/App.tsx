@@ -4,6 +4,7 @@ import { AddAndEditModal } from 'widgets/Modals/ProfileModals/AddAndEditModal';
 import { AppLoader } from 'shared/ui/AppLoader/AppLoader';
 import { AppRouter } from './providers/router/AppRouter';
 import { GuideModal } from 'widgets/Modals/GuideModal';
+import { HomeworkTaskModal } from 'widgets/Modals/HomeworkTaskModal';
 import { Layout } from 'shared/ui/Layout';
 import { ManageGroupModal } from 'widgets/Modals/ProfileModals/ManageGroupModal';
 import { ScheduleModal } from 'widgets/Modals/ProfileModals/ScheduleModal';
@@ -46,6 +47,7 @@ export const App: FC = () => {
       <ScheduleModal />
       <GuideModal />
       <ManageGroupModal />
+      <HomeworkTaskModal />
     </>
   );
 };
