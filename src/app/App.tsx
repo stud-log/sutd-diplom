@@ -24,7 +24,7 @@ export const App: FC = () => {
         const isGuideSeen = await userService.isGuideSeen();
         if(!isGuideSeen) {
           //user cannot use app until watching the guide
-          // dispatch(guideModalActions.openModal());
+          dispatch(guideModalActions.openModal());
         }
       }
       setIsReady(true);

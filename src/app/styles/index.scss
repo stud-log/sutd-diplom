@@ -54,6 +54,7 @@ body {
     CHANGES FOR ANTD STEPS COMPONENT
 **/
 
+
 .mySteps{
     .ant-steps-item-icon{
         width: 20px;
@@ -82,6 +83,39 @@ body {
             .ant-steps-item-title{
                 color: var(--accent) !important;
             }
+        }
+    }
+}
+
+
+.myDottedSteps{
+    .ant-steps{
+        align-items: center !important;
+    }
+
+    .ant-steps-item {
+        flex-shrink: 0 !important;
+        padding-inline-start: 0 !important;
+    }
+
+    .ant-steps-item-icon{
+        margin: 0;
+        width: 7px;
+        height: 7px;
+        font-size: var(--fz-s);
+
+        .ant-steps-icon{
+            display: none;
+        }
+    }
+
+
+    .ant-steps-item-process {
+        .ant-steps-item-icon{
+            border-color: var(--black-main);
+            width: 10px;
+            height: 10px;
+            background-color: var(--black-main);
         }
     }
 }

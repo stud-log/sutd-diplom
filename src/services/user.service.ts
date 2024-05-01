@@ -159,6 +159,19 @@ class UserService {
     }
   }
 
+  async seenGuideline() {
+    try {
+      const response = await $api.post<boolean>(`/api/users/seenGuideline`);
+      if(response.data == true) {
+        localStorage.setItem('guide', '1');
+        return true;
+      }
+    } catch (e) {
+      console.log(e);
+
+    }
+  }
+
   async subscribeOnServerEvents() {
     try {
       const es = new EventSource(`${process.env.API_URL}/api/events/subscribe/${this.getUser().id}`, { withCredentials: true, });
