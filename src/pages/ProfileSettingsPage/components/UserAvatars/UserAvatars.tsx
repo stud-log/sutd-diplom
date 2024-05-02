@@ -28,20 +28,20 @@ export const UserAvatars: FC<UserAvatarsProps> = ({ className, receivedAchieveme
   return (
     <div className={classNames(cls.UserAvatars, {}, [ className ])}>
       <div className={cls.title}>Аватарка</div>
-      {unReceived && (
-        <div className={cls.wrapperAvatars}>
-          {receivedAchievements.map( anAchievement => {
-            return (anAchievement.trophy.avatars as {url: string}[]).map((avatar, idx) => {
-              return <div className={classNames(cls.availableAvatar, { [cls.choosed]: avatar.url == choosed })} onClick={() => {
-                setChoosed(avatar.url);
-                onChange(avatar.url);
-              }} key={idx}>
-                <img src={getStaticLink(avatar.url)} alt="" />
-              </div>;
-            });
-          })}
-        </div>
-      )}
+      
+      <div className={cls.wrapperAvatars}>
+        {receivedAchievements.map( anAchievement => {
+          return (anAchievement.trophy.avatars as {url: string}[]).map((avatar, idx) => {
+            return <div className={classNames(cls.availableAvatar, { [cls.choosed]: avatar.url == choosed })} onClick={() => {
+              setChoosed(avatar.url);
+              onChange(avatar.url);
+            }} key={idx}>
+              <img src={getStaticLink(avatar.url)} alt="" />
+            </div>;
+          });
+        })}
+      </div>
+    
     </div>
   );
 };

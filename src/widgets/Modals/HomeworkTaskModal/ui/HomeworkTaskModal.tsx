@@ -35,7 +35,7 @@ export const HomeworkTaskModal: FC<HomeworkTaskModalProps> = ({ className }) => 
 
   const hw = task?.record?.homework;
   return (
-    <Modal destroyOnClose styles={{ body: { padding: 30 } }} width={650} closeIcon={<CloseIcon onClick={closeModal} />} className={classNames(cls.HomeworkTaskModal, {}, [ className ])} open={isModalOpen} footer={<div></div>}>
+    <Modal maskClosable={true} onCancel={closeModal} destroyOnClose styles={{ body: { padding: 30 } }} width={650} closeIcon={<CloseIcon onClick={closeModal} />} className={classNames(cls.HomeworkTaskModal, {}, [ className ])} open={isModalOpen} footer={<div></div>}>
       <div className={cls.formWrapper}>
         {task && hw && (
           <div className={cls.wrapper}>

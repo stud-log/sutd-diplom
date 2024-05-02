@@ -118,6 +118,7 @@ class UserService {
       await $api.post<UserAfterLoginOrRegistrationResponse>('/api/users/logout');
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('guide');
       window.location.href = `${process.env.THIS_URL}/login`;
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
@@ -198,10 +199,10 @@ class UserService {
         const data = JSON.parse(event.data) as StudlogEvent;
         switch(data.type){
           case 'achievementReceived':
-            message.info({
+            setTimeout(() => message.info({
               content: `Получено новое достижение: "${(data.body as Achievement).title}"`,
               onClick: () => {window.location.href = `${process.env.THIS_URL}/profile`; },
-            });
+            }), 1000);
             break;
         }
       };

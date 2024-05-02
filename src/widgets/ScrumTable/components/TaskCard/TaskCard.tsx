@@ -1,7 +1,8 @@
+import { FC, useRef } from 'react';
+
 import CustomIcon from 'shared/assets/img/icons/customact.svg';
 import { Deadline } from 'features/Deadline';
 import { DraggableProvided } from 'react-beautiful-dnd';
-import { FC } from 'react';
 import SutdIcon from 'shared/assets/img/icons/sutd.svg';
 import { UserTask } from '@stud-log/news-types/models';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
@@ -21,7 +22,7 @@ export const TaskCard: FC<TaskCardProps> = ({ className, task, provided }) => {
   const dispatch = useDispatch();
   const homeworkTask = task.record?.homework ? task : null;
   const customTask = task.title ? task : null;
-
+  const ref = useRef<HTMLDivElement | null>(null);
   return (
     <div className={classNames(cls.TaskCard, {}, [ className ])}>
       <div
@@ -34,7 +35,7 @@ export const TaskCard: FC<TaskCardProps> = ({ className, task, provided }) => {
         }}
       >
         {homeworkTask && (
-          <div className={cls.innerWrapper} onDoubleClick={() => dispatch(homeworkTaskModalActions.openModal({ recordId: homeworkTask.id }))}>
+          <div ref={ref} className={cls.innerWrapper} tabIndex={-1} onClick={() => ref.current?.focus()} onDoubleClick={() => dispatch(homeworkTaskModalActions.openModal({ recordId: homeworkTask.id }))}>
             <div className={cls.cardHeader}>
               <div className={cls.cardHeaderInner}>
                 <div className={cls.createdAt}>от {moment(homeworkTask.record!.homework!.createdAt).format('D MMM YYYY').replace('.', '')}</div>

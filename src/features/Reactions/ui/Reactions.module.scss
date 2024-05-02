@@ -4,8 +4,28 @@
 
 .pickerWrapper {
     position: absolute;
+    z-index: 100;
 }
 
+
+.addReact{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    border-radius: 50%;  
+    height: 22px;
+    font-size: var(--fz-m);
+    line-height: 1;
+    cursor: pointer;
+
+    // color: var(--black-translucent-subtitle);
+    // background: var(--black-buttons-back);
+
+    svg {
+        width: 10px;
+        height: 10px;
+    }
+}
 
 
 .heart {
@@ -47,7 +67,7 @@
 }
 
 .meReacted{
-    .reactWrapper{
+    & > .reactWrapper{
         color: var(--white);
         background: var(--accent);
     }    
@@ -60,3 +80,10 @@
 .expanded {
 
 }
+
+.reactionsWrapper{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+

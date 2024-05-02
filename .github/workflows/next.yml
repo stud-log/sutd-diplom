@@ -44,5 +44,8 @@ jobs:
             git pull "https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PAT }}@github.com//stud-log/sutd-diplom.git"
             npm prune # we remove any unused dependencies
             npm install --legacy-peer-deps # we install any missing dependencies
+            pm2 stop server # для экономии ресурсов
             npm run build # we build our app
+            cp ./.htaccess ./build/
+            pm2 reload server
             # pm2 reload client # we reload the app via PM2

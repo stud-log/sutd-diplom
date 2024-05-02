@@ -46,7 +46,7 @@ export const ManageGroupModal: FC<ManageGroupModalProps> = ({ className }) => {
   const filteredUsers = users?.filter(user => user.id != id );
   
   return (
-    <Modal destroyOnClose styles={{ body: { padding: 30 } }} width={650} closeIcon={<CloseIcon onClick={closeModal} />} className={classNames(cls.AddAndEditModal, {}, [ className ])} open={isModalOpen} footer={<div></div>}>
+    <Modal maskClosable={true} onCancel={closeModal} destroyOnClose styles={{ body: { padding: 30 } }} width={650} closeIcon={<CloseIcon onClick={closeModal} />} className={classNames(cls.AddAndEditModal, {}, [ className ])} open={isModalOpen} footer={<div></div>}>
       <div className='h1'>Управление группой</div>
       <div className={cls.formWrapper}>
         <Formik

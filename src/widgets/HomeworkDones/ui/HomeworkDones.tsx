@@ -18,9 +18,6 @@ interface HomeworkDonesProps {
 
 export const HomeworkDones: FC<HomeworkDonesProps> = ({ className }) => {
   const { recordId } = useParams();
-  const { group, role } = userService.getUser();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   
   const {
     data: userTasks,

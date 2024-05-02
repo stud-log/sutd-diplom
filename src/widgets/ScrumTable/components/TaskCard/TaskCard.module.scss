@@ -6,12 +6,23 @@
     border: 1px solid var(--black-stroke-translucent);
     border-radius: 20px;
     padding: 15px;
+    text-align: left;
+    background: var(--white);
+
+    &:focus-within {
+        outline: auto;
+    }
+
 }
 
 .innerWrapper {
+    all: unset;
     display: grid;
     grid-template-rows: 32px 23px 47px 35px;
     height: 100%;
+
+    
+    
 }
 
 .cardHeader {

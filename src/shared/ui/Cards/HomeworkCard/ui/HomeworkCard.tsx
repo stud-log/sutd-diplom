@@ -10,6 +10,7 @@ import { Reactions } from 'features/Reactions';
 import { TaskStatusLabel } from 'shared/ui/TaskStatusLabel';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkCard.module.scss';
+import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
 import { transform } from 'shared/lib/helpers/interweave';
 import { truncate } from 'shared/lib/helpers/truncateWords';
@@ -25,6 +26,8 @@ export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) =>
   
   const navigate = useNavigate();
   const goToTask = () => navigate(`/task/${hw.id}`);
+  const globMutate = () => globalMutate((key: string) => key.includes('api/record'));
+
   return (
     <div className={classNames(cls.HomeworkCard, {}, [ className ])} >
       <div className={cls.block}>
@@ -41,7 +44,7 @@ export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) =>
         </div>
         <Deadline onClick={goToTask} startDate={hw.startDate} endDate={hw.endDate} />
         <div className={cls.controls}>
-          <Reactions className={cls.reactions} meReacted={record.meReacted} reactions={record.reactions} recordId={record.id}/>
+          <Reactions afterChange={globMutate} className={cls.reactions} meReacted={record.meReacted} reactions={record.reactions} recordId={record.id}/>
           <ChatBubble comments={record.comments} recordId={record.id}/>
           <FavoriteBubble meFavorite={record.meFavorited} favorites={record.favorites} recordId={record.id} />
         </div>

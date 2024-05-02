@@ -29,6 +29,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, var
   const { id: myUserId } = userService.getUser();
   const [ loading, setLoading ] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const globMutate = () => globalMutate((key: string) => key.includes('api/record'));
   return (
     <div className={classNames(cls.Comments, {}, [ className ])}>
       <div className="h1">{variant == 'comments' ? 'Комментарии' : 'Заметки'}</div>
@@ -52,7 +53,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, var
           const result = await postService.commentPost(values);
           setLoading(false);
           if(result == true) {
-            globalMutate((key: string) => key.includes('api/record'));
+            globMutate();
             afterChange?.();
             resetForm();
           }
@@ -80,7 +81,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, var
                           {comment.content}
                         </div>
                         <div className={cls.commentControls}>
-                          {variant == 'comments' && <Reactions meReacted={comment.myRecord.reactions.find( react => react.userId == myUserId) ? [ comment.myRecord.reactions.find( react => react.userId == myUserId)! ] : []} reactions={comment.myRecord.reactions} recordId={comment.myRecordId}/>}
+                          {variant == 'comments' && <Reactions variant='expanded' afterChange={globMutate} meReacted={comment.myRecord.reactions.find( react => react.userId == myUserId) ? [ comment.myRecord.reactions.find( react => react.userId == myUserId)! ] : []} reactions={comment.myRecord.reactions} recordId={comment.myRecordId}/>}
                           {variant == 'comments' && <div className={cls.replyBtn} role='button' onClick={() => {
                             setFieldValue('parentId', comment.id);
                             setFieldValue('content', `@${comment.user.nickname || comment.user.firstName}, `);
@@ -104,7 +105,7 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, var
                                   {childComment.content}
                                 </div>
                                 <div className={cls.commentControls}>
-                                  <Reactions meReacted={meChildReacted ? [ meChildReacted ] : []} reactions={childComment.myRecord.reactions} recordId={childComment.myRecordId}/>
+                                  <Reactions variant='expanded' afterChange={globMutate} meReacted={meChildReacted ? [ meChildReacted ] : []} reactions={childComment.myRecord.reactions} recordId={childComment.myRecordId}/>
                                   <div className={cls.replyBtn} role='button' onClick={() => {
                                     setFieldValue('parentId', comment.id);
                                     setFieldValue('content', `@${childComment.user.nickname || childComment.user.firstName}, `);

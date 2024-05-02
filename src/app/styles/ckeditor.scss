@@ -403,6 +403,7 @@
 .ck-content .image img {
     display: block;
     margin: 0 auto;
+    border-radius: 5px;
     height: auto;
     min-width: 100%;
     max-width: 100%;
@@ -430,6 +431,7 @@
 .ck-content .image-inline img {
     flex-grow: 1;
     flex-shrink: 1;
+    border-radius: 5px;
     max-width: 100%;
 }
 

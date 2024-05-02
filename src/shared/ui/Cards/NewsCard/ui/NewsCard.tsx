@@ -10,6 +10,7 @@ import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './NewsCard.module.scss';
 import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
+import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
 import { pluralize } from 'shared/lib/helpers/dates';
 import { transform } from 'shared/lib/helpers/interweave';
@@ -26,6 +27,7 @@ export const NewsCard: FC<NewsCardProps> = ({ className, ...record }) => {
 
   const navigate = useNavigate();
   const goToNews = () => navigate(`/news/${news.id}`);
+  const globMutate = () => globalMutate((key: string) => key.includes('api/record'));
 
   return (
     <div className={classNames(cls.NewsCard, {}, [ className ])}>
@@ -49,7 +51,7 @@ export const NewsCard: FC<NewsCardProps> = ({ className, ...record }) => {
       </div>
       <div className={cls.bottomInfo}>
         <div className={cls.controls}>
-          <Reactions className={cls.reactions} meReacted={record.meReacted} variant='expanded' reactions={record.reactions} recordId={record.id}/>
+          <Reactions afterChange={globMutate} className={cls.reactions} meReacted={record.meReacted} variant='expanded' reactions={record.reactions} recordId={record.id}/>
           <ChatBubble comments={record.comments} recordId={record.id}/>
           <FavoriteBubble meFavorite={record.meFavorited} favorites={record.favorites} recordId={record.id} />
         </div>
