@@ -1,51 +1,51 @@
-name: deploy
+# name: deploy
 
-on:
-  push:
-    branches:
-      - main
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false # tells github to not run further steps if this one fails
-      matrix:
-        node-version: [16.x]
-    steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
-        run: npm install
-      - name: Type checking
-        uses: andoshin11/typescript-error-reporter-action@v1.0.2
-      - name: Prettier checking
-        uses: actionsx/prettier@v2
-        with:
-          # prettier CLI arguments.
-          args: --check .
-        env:
-          CI: true
-  deploy:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Deploying to server
-        uses: appleboy/ssh-action@master
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       fail-fast: false # tells github to not run further steps if this one fails
+#       matrix:
+#         node-version: [16.x]
+#     steps:
+#       - uses: actions/checkout@v1
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#       - name: Install dependencies
+#         run: npm install
+#       - name: Type checking
+#         uses: andoshin11/typescript-error-reporter-action@v1.0.2
+#       - name: Prettier checking
+#         uses: actionsx/prettier@v2
+#         with:
+#           # prettier CLI arguments.
+#           args: --check .
+#         env:
+#           CI: true
+#   deploy:
+#     runs-on: ubuntu-latest
+#     if: github.ref == 'refs/heads/main'
+#     steps:
+#       - name: Deploying to server
+#         uses: appleboy/ssh-action@master
 
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          script: |
-            cd www/studlog.ru # we move into our app's folder
-            git pull "https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PAT }}@github.com//stud-log/sutd-diplom.git"
-            npm prune # we remove any unused dependencies
-            npm install --legacy-peer-deps # we install any missing dependencies
-            pm2 stop server # для экономии ресурсов
-            npm run build # we build our app
-            cp ./.htaccess ./build/
-            pm2 reload server
-            # pm2 reload client # we reload the app via PM2
+#         with:
+#           host: ${{ secrets.HOST }}
+#           username: ${{ secrets.USERNAME }}
+#           password: ${{ secrets.PASSWORD }}
+#           script: |
+#             cd www/studlog.ru # we move into our app's folder
+#             git pull "https://${{ secrets.GIT_USER }}:${{ secrets.GIT_PAT }}@github.com//stud-log/sutd-diplom.git"
+#             npm prune # we remove any unused dependencies
+#             npm install --legacy-peer-deps # we install any missing dependencies
+#             pm2 stop server # для экономии ресурсов
+#             npm run build # we build our app
+#             cp ./.htaccess ./build/
+#             pm2 reload server
+#             # pm2 reload client # we reload the app via PM2
