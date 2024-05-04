@@ -74,11 +74,12 @@ class PostService {
     }
   }
 
-  async commentPost (values: {recordId: number; content: string; title: string; parentId: number; isNote: number; commentFiles: File[]}) {
+  async commentPost (values: {recordId: number; replyToUserId: number; content: string; title: string; parentId: number; isNote: number; commentFiles: File[]}) {
     try {
 
       const formData = new FormData();
       formData.append('recordId', values.recordId.toString());
+      formData.append('replyToUserId', values.replyToUserId.toString());
       formData.append('title', values.title);
       formData.append('content', values.content);
       formData.append('parentId', values.parentId.toString());

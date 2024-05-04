@@ -10,12 +10,15 @@ import { ManageGroupModal } from 'widgets/Modals/ProfileModals/ManageGroupModal'
 import { ScheduleModal } from 'widgets/Modals/ProfileModals/ScheduleModal';
 import { Sidebar } from 'widgets/Sidebar';
 import { guideModalActions } from 'widgets/Modals/GuideModal/slice';
+import { io } from 'socket.io-client';
+import socketService from 'services/socket.service';
 import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
 
 export const App: FC = () => {
   const [ isReady, setIsReady ] = useState(false);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     const setup = async () => {
       const logged = await userService.checkAuth(); // will redirect on login page if not authenticated
@@ -31,6 +34,10 @@ export const App: FC = () => {
     };
 
     setup();
+
+    return () => {
+      socketService.getSocket()?.disconnect();
+    };
   }, []);
 
   if(!isReady) return <AppLoader />;

@@ -1,11 +1,14 @@
-import { Achievement, Group, User } from "@stud-log/news-types/models";
+import { Achievement, Group, User, UserNotification } from "@stud-log/news-types/models";
 import { ErrorResponse, StudlogEvent, UserAfterLoginOrRegistrationResponse } from "@stud-log/news-types/server";
 import axios, { AxiosError } from 'axios';
 import { message, notification } from 'antd';
 
 import { $api } from 'shared/http/host';
+import NotificationIcon from 'shared/assets/img/icons/bell.svg';
 import { RegDTO } from "@stud-log/news-types/dto/reg.dto";
 import { ResetPasswordDTO } from "@stud-log/news-types/dto";
+import { getStaticLink } from "shared/lib/helpers/getStaticLink";
+import socketService from "./socket.service";
 
 class UserService {
 
@@ -194,18 +197,29 @@ class UserService {
 
   async subscribeOnServerEvents() {
     try {
-      const es = new EventSource(`${process.env.API_URL}/api/events/subscribe/${this.getUser().id}`, { withCredentials: true, });
-      es.onmessage = (event) => {
-        const data = JSON.parse(event.data) as StudlogEvent;
-        switch(data.type){
-          case 'achievementReceived':
-            setTimeout(() => message.info({
-              content: `Получено новое достижение: "${(data.body as Achievement).title}"`,
-              onClick: () => {window.location.href = `${process.env.THIS_URL}/profile`; },
-            }), 1000);
-            break;
+      const { id: myUserId } = this.getUser();
+      const socket = socketService.getSocket();
+    
+      socket?.on('achievementReceived', (data: {userId: number; achievement: Achievement}) => {
+        if(data.userId == myUserId) {
+          message.info({
+            content: `Получено новое достижение: "${data.achievement.title}"`,
+            onClick: () => {window.location.href = `${process.env.THIS_URL}/profile`; },
+          });
         }
-      };
+      });
+      
+      socket?.on('notification', (data: {userId: number; notification: UserNotification; icon?: string}) => {
+        if(data.userId == myUserId) {
+          notification.info({
+            icon: <NotificationIcon />,
+            message: data.notification.title,
+            description: data.notification.content,
+            onClick: () => { window.location.href = `${process.env.THIS_URL}/${data.notification.record?.recordTable}/${data.notification.record?.recordId}`; },
+            duration: 0
+          });
+        }
+      });
      
     } catch (e) {
       console.error('Error while subscribing: ', e);

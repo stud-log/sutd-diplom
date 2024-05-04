@@ -1,0 +1,101 @@
+.Comment{
+
+}
+
+
+.commentAuthor {
+    .avatar{
+        flex-shrink: 0;
+        width: 23px;
+        height: 23px;
+        
+        img, svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .name {
+        
+    }
+}
+
+.commentsWrapper{
+    margin-top: 25px;
+}
+
+.comment{
+    
+}
+
+.commentHeader{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+
+    .commentAuthor{
+
+    }
+
+    .labelSpanCircle {
+        font-size: 5px;
+        color: var(--black-translucent-subtitle);
+    }
+
+    .commentDate{
+        color: var(--black-translucent-subtitle);
+    }
+}
+
+.commentContent{
+    overflow-wrap: anywhere;
+    margin: 8px 0 10px;
+    font-weight: 500;
+    color: var(--black-main);
+}
+
+.commentControls{
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    .replyBtn{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 5px;
+    }
+}
+
+.withChildrenWrapper{
+    margin-bottom: 25px;
+
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
+
+.children {
+    position: relative;
+    margin-top: 12px;
+    padding-left: 25px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background-color: var(--black-stroke-translucent);
+    }
+
+    .comment {
+        margin-bottom: 25px;
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}
