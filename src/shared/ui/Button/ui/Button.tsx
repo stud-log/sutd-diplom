@@ -17,11 +17,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   outline?: boolean;
   purpose?: "back" | "edit" | "add" | "editGroup" | "editSchedule" | "delete" | 'settings' | 'logout';
   loading?: boolean;
+  showIcon?: boolean;
 }
 
 const Loader: FC = () => (<div className={cls.loader}></div>);
 
-export const Button: FC<ButtonProps> = ({ size, outline = false, className, children, loading = false, purpose, ...rest }) => {
+export const Button: FC<ButtonProps> = ({ size, outline = false, showIcon= true, className, children, loading = false, purpose, ...rest }) => {
   const classes = classNames(cls.Button, {
     [cls.outline]: outline,
     [cls.pressed]: loading,
@@ -40,6 +41,6 @@ export const Button: FC<ButtonProps> = ({ size, outline = false, className, chil
                 SettingsIcon : purpose == 'logout' ?
                   LogoutIcon : null;
   return (
-    <button className={classes} type='button' disabled={loading} {...rest}>{loading && <Loader/>}{Icon && <Icon />}{children}</button>
+    <button className={classes} type='button' disabled={loading} {...rest}>{loading && <Loader/>}{Icon && showIcon && <Icon />}{children}</button>
   );
 };

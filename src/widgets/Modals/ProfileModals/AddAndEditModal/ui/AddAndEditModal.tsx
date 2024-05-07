@@ -109,7 +109,15 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
                 {isNews && <UploadInput name='cover' maxWeight={1} accept='image/*' >{truncate.apply(values.cover.name ?? 'Добавить обложку', [ 16, false ])}</UploadInput>}
               </div>
               <UploadedFilesControl name='modalFiles' className={cls.mb}/>
-              <Button onClick={submitForm} size='md' loading={loading}>Опубликовать</Button>
+              <div className={cls.controls}>
+                <Button onClick={submitForm} size='md' loading={loading}>{isPostExists ? 'Сохранить' : 'Опубликовать'}</Button>
+                {isPostExists && <Button purpose='delete' showIcon={false} outline onClick={async () => {
+                  setLoading(true);
+                  postService.removePost(recordId);
+                  setLoading(false);
+                }} size='md' loading={loading}>Удалить</Button>}
+
+              </div>
             </Form>
           }
         </Formik>

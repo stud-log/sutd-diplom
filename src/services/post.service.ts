@@ -151,6 +151,17 @@ class PostService {
     }
   }
 
+  async removePost (
+    recordId: number,
+  ) {
+    try {
+      return (await $api.post(`/api/record/post/remove`, { recordId })).data;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
   async changeHomeworkStatus (
     recordId: number,
     status: keyof typeof UserTaskStatus,
