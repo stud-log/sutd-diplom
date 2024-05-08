@@ -6,6 +6,7 @@ import TaskPageIcon from 'shared/assets/img/menu/hw.svg';
 
 const MainPage = React.lazy(() => import('pages/MainPage'));
 const ProfilePage = React.lazy(() => import('pages/ProfilePage'));
+const AchievementsPage = React.lazy(() => import('pages/AchievementsPage'));
 const ProfileSettingsPage = React.lazy(() => import('pages/ProfileSettingsPage'));
 const TaskPage = React.lazy(() => import('pages/TaskPage'));
 const SingleTaskPage = React.lazy(() => import('pages/SingleTaskPage'));
@@ -30,6 +31,7 @@ export const menuRoutes: IRoute[] = [
 const restRoutes: IRoute[] = [
   { path: '/profile', name: 'Профиль', element: ProfilePage },
   { path: '/profile/settings', name: 'Настройки профиля', element: ProfileSettingsPage },
+  { path: '/achievements', name: 'Достижения', element: AchievementsPage },
   { path: '/homework/:recordId', name: 'Домашка', element: SingleTaskPage },
   { path: '/news/:recordId', name: 'Новость', element: SingleNewsPage }
 ];

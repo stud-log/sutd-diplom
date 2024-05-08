@@ -3,6 +3,8 @@ import useSWR, { SWRResponse } from 'swr';
 
 import { $apiGet } from 'shared/http/helpers/apiGet';
 import { Achievement } from '@stud-log/news-types/models';
+import LockIcon from 'shared/assets/img/icons/lock-02.svg';
+import { Tooltip } from 'antd';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './UserAvatars.module.scss';
 import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
@@ -11,7 +13,7 @@ import userService from 'services/user.service';
 interface UserAvatarsProps {
   className?: string;
   receivedAchievements: Achievement[];
-  onChange: (avatarUrl: string) => void;
+  onChange: (avatarUrl: string, avatarColor: string) => void;
 }
 
 export const UserAvatars: FC<UserAvatarsProps> = ({ className, receivedAchievements, onChange }) => {
@@ -31,13 +33,21 @@ export const UserAvatars: FC<UserAvatarsProps> = ({ className, receivedAchieveme
       
       <div className={cls.wrapperAvatars}>
         {receivedAchievements.map( anAchievement => {
-          return (anAchievement.trophy.avatars as {url: string}[]).map((avatar, idx) => {
+          return (anAchievement.trophy.avatars as {url: string; color: string}[]).map((avatar, idx) => {
             return <div className={classNames(cls.availableAvatar, { [cls.choosed]: avatar.url == choosed })} onClick={() => {
               setChoosed(avatar.url);
-              onChange(avatar.url);
+              onChange(avatar.url, avatar.color);
             }} key={idx}>
               <img src={getStaticLink(avatar.url)} alt="" />
             </div>;
+          });
+        })}
+        {unReceived && unReceived.map( anAchievement => {
+          return (anAchievement.trophy.avatars as {url: string; color: string}[]).map((avatar, idx) => {
+            return <Tooltip overlayInnerStyle={{ fontSize: 'var(--fz-s)' }} title={`Откройте достижение "${anAchievement.title}"`} color={'var(--attention)'} className={classNames(cls.unavailableAvatar)} key={idx}>
+              <img src={getStaticLink(avatar.url)} alt="" />
+              <LockIcon className={cls.lock} />
+            </Tooltip>;
           });
         })}
       </div>

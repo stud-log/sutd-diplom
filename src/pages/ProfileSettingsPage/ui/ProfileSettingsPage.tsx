@@ -46,6 +46,7 @@ const ProfileSettingsPage: FC = () => {
               innerRef={formRef}
               initialValues={{
                 avatarUrl: user.avatarUrl,
+                avatarColor: user.settings.nickColor,
                 nickname: user.nickname || '',
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -60,7 +61,10 @@ const ProfileSettingsPage: FC = () => {
               enableReinitialize
             >
               {({ values, setFieldValue }) => <Form>
-                <UserAvatars className={cls.avatarsBlock} onChange={(url) => setFieldValue('avatarUrl', url)} receivedAchievements={user.achievements.flatMap(achieve => achieve.achievement)}/>
+                <UserAvatars className={cls.avatarsBlock} onChange={(url, color) => {
+                  setFieldValue('avatarUrl', url);
+                  setFieldValue('avatarColor', color);
+                }} receivedAchievements={user.achievements.flatMap(achieve => achieve.achievement)}/>
                 <div className={cls.inputsWrapper}>
                   <Input name='nickname' label='Ник'/>
                   <Input name='firstName' label='Имя'/>

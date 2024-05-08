@@ -9,6 +9,7 @@ import { ProfileTab } from '../tabs/ProfileTab/ProfileTab';
 import { Schedule } from 'widgets/Schedule';
 import type { TabsProps } from 'antd';
 import { TodoTab } from '../tabs/TodoTab/TodoTab';
+import { TrophyButton } from 'features/TrophyButton';
 import cls from './ProfilePage.module.scss';
 import userService from 'services/user.service';
 import { withWidget } from 'shared/hooks/withWidget';
@@ -37,6 +38,7 @@ const ProfilePage: FC = () => {
       <Layout.BaseHeader slots={{
         start: <Tabs type='line' activeKey={activeTab} className='profile-tabs' items={TabsItems} onChange={(v) => setActiveTab(v as TabsItemsKeys)} />,
         end: <>
+          {activeTab == TabsItemsKeys.profile && <TrophyButton />}
           {activeTab == TabsItemsKeys.profile && <EditProfile />}
           {activeTab == TabsItemsKeys.profile && <Button purpose='logout' size='md' outline onClick={() => {userService.logout();}}>Выйти</Button>}
           {activeTab == TabsItemsKeys.favorite && <Segmented defaultValue="Домашка" className='mySegmented' onChange={(value: 'Домашка' | 'Новости') => setFavoriteTable(value)} options={[ 'Домашка', 'Новости' ]}

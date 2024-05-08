@@ -6,6 +6,7 @@ import { ManageGroupModalSchema } from 'widgets/Modals/ProfileModals/ManageGroup
 import { NotificationsSchema } from 'widgets/Notifications/model/types';
 import { ScheduleModalSchema } from 'widgets/Modals/ProfileModals/ScheduleModal';
 import { SidebarSchema } from "widgets/Sidebar";
+import { TrophySchema } from 'features/TrophyButton/model/types';
 
 export interface RootStateSchema {
   sidebar: SidebarSchema;
@@ -16,4 +17,5 @@ export interface RootStateSchema {
   manageGroupModal: ManageGroupModalSchema;
   homeworkTaskModal: HomeworkTaskModalSchema;
   notifications: NotificationsSchema;
+  trophy: TrophySchema;
 }

@@ -1,0 +1,21 @@
+.TrophyButton{
+    position: relative;
+    padding: 11px;
+}
+
+
+.isSeen{
+    &::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        border: 5px solid var(--white);
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: var(--attention);
+        translate: -40% -30%;
+    }
+}

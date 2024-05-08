@@ -13,6 +13,7 @@ import { mutate as globalMutate } from "swr";
 import { notificationsActions } from "widgets/Notifications/model/slice";
 import socketService from "./socket.service";
 import { store } from "app/providers/ReduxProvider/ui/ReduxProvider";
+import { trophyActions } from "features/TrophyButton/model/slice";
 
 class UserService {
 
@@ -55,7 +56,8 @@ class UserService {
       avatarUrl: user.avatarUrl,
       group: user.group,
       id: user.id,
-      role: user.role
+      role: user.role,
+      settings: user.settings
     }));
   }
 
@@ -224,6 +226,31 @@ class UserService {
     }
   }
 
+  async checkUnseenAchievements() {
+    try {
+      const response = await $api.get<boolean>(`/api/users/achievements/checkUnSeen`);
+      if(response.data == true) {
+        store.dispatch(trophyActions.setIsSeen({ isSeen: true }));
+      }
+      else {
+        store.dispatch(trophyActions.setIsSeen({ isSeen: false }));
+      }
+     
+    } catch (e) {
+      console.error('Error while check unseen achievements: ', e);
+    }
+  }
+
+  async markAchievementsAsSeen(noteId?: number) {
+    try {
+      const response = await $api.get<boolean>(`/api/users/achievements/markAsSeen`);
+      this.checkUnseenAchievements();
+     
+    } catch (e) {
+      console.error('Error while check unseen achievements: ', e);
+    }
+  }
+
   async subscribeOnServerEvents() {
     try {
       const { id: myUserId } = this.getUser();
@@ -232,9 +259,10 @@ class UserService {
       socket?.on('achievementReceived', (data: {userId: number; achievement: Achievement}) => {
         if(data.userId == myUserId) {
           store.dispatch(notificationsActions.setIsSeen({ isSeen: true }));
-          message.info({
-            content: `Получено новое достижение: "${data.achievement.title}"`,
-            onClick: () => { AppHistory.push(`/profile`); },
+          notification.info({
+            icon: <NotificationIcon />,
+            message: `Получено новое достижение: "${data.achievement.title}"`,
+            onClick: () => { AppHistory.push(`/achievements`); },
           });
         }
       });

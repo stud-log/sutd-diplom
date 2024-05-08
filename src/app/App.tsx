@@ -27,6 +27,7 @@ export const App: FC = () => {
       if(logged == true) {
         userService.subscribeOnServerEvents();
         userService.checkUnseenNotifications();
+        userService.checkUnseenAchievements();
         
         const isGuideSeen = await userService.isGuideSeen();
         if(!isGuideSeen) {

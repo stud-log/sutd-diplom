@@ -20,7 +20,7 @@ interface UserProfileProps {
 }
 
 export const UserProfile: FC<UserProfileProps> = ({ className, variant: size }) => {
-  const { firstName, lastName, avatarUrl, group, role } = userService.getUser();
+  const { firstName, lastName, avatarUrl, group, role, settings } = userService.getUser();
   const navigator = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ export const UserProfile: FC<UserProfileProps> = ({ className, variant: size }) 
         </div>
         <div className={cls.userInfo}>
           <div className={cls.userInfoGroup}>{size == 'expanded' && role.title} {group.name}</div>
-          <div className={cls.userInfoFIO}>{firstName} {lastName}</div>
+          <div className={cls.userInfoFIO} style={{ color: settings.nickColor || 'inherit' }}>{firstName} {lastName}</div>
           <div className={cls.controls}>
             {size == 'expanded' && role.permissions.canEdit && (
               <>

@@ -8,6 +8,7 @@ import { manageGroupModalReducer } from "widgets/Modals/ProfileModals/ManageGrou
 import { notificationsReducer } from "widgets/Notifications/model/slice";
 import { scheduleModalReducer } from "widgets/Modals/ProfileModals/ScheduleModal/slice";
 import { sidebarReducer } from "widgets/Sidebar";
+import { trophyReducer } from "features/TrophyButton/model/slice";
 
 export function createReduxStore(initialState?: RootStateSchema) {
   return configureStore<RootStateSchema>({
@@ -19,7 +20,8 @@ export function createReduxStore(initialState?: RootStateSchema) {
       guideModal: guideModalReducer,
       manageGroupModal: manageGroupModalReducer,
       homeworkTaskModal: homeworkTaskModalReducer,
-      notifications: notificationsReducer
+      notifications: notificationsReducer,
+      trophy: trophyReducer
     },
     devTools: __IS_DEV__,
     preloadedState: initialState
