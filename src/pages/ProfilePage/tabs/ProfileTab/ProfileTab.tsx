@@ -1,3 +1,5 @@
+import { AchievementsStatistic, HomeworkStatistic } from 'widgets/Statistics';
+
 import { Button } from 'shared/ui/Button';
 import { FC } from 'react';
 import { UserProfile } from 'widgets/UserProfile';
@@ -13,6 +15,11 @@ export const ProfileTab: FC<ProfileTabProps> = ({ className }) => {
   return (
     <div className={classNames(cls.ProfileTab, {}, [ className ])}>
       <UserProfile variant='expanded' />
+      <div className={cls.statsWrapper}>
+
+        <HomeworkStatistic />
+        <AchievementsStatistic />
+      </div>
     </div>
   );
 };
