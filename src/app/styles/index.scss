@@ -180,6 +180,8 @@ body {
         }
     }
 
+    
+
     &.errored{
         .ant-select-selector {
             border-color: var(--red) !important;
@@ -238,9 +240,16 @@ body {
     }
 }
 
+
+
 .ant-select-item.ant-select-item-option-active{
     color: var(--white) !important;
     background-color: var(--accent) !important;
+
+    span {
+        color: var(--white) !important;
+    
+    }
 }
 
 .ant-select-item.ant-select-item-option{

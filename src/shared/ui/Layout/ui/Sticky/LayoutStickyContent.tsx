@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, MutableRefObject, ReactNode } from 'react';
 
 import { EmptyData } from 'shared/ui/EmptyData';
 import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
@@ -10,12 +10,13 @@ interface LayoutProps {
   children: ReactNode;
   loading?: boolean;
   emptyData?: string;
+  innerRef?: MutableRefObject<HTMLDivElement | null>;
 }
 
-export const StickyContent: FC<LayoutProps> = ({ className, children, loading = false, emptyData }) => {
+export const StickyContent: FC<LayoutProps> = ({ className, children, loading = false, emptyData, innerRef }) => {
 
   return (
-    <div className={classNames(cls.LayoutPageStickyContent, { [cls.loading]: loading, [cls.emptyData]: !!emptyData }, [ className ])}>
+    <div ref={innerRef} className={classNames(cls.LayoutPageStickyContent, { [cls.loading]: loading, [cls.emptyData]: !!emptyData }, [ className ])}>
       {loading ? <PageLoader /> :
         emptyData ? <EmptyData text={emptyData} /> :
           children

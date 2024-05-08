@@ -1,7 +1,8 @@
+import { Link, NavLink } from 'react-router-dom';
+
 import { Clock } from 'widgets/Clock';
 import { FC } from 'react';
 import Logo from 'shared/assets/img/logo.svg';
-import { NavLink } from 'react-router-dom';
 import { RootStateSchema } from 'app/providers/ReduxProvider';
 import { UserProfile } from 'widgets/UserProfile';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
@@ -19,7 +20,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
     <div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [ className ])}>
       
       <div className={cls.row}>
-        <Logo className={cls.logo}/>
+        <Link to={'/main'}><Logo className={cls.logo}/></Link>
         <Clock />
       </div>
 

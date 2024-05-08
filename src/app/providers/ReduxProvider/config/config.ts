@@ -5,6 +5,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { guideModalReducer } from "widgets/Modals/GuideModal/slice";
 import { homeworkTaskModalReducer } from "widgets/Modals/HomeworkTaskModal/slice";
 import { manageGroupModalReducer } from "widgets/Modals/ProfileModals/ManageGroupModal/slice";
+import { notificationsReducer } from "widgets/Notifications/model/slice";
 import { scheduleModalReducer } from "widgets/Modals/ProfileModals/ScheduleModal/slice";
 import { sidebarReducer } from "widgets/Sidebar";
 
@@ -18,6 +19,7 @@ export function createReduxStore(initialState?: RootStateSchema) {
       guideModal: guideModalReducer,
       manageGroupModal: manageGroupModalReducer,
       homeworkTaskModal: homeworkTaskModalReducer,
+      notifications: notificationsReducer
     },
     devTools: __IS_DEV__,
     preloadedState: initialState

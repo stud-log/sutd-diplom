@@ -22,7 +22,7 @@ export interface IRoute {
 
 export const menuRoutes: IRoute[] = [
   { path: '/main', name: 'Новости', element: MainPage, icon: MainPageIcon },
-  { path: '/task', name: 'Домашка', element: TaskPage, icon: TaskPageIcon },
+  { path: '/homeworks', name: 'Домашка', element: TaskPage, icon: TaskPageIcon },
   { path: '/schedule', name: 'Расписание', element: SchedulePage, icon: SchedulePageIcon },
 
 ];
@@ -30,7 +30,7 @@ export const menuRoutes: IRoute[] = [
 const restRoutes: IRoute[] = [
   { path: '/profile', name: 'Профиль', element: ProfilePage },
   { path: '/profile/settings', name: 'Настройки профиля', element: ProfileSettingsPage },
-  { path: '/task/:recordId', name: 'Домашка', element: SingleTaskPage },
+  { path: '/homework/:recordId', name: 'Домашка', element: SingleTaskPage },
   { path: '/news/:recordId', name: 'Новость', element: SingleNewsPage }
 ];
 

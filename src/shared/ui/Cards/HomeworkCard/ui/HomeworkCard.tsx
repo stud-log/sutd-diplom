@@ -25,7 +25,7 @@ export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) =>
   const startDate = moment(hw.createdAt).format('D MMM YYYY').replace('.', '');
   
   const navigate = useNavigate();
-  const goToTask = () => navigate(`/task/${hw.id}`);
+  const goToTask = () => navigate(`/homework/${hw.id}`);
   const globMutate = () => globalMutate((key: string) => key.includes('api/record'));
 
   return (

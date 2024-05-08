@@ -4,11 +4,15 @@ import axios, { AxiosError } from 'axios';
 import { message, notification } from 'antd';
 
 import { $api } from 'shared/http/host';
+import AppHistory from "shared/config/history";
 import NotificationIcon from 'shared/assets/img/icons/bell.svg';
 import { RegDTO } from "@stud-log/news-types/dto/reg.dto";
 import { ResetPasswordDTO } from "@stud-log/news-types/dto";
 import { getStaticLink } from "shared/lib/helpers/getStaticLink";
+import { mutate as globalMutate } from "swr";
+import { notificationsActions } from "widgets/Notifications/model/slice";
 import socketService from "./socket.service";
+import { store } from "app/providers/ReduxProvider/ui/ReduxProvider";
 
 class UserService {
 
@@ -195,6 +199,31 @@ class UserService {
     }
   }
 
+  async checkUnseenNotifications() {
+    try {
+      const response = await $api.get<boolean>(`/api/users/notifications/checkUnSeen`);
+      if(response.data == true) {
+        store.dispatch(notificationsActions.setIsSeen({ isSeen: true }));
+      }
+      else {
+        store.dispatch(notificationsActions.setIsSeen({ isSeen: false }));
+      }
+     
+    } catch (e) {
+      console.error('Error while check unseen notifications: ', e);
+    }
+  }
+
+  async markNotificationsAsSeen(noteId?: number) {
+    try {
+      const response = await $api.get<boolean>(`/api/users/notifications/markAsSeen`, { params: { ...(noteId ? { noteId } : {}) } });
+      this.checkUnseenNotifications();
+     
+    } catch (e) {
+      console.error('Error while check unseen notifications: ', e);
+    }
+  }
+
   async subscribeOnServerEvents() {
     try {
       const { id: myUserId } = this.getUser();
@@ -202,20 +231,25 @@ class UserService {
     
       socket?.on('achievementReceived', (data: {userId: number; achievement: Achievement}) => {
         if(data.userId == myUserId) {
+          store.dispatch(notificationsActions.setIsSeen({ isSeen: true }));
           message.info({
             content: `Получено новое достижение: "${data.achievement.title}"`,
-            onClick: () => {window.location.href = `${process.env.THIS_URL}/profile`; },
+            onClick: () => { AppHistory.push(`/profile`); },
           });
         }
       });
       
       socket?.on('notification', (data: {userId: number; notification: UserNotification; icon?: string}) => {
         if(data.userId == myUserId) {
+          store.dispatch(notificationsActions.setIsSeen({ isSeen: true }));
           notification.info({
             icon: <NotificationIcon />,
-            message: data.notification.title,
+            message: data.notification.author.firstName + ' ' + data.notification.author.lastName + ' ' + data.notification.title.toLowerCase(),
             description: data.notification.content,
-            onClick: () => { window.location.href = `${process.env.THIS_URL}/${data.notification.record?.recordTable}/${data.notification.record?.recordId}`; },
+            onClick: () => {
+              this.markNotificationsAsSeen(data.notification.id);
+              AppHistory.push(`${data.notification.record?.recordTable}/${data.notification.record?.recordId}`);
+            },
             duration: 0
           });
         }

@@ -1,8 +1,8 @@
+import { FC, useEffect, useRef } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
 import { $apiGet } from 'shared/http/helpers/apiGet';
 import { CalendarActivityType } from '@stud-log/news-types/enums';
-import { FC } from 'react';
 import { GetSchedule } from '@stud-log/news-types/server/schedule.response';
 import { Layout } from 'shared/ui/Layout';
 import { ScheduleCard } from 'shared/ui/Cards/ScheduleCard';
@@ -18,6 +18,8 @@ interface ScheduleProps {
 
 export const Schedule: FC<ScheduleProps> = ({ className }) => {
   const { id } = userService.getGroup();
+  const scheduleContainerRef = useRef<HTMLDivElement | null>(null);
+
   const {
     data: schedule,
     error,
@@ -26,6 +28,26 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
     `/api/schedule/${id}`,
     $apiGet,
   );
+
+  useEffect(() => {
+    
+    if(schedule) {
+   
+      const today = moment().format('ddd');
+      const todayElement = document.getElementById(today);
+      if(!scheduleContainerRef.current) return;
+      if (todayElement) {
+        const offset = todayElement.offsetTop - scheduleContainerRef.current.offsetTop;
+        scheduleContainerRef.current.scrollTo({
+          top: offset,
+          behavior: 'smooth'
+        });
+      }
+
+    }
+    
+  }, [ schedule ]); // Run this effect only once after component mount
+
   const groupedData = schedule ? groupByDay(schedule) : {};
   const weekParity = moment().week() % 2;
   
@@ -38,10 +60,10 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
             <span className={cls.headerWeekparity}>{weekParity ? 'Неч.' : 'Чет.'}</span>
           </h2>
         }}/>
-        <Layout.StickyContent loading={!schedule} emptyData={schedule && schedule.length == 0 ? 'Здесь пока ничего нет' : undefined}>
+        <Layout.StickyContent innerRef={scheduleContainerRef} loading={!schedule} emptyData={schedule && schedule.length == 0 ? 'Здесь пока ничего нет' : undefined}>
           
           {Object.keys(groupedData).map(day => (
-            <div key={day} className={cls.weekdayWrapper}>
+            <div key={day} className={cls.weekdayWrapper} id={moment(day).format('ddd')}>
               <div className={cls.weekday}>
                 <div className={cls.weekdayName}>{moment(day).format('dddd')}</div>
                 <div className={cls.weekdayDate}>{moment(day).format('DD MMMM')}</div>

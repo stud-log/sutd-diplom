@@ -3,6 +3,7 @@ import { AddAndEditModalSchema } from 'widgets/Modals/ProfileModals/AddAndEditMo
 import { GuideModalSchema } from 'widgets/Modals/GuideModal/types';
 import { HomeworkTaskModalSchema } from 'widgets/Modals/HomeworkTaskModal/types';
 import { ManageGroupModalSchema } from 'widgets/Modals/ProfileModals/ManageGroupModal';
+import { NotificationsSchema } from 'widgets/Notifications/model/types';
 import { ScheduleModalSchema } from 'widgets/Modals/ProfileModals/ScheduleModal';
 import { SidebarSchema } from "widgets/Sidebar";
 
@@ -14,4 +15,5 @@ export interface RootStateSchema {
   guideModal: GuideModalSchema;
   manageGroupModal: ManageGroupModalSchema;
   homeworkTaskModal: HomeworkTaskModalSchema;
+  notifications: NotificationsSchema;
 }
