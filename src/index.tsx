@@ -8,6 +8,7 @@ import { AddAndEditModal } from 'widgets/Modals/ProfileModals/AddAndEditModal';
 import { AntdConfigProvider } from 'app/providers/AntdConfigProvider';
 import { App } from 'app/App';
 import LoginPage from 'pages/LoginPage';
+import Page404 from 'pages/404Page/ui/404Page';
 import ReactDOM from 'react-dom/client';
 import RecoveryPage from 'pages/RecoveryPage/';
 import { ReduxProvider } from 'app/providers/ReduxProvider';
