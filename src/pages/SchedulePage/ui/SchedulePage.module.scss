@@ -1,5 +1,24 @@
+@import '../../../app/styles/mixins';
+
 .SchedulePage{
     
+}
+
+.mobileEdit{
+    button {
+        padding: 8px;
+        width: max-content;
+    }
+
+    @include moreThan(xl) {
+        display: none;
+    }
+}
+
+.desktop {
+    @include lessThan(xl) {
+        display: none !important;
+    }
 }
 
 .header {
@@ -69,4 +88,12 @@
         padding: 9px;
         max-width: max-content;
     }
+}
+
+.mobileControls{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+   
 }

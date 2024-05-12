@@ -35,7 +35,8 @@ const ProfileSettingsPage: FC = () => {
       <Layout.StickyHeader slots={{
         start: <Button outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>,
         end: <>
-          <Button size='md' onClick={handleSubmit} loading={loading}>Сохранить данные</Button>
+          <Button style={{ maxWidth: 'max-content' }} size='md' onClick={handleSubmit} loading={loading}>Сохранить данные</Button>
+          <Button style={{ maxWidth: 'max-content' }} purpose='logout' size='md' outline onClick={() => {userService.logout();}}>Выйти</Button>
         </>
       }} />
       <Layout.StickyContent>

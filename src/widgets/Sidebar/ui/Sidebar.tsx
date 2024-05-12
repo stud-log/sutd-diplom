@@ -1,13 +1,16 @@
+import { FC, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import { Clock } from 'widgets/Clock';
-import { FC } from 'react';
 import Logo from 'shared/assets/img/logo.svg';
+import { Notifications } from 'widgets/Notifications';
 import { RootStateSchema } from 'app/providers/ReduxProvider';
 import { UserProfile } from 'widgets/UserProfile';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './Sidebar.module.scss';
 import { menuRoutes } from 'shared/config/routes';
+import { sidebarActions } from '../model/slice';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 interface SidebarProps {
@@ -16,15 +19,20 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
   const { collapsed } = useSelector<RootStateSchema, RootStateSchema['sidebar']>(state => state.sidebar);
+ 
   return (
     <div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [ className ])}>
       
-      <div className={cls.row}>
+      <div className={classNames(cls.row, {}, [ cls.desktop ])}>
         <Link to={'/main'}><Logo className={cls.logo}/></Link>
         <Clock />
       </div>
 
-      <UserProfile variant='small' className={cls.profile}/>
+      <UserProfile variant='small' className={cls.profile} infoClass={cls.infoClass}/>
+
+      <div className={classNames(cls.notification, {}, [ cls.mobile ])}>
+        <Notifications />
+      </div>
 
       <menu>
         {menuRoutes.map((item, index) => {
@@ -33,7 +41,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
             <NavLink key={index} to={item.path} className={
               ({ isActive }) => [ isActive ? cls.active : "", cls.menuItem ].join(" ")
             }>
-              <Icon />{item.name}
+              <Icon /><span className={cls.menuItemText}>{item.name}</span>
             </NavLink>
           );
         })}

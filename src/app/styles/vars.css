@@ -26,4 +26,8 @@
     --black-translucent-subtitle: rgb(30 30 30 / 60%);
     --black-translucent-subtitle2: #787878;
     --black-stroke-translucent: #E4E4E4;
+
+    @media (width <= 1400px) {
+        --sidebar-width: max-content;
+    }
 }

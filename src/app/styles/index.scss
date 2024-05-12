@@ -30,6 +30,10 @@ body {
 .widgetsWrapper{
     display: grid;
     gap: 20px;
+
+    @include lessThan(xl) {
+        display: none;
+    }
 }
 
 .h1, h1 {
@@ -472,6 +476,11 @@ body {
         display: none;
     }
 
+    .fc-event-title {
+        // text-overflow: ellipsis;
+
+    }
+
     .fc .fc-list-empty{
         background: white;
 
@@ -482,6 +491,8 @@ body {
     }
 
     .fc-event{
+        overflow-y: hidden;
+        text-overflow: ellipsis;
         cursor: pointer;
     }
 

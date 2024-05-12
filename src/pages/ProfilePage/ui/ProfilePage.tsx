@@ -43,15 +43,14 @@ const ProfilePage: FC = () => {
         end: <>
           {activeTab == TabsItemsKeys.profile && <TrophyButton />}
           {activeTab == TabsItemsKeys.profile && <EditProfile />}
-          {activeTab == TabsItemsKeys.profile && <Button purpose='logout' size='md' outline onClick={() => {userService.logout();}}>Выйти</Button>}
           {activeTab == TabsItemsKeys.todo && <Button purpose='add' size='md' outline onClick={() => {dispatch(addAndEditCustomTodoActions.openModal({ recordId: -1 }));}}>Своя задача</Button>}
           {activeTab == TabsItemsKeys.favorite && <Segmented defaultValue="Домашка" className='mySegmented' onChange={(value: 'Домашка' | 'Новости') => setFavoriteTable(value)} options={[ 'Домашка', 'Новости' ]}
           />}
         </>
       }} className={cls.header}/>
-      <Layout.BaseContent>
+      <Layout.StickyContent>
         {renderTab}
-      </Layout.BaseContent>
+      </Layout.StickyContent>
     </Layout.Base>
   );
 };

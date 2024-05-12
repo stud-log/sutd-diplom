@@ -1,8 +1,14 @@
+@import '../../../../app/styles/mixins';
+
 .LayoutApp{
     display: flex;
     padding: 20px;
     height: 100vh;
     gap: 20px;
+
+    @include lessThan(xxl) {
+        gap: 10px
+    }
 }
 
 .LayoutPage{
@@ -13,6 +19,10 @@
     height:100%;
     min-width: 0;
     background-color: var(--white);
+
+    // @include lessThan(xxl) {
+    //     background: transparent;
+    // }
 }
 
 
@@ -40,6 +50,16 @@ $header-height: 94px;
         display: flex;
         gap: 25px;
     }
+
+    @include lessThan(xxl) {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background: var(--white);
+
+        .endSlot{
+            gap: 7px;
+        }
+    }
 }
 
 .LayoutPageStickyContent{
@@ -58,6 +78,12 @@ $header-height: 94px;
     &::-webkit-scrollbar-thumb {
         border-radius: 10px;
         background-color: var(--black-stroke-translucent);
+    }
+
+    @include lessThan(xxl) {
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+        
     }
 }
 
@@ -83,11 +109,27 @@ $header-height: 94px;
         display: flex;
         gap: 25px;
     }
+
+    @include lessThan(xxl) {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background: var(--white);
+
+        .endSlot{
+            gap: 7px;
+        }
+    }
 }
 
 .LayoutPageBaseContent{
     padding: 10px 30px;
     inset:$header-height 0 0 0;
+
+    @include lessThan(xxl) {
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+        
+    }
 }
 
 .emptyData {

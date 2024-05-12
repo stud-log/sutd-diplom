@@ -1,3 +1,5 @@
+@import '../../../app/styles/mixins';
+
 .UserProfile{
     display: flex;
     align-items: center;
@@ -77,6 +79,10 @@
 
         button {
             width: max-content;
+        }
+
+        @include lessThan(xxl) {
+            display: none;
         }
     }
 
