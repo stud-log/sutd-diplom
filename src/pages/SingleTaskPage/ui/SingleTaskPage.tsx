@@ -26,6 +26,7 @@ import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
 import { pluralize } from 'shared/lib/helpers/dates';
 import postService from 'services/post.service';
+import taskService from 'services/task.service';
 import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
 import { withWidget } from 'shared/hooks/withWidget';
@@ -67,7 +68,7 @@ const SingleTaskPage: FC = () => {
           {hw?.type == HomeworkType.individual && meWorked?.length == 0 && <Button size='md' outline loading={loading} onClick={async () => {
             setLoading(true);
             if (record) {
-              const res = await postService.changeHomeworkStatus(record.id, UserTaskStatus.inProgress);
+              const res = await taskService.changeStatus(UserTaskStatus.inProgress, record.id);
               if(res) mutate();
             }
             setLoading(false);
@@ -78,7 +79,7 @@ const SingleTaskPage: FC = () => {
             onSelect={async (v) => {
               setLoading(true);
               if (record) {
-                const res = await postService.changeHomeworkStatus(record.id, v.value as keyof typeof UserTaskStatus);
+                const res = await taskService.changeStatus(v.value as keyof typeof UserTaskStatus, record.id);
                 if(res) globalMutate((key: string) => key.includes('api/record'));
               }
               setLoading(false);

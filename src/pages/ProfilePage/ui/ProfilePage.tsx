@@ -10,7 +10,9 @@ import { Schedule } from 'widgets/Schedule';
 import type { TabsProps } from 'antd';
 import { TodoTab } from '../tabs/TodoTab/TodoTab';
 import { TrophyButton } from 'features/TrophyButton';
+import { addAndEditCustomTodoActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomTodo/slice';
 import cls from './ProfilePage.module.scss';
+import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
 import { withWidget } from 'shared/hooks/withWidget';
 
@@ -20,6 +22,7 @@ const TabsItems: TabsProps['items'] = [ { key: TabsItemsKeys.profile, label: 'П
 const ProfilePage: FC = () => {
   const [ activeTab, setActiveTab ] = useState<TabsItemsKeys>(TabsItemsKeys.profile);
   const [ favoriteTable, setFavoriteTable ] = useState<'Домашка' | 'Новости'>('Домашка');
+  const dispatch = useDispatch();
 
   const renderTab = useMemo(() => {
     switch (activeTab) {
@@ -41,6 +44,7 @@ const ProfilePage: FC = () => {
           {activeTab == TabsItemsKeys.profile && <TrophyButton />}
           {activeTab == TabsItemsKeys.profile && <EditProfile />}
           {activeTab == TabsItemsKeys.profile && <Button purpose='logout' size='md' outline onClick={() => {userService.logout();}}>Выйти</Button>}
+          {activeTab == TabsItemsKeys.todo && <Button purpose='add' size='md' outline onClick={() => {dispatch(addAndEditCustomTodoActions.openModal({ recordId: -1 }));}}>Своя задача</Button>}
           {activeTab == TabsItemsKeys.favorite && <Segmented defaultValue="Домашка" className='mySegmented' onChange={(value: 'Домашка' | 'Новости') => setFavoriteTable(value)} options={[ 'Домашка', 'Новости' ]}
           />}
         </>

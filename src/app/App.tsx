@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
+import { AddAndEditCustomTodo } from 'widgets/Modals/ProfileModals/AddAndEditCustomTodo';
 import { AddAndEditModal } from 'widgets/Modals/ProfileModals/AddAndEditModal';
 import AppHistory from 'shared/config/history';
 import { AppLoader } from 'shared/ui/AppLoader/AppLoader';
@@ -60,6 +61,7 @@ export const App: FC = () => {
       <GuideModal />
       <ManageGroupModal />
       <HomeworkTaskModal />
+      <AddAndEditCustomTodo />
     </>
   );
 };

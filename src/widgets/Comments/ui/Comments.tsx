@@ -91,12 +91,12 @@ export const Comments: FC<CommentsProps> = ({ className, comments, recordId, var
               <Input innerRef={inputRef} name="content" autoComplete="off" />
             </div>
             <div className={cls.controls}>
-              <UploadInput name="commentFiles" multiple maxWeight={10} >Добавить файлы</UploadInput>
+              {/* <UploadInput name="commentFiles" multiple maxWeight={10} >Добавить файлы</UploadInput> */}
               <Button size="md" onClick={submitForm} loading={loading}>Отправить</Button>
             </div>
-            <div className={cls.uploadedFiles}>
+            {/* <div className={cls.uploadedFiles}>
               <UploadedFilesControl name="commentFiles" />
-            </div>
+            </div> */}
           </Form>
         )}
       </Formik>

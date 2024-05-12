@@ -2,26 +2,12 @@ import { HomeworkType, UserTaskStatus } from "@stud-log/news-types/enums";
 
 import { $api } from "shared/http/host";
 import { AxiosError } from "axios";
+import { CreateNewPostFromValues } from "shared/lib/types/services";
 import { EmojiClickData } from "emoji-picker-react";
 import { ErrorResponse } from "@stud-log/news-types/server";
 import { NewsLabelsOptions } from "widgets/Modals/ProfileModals/AddAndEditModal/types";
 import { UserReaction } from "@stud-log/news-types/models";
 import { notification } from "antd";
-
-export interface CreateNewPostFromValues {
-  label: string;
-  title: string;
-  subjectId: number;
-  content: string;
-  type: string;
-  modalFiles: File[];
-  cover: File;
-  recordTable: 'Homework' | 'News';
-  recordId: number;
-  startDate: string;
-  endDate: string;
-  filesToDelete: number[];
-}
 
 class PostService {
 
@@ -158,27 +144,6 @@ class PostService {
       return (await $api.post(`/api/record/post/remove`, { recordId })).data;
     } catch (e) {
       console.log(e);
-      return false;
-    }
-  }
-
-  async changeHomeworkStatus (
-    recordId: number,
-    status: keyof typeof UserTaskStatus,
-  ) {
-    try {
-      await $api.post(`/api/record/post/Homework-changeStatus`, { recordId, status });
-      notification.success({
-        message: 'Успешно!',
-        description: `Статус успешно изменен`,
-      });
-      return true;
-    } catch (e) {
-      const error = e as AxiosError<ErrorResponse>;
-      notification.warning({
-        message: 'Что-то пошло не так...',
-        description: error.response?.data.message,
-      });
       return false;
     }
   }

@@ -8,6 +8,7 @@ import { UserTaskStatus } from '@stud-log/news-types/enums';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './ScrumTable.module.scss';
 import postService from 'services/post.service';
+import taskService from 'services/task.service';
 
 interface ScrumTableProps {
   className?: string;
@@ -71,7 +72,10 @@ export const ScrumTable: FC<ScrumTableProps> = ({ className, tasks }) => {
     const customTask = draggableTask.title ? draggableTask : null;
 
     if(homeworkTask) {
-      postService.changeHomeworkStatus(homeworkTask.record!.id, destination.droppableId as keyof typeof UserTaskStatus);
+      taskService.changeStatus(destination.droppableId as keyof typeof UserTaskStatus, homeworkTask.record!.id);
+    }
+    else if(customTask) {
+      taskService.changeStatus(destination.droppableId as keyof typeof UserTaskStatus, undefined, customTask.id);
     }
   };
 

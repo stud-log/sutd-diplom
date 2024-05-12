@@ -1,5 +1,6 @@
 import { RootStateSchema } from "./schema";
 import { activityTimerReducer } from "widgets/ActivityTimer/model/slice";
+import { addAndEditCustomTodoReducer } from "widgets/Modals/ProfileModals/AddAndEditCustomTodo/slice";
 import { addAndEditModalReducer } from "widgets/Modals/ProfileModals/AddAndEditModal/slice";
 import { configureStore } from "@reduxjs/toolkit";
 import { guideModalReducer } from "widgets/Modals/GuideModal/slice";
@@ -21,7 +22,8 @@ export function createReduxStore(initialState?: RootStateSchema) {
       manageGroupModal: manageGroupModalReducer,
       homeworkTaskModal: homeworkTaskModalReducer,
       notifications: notificationsReducer,
-      trophy: trophyReducer
+      trophy: trophyReducer,
+      addAndEditCustomTodo: addAndEditCustomTodoReducer
     },
     devTools: __IS_DEV__,
     preloadedState: initialState

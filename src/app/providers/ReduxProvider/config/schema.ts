@@ -1,4 +1,5 @@
 import { ActivityTimerSchema } from 'widgets/ActivityTimer';
+import { AddAndEditCustomTodoSchema } from 'widgets/Modals/ProfileModals/AddAndEditCustomTodo/types';
 import { AddAndEditModalSchema } from 'widgets/Modals/ProfileModals/AddAndEditModal';
 import { GuideModalSchema } from 'widgets/Modals/GuideModal/types';
 import { HomeworkTaskModalSchema } from 'widgets/Modals/HomeworkTaskModal/types';
@@ -18,4 +19,5 @@ export interface RootStateSchema {
   homeworkTaskModal: HomeworkTaskModalSchema;
   notifications: NotificationsSchema;
   trophy: TrophySchema;
+  addAndEditCustomTodo: AddAndEditCustomTodoSchema;
 }
