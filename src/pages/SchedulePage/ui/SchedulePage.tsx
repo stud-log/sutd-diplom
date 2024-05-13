@@ -7,6 +7,7 @@ import { FCEvent } from '../types';
 import FullCalendar from '@fullcalendar/react';
 import { GetSchedule } from '@stud-log/news-types/server/schedule.response';
 import { Layout } from 'shared/ui/Layout';
+import { Schedule } from 'widgets/Schedule';
 import { Segmented } from 'antd';
 import { TooltipTemplate } from '../helpers/tooltip';
 import { ViewMountArg } from '@fullcalendar/core';
@@ -73,6 +74,22 @@ const SchedulePage: FC = () => {
         break;
     }
   };
+
+  if(window.innerWidth <= 576) {
+
+    return <Layout.Base className={cls.SchedulePage}>
+      <Layout.BaseHeader slots={{
+        start: <h1 className={cls.header}>
+          <span>Расписание</span>
+          <span className={cls.headerWeekparity}>{weekParity ? 'Неч.' : 'Чет.'}</span>
+          <span className={cls.mobileEdit}>{role.permissions.canEdit && <Button outline size='md' purpose='edit' onClick={() => {dispatch(scheduleModalActions.openModal());}} />}</span>
+        </h1>
+      }}/>
+      <Layout.BaseContent loading={!schedule} className={cls.mobileContent}>
+        <Schedule />
+      </Layout.BaseContent>;
+    </Layout.Base>;
+  }
   
   return (
     <Layout.Base className={cls.SchedulePage}>

@@ -15,8 +15,13 @@
     pointer-events: none;
 
     @include lessThan(sm) {
-        left: initial;
-        right: 30px;
+        position: fixed;
+        left: 0;
+        top: unset;
+        bottom: 70px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 100%;
     }
 }
 

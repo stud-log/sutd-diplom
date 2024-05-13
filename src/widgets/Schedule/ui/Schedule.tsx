@@ -50,7 +50,32 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
 
   const groupedData = schedule ? groupByDay(schedule) : {};
   const weekParity = moment().week() % 2;
+
+  const isMobile = window.innerWidth <= 576;
   
+  if(isMobile) {
+    return <div>
+      {Object.keys(groupedData).map(day => (
+        <div key={day} className={cls.weekdayWrapper} id={moment(day).format('ddd')}>
+          <div className={cls.weekday}>
+            <div className={cls.weekdayName}>{moment(day).format('dddd')}</div>
+            <div className={cls.weekdayDate}>{moment(day).format('DD MMMM')}</div>
+          </div>
+          <div className={cls.elementsWrapper}>
+            {groupedData[day].map((item, idx) => (
+              <ScheduleCard
+                key={idx}
+                startDate={item.calendar.startDate}
+                endDate={item.calendar.endDate}
+                type={item.calendar.activityType}
+                calendarElement={item.calendar.activityType == CalendarActivityType.custom ? item.calendar.customActivity[0] : item.calendar.timetable[0]}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>;
+  }
   return (
     <div className={classNames(cls.Schedule, {}, [ className ])}>
       <Layout.Sticky>
