@@ -9,9 +9,10 @@ import userService from 'services/user.service';
 
 interface TrophyButtonProps {
   className?: string;
+  text?: string;
 }
 
-export const TrophyButton: FC<TrophyButtonProps> = ({ className }) => {
+export const TrophyButton: FC<TrophyButtonProps> = ({ className, text }) => {
   const { isSeen } = useSelector<RootStateSchema, RootStateSchema['trophy']>(state => state.trophy);
   const navigate = useNavigate();
   const onOpen = async () => {
@@ -19,6 +20,6 @@ export const TrophyButton: FC<TrophyButtonProps> = ({ className }) => {
     navigate('/achievements');
   };
   return (
-    <Button size='md' onClick={onOpen} outline purpose='trophy' className={classNames(cls.TrophyButton, { [cls.isSeen]: isSeen }, [ className ])} />
+    <Button size='md' onClick={onOpen} outline purpose='trophy' className={classNames(cls.TrophyButton, { [cls.isSeen]: isSeen }, [ className ])}>{text}</Button>
   );
 };

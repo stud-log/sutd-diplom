@@ -1,3 +1,4 @@
+@import '../../../app/styles/mixins';
 
 
 .header{
@@ -9,4 +10,12 @@
 .wrapper{
     margin-top: 30px;
     margin-bottom: 40px;
+}
+
+.onMobileContent{
+    @include lessThan(sm) {
+        border: 1px solid var(--black-stroke-translucent);
+        border-radius: 20px;
+        background: var(--white);
+    }
 }

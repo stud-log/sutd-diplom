@@ -1,7 +1,7 @@
+@import '../../../../app/styles/mixins';
+
 .UserAvatars{
-    overflow-x: auto;
-    width: max-content;
-    max-width: 100%;
+    
 }
 
 .title {
@@ -13,6 +13,9 @@
 
 .wrapperAvatars{
     display: flex;
+    overflow-x: auto;
+    width: max-content;
+    max-width: 100%;
     gap: 15px;
 
     .availableAvatar{
@@ -114,5 +117,9 @@
         }
 
         
+    }
+
+    @include lessThan(sm) {
+        padding-bottom: 15px;
     }
 }

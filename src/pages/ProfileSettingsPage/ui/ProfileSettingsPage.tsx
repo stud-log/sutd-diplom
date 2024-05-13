@@ -36,10 +36,10 @@ const ProfileSettingsPage: FC = () => {
         start: <Button outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>,
         end: <>
           <Button style={{ maxWidth: 'max-content' }} size='md' onClick={handleSubmit} loading={loading}>Сохранить данные</Button>
-          <Button style={{ maxWidth: 'max-content' }} purpose='logout' size='md' outline onClick={() => {userService.logout();}}>Выйти</Button>
+          <Button style={{ maxWidth: 'max-content' }} purpose='logout' size='md' outline onClick={() => {userService.logout();}} className={cls.mobileHidden}>Выйти</Button>
         </>
       }} />
-      <Layout.StickyContent>
+      <Layout.StickyContent className={cls.onMobileContent}>
         {user && <>
           <div className={cls.header}>Персональные данные</div>
           <div className={cls.formWrapper}>
@@ -82,6 +82,9 @@ const ProfileSettingsPage: FC = () => {
           Настройки приватности
         </div>
         <InDevelopmentBlock />
+
+        <Button purpose='logout' size='md' outline onClick={() => {userService.logout();}} className={cls.mobileShowExitBtn}>Выйти</Button>
+
       </Layout.StickyContent>
     </Layout.Sticky>
   );

@@ -25,7 +25,7 @@ const AchievementsPage: FC = () => {
       <Layout.StickyHeader slots={{
         start: <Button outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>,
       }} />
-      <Layout.StickyContent>
+      <Layout.StickyContent className={cls.onMobileContent}>
         {user && <>
           <div className={cls.header}>Достижения</div>
           <div className={cls.wrapper}>

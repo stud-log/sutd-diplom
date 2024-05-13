@@ -1,3 +1,5 @@
+@import '../../../../../app/styles/mixins';
+
 .ScheduleModal{
     position: relative;
 }
@@ -29,4 +31,10 @@
     bottom: 50px;
     width: 590px;
     transform: translate(-50%, 0);
+
+    @include lessThan(sm) {
+        position: fixed;
+        bottom: 85px;
+        width: 300px;
+    }
 }

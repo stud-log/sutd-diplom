@@ -90,6 +90,17 @@ body {
             }
         }
     }
+
+    @media (width <= 573px) {
+        .ant-steps-item-container{
+            display: flex;
+            align-items: center;
+
+            .ant-steps-item-content{
+                min-height: unset !important;
+            }
+        }
+    }
 }
 
 
@@ -123,6 +134,8 @@ body {
             background-color: var(--black-main);
         }
     }
+
+    
 }
 
 
@@ -135,6 +148,7 @@ body {
         height: 40px;
         font-family: var(--ff) !important;
     }
+    
 
     .ant-select-selection-search{
         input {
@@ -185,16 +199,48 @@ body {
         }
     }
 
+    &.centered{
+        .ant-select {
+            width: 100%;
+            text-align: center;
+        }
+
+/* stylelint-disable-next-line no-descending-specificity */
+.ant-select-arrow{
+    display: none;
+}
+
+        &.prefixIcon{
+            .ant-select-selection-item{ 
+                padding-inline-end: 0;
+                padding-inline-start: 18px;
+            }
+    
+            .ant-select-selector{
+                & + .ant-select-arrow {
+                    inset-inline-end: auto;
+                    inset-inline-start: 11px;
+                }
+            }
+        }
+    }
+
+    
+
     
 
     &.errored{
+        /* stylelint-disable-next-line no-descending-specificity */
         .ant-select-selector {
             border-color: var(--red) !important;
         }
     }
 
     &.noRotateSuffixIcon{
+        
+        /* stylelint-disable-next-line no-descending-specificity */
         .ant-select-selector{
+            /* stylelint-disable-next-line no-descending-specificity */
             & + .ant-select-arrow {
                 svg {
                     transform: none;
@@ -204,12 +250,15 @@ body {
     }
 
     &.prefixIcon{
+        /* stylelint-disable-next-line no-descending-specificity */
         .ant-select-selection-item{ 
             padding-inline-end: 0;
             padding-inline-start: 18px;
         }
 
+        /* stylelint-disable-next-line no-descending-specificity */
         .ant-select-selector{
+            /* stylelint-disable-next-line no-descending-specificity */
             & + .ant-select-arrow {
                 inset-inline-end: auto;
                 inset-inline-start: 11px;
@@ -217,7 +266,10 @@ body {
         }
     }
 
+    
+
     &.justSelected{
+        /* stylelint-disable-next-line no-descending-specificity */
         .ant-select-selector{
             background: var(--white) !important;
 
@@ -225,6 +277,7 @@ body {
                 color: var(--black-main) !important;
             }
 
+            /* stylelint-disable-next-line no-descending-specificity */
             & + .ant-select-arrow {
                 svg {
                     stroke: var(--black-main);
@@ -243,6 +296,8 @@ body {
             }
         }
     }
+
+    
 }
 
 
@@ -643,6 +698,14 @@ body {
   /* CHANGE ANTD SEGMENTED */
   .mySegmented {
     font-family: var(--ff);
+
+    &.mobileSegmentedFavorite{
+        width: 100%;
+
+        .ant-segmented-item{
+            flex-grow: 1;
+        }
+    }
 
       &.ant-segmented{
         border-radius: 12px !important;

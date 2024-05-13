@@ -1,3 +1,5 @@
+@import '../../../app/styles/mixins';
+
 .TaskPage{
     
 }
@@ -26,5 +28,32 @@
 .headerControls{
     button {
         width: max-content;
+    }
+}
+
+.onMobileContent{
+    @include lessThan(sm) {
+        border: 1px solid var(--black-stroke-translucent);
+        border-radius: 20px;
+        padding-bottom: 100px;
+        background: var(--white);
+    }
+}
+
+.mobileHidden{
+    @include lessThan(sm) {
+        display: none;
+    }
+}
+
+.mobileShowExitBtn{
+    margin-top: 20px;
+
+    button {
+        width: 100%;
+    }
+
+    @include moreThan(sm) {
+        display: none;
     }
 }

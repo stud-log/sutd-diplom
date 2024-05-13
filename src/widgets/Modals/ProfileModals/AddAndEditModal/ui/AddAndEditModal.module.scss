@@ -1,3 +1,5 @@
+@import '../../../../../app/styles/mixins';
+
 .AddAndEditModal{
     
 }
@@ -35,6 +37,11 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
+
+    @include lessThan(sm) {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 .controls {

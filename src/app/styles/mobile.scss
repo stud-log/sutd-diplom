@@ -18,3 +18,15 @@
     }
 }
 
+.ant-modal-body{
+    @include lessThan(sm) {
+        padding: 20px !important;
+        padding-bottom: 80px !important;
+    }
+}
+
+.ant-modal-root .ant-modal {
+    @media (width <= 533px) {
+        max-width: calc(100vw - 3px) !important;
+    }
+}

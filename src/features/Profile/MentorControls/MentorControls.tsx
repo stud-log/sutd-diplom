@@ -27,6 +27,7 @@ export const MentorControls: FC<MentorControlsProps> = ({ className }) => {
           className={cls.select}
           options={[ { label: 'Новость', value: 'News' }, { label: 'Домашку', value: 'Homework' } ]}
           prefixIcon={<AddIcon />}
+          mobileCentered
           onSelect={selected => {dispatch(addAndEditModalActions.openModal({ recordId: -1, recordTable: selected.value as "News" | "Homework" }));}}
         />
         <Button size='md' outline purpose='editGroup' onClick={() => dispatch(manageGroupModalActions.openModal())}>Управление группой</Button>
