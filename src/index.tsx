@@ -1,6 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import 'tippy.js/animations/shift-toward.css';
 import './app/styles/index.scss';
+import './app/styles/mobile.scss';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

@@ -1,0 +1,20 @@
+@import './mixins';
+
+.onMobileSubjectFilter{
+    @include lessThan(sm) {
+        .ant-select-selection-item {
+            display: none;
+        }
+
+        .ant-select{
+            width: 40px;
+        }
+    }
+}
+
+@include lessThan(sm) {
+    .ant-select-dropdown{
+        min-width: 150px;
+    }
+}
+

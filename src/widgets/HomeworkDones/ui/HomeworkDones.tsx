@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useSWR, { SWRResponse } from 'swr';
 
 import { $apiGet } from 'shared/http/helpers/apiGet';
+import { EmptyData } from 'shared/ui/EmptyData';
 import { FC } from 'react';
 import { Layout } from 'shared/ui/Layout';
 import { UserTaskStatus } from '@stud-log/news-types/enums';
@@ -30,6 +31,20 @@ export const HomeworkDones: FC<HomeworkDonesProps> = ({ className }) => {
 
   const usersDone = userTasks?.filter(i => i.status == UserTaskStatus.passed);
 
+  if(window.innerWidth <= 574) {
+    return <div className={className}>
+      <h2 className={classNames(cls.header, {}, [ 'h1' ])}>
+        <span>Выполнили</span>
+        <span className={cls.headerWeekparity}>{usersDone?.length} чел.</span>
+      </h2>
+
+      <div className={cls.usersWrapper}>
+        {usersDone && usersDone.length > 0 ? usersDone.map(userTask => {
+          return <UserWithAvatar user={userTask.user!} key={userTask.id}/>;
+        }) : <div className={cls.empty}>Еще никто не выполни это задание</div> }
+      </div>
+    </div>;
+  }
   return (
     <div className={classNames(cls.HomeworkDones, {}, [ className ])}>
       <Layout.Sticky>

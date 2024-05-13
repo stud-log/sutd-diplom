@@ -13,6 +13,6 @@ export const SubjectFilter: FC<SubjectFilterProps> = ({ className, onSelect }) =
   const subjects = useGroupSubjects();
   const options = [ { id: -1, value: -1, label: 'Показать все', teacherName: '' } as DefaultOptionType ].concat(subjects);
   return (
-    <Select onSelect={onSelect} options={options} suffixIcon={<FilterSelectIcon />} />
+    <Select className='onMobileSubjectFilter' onSelect={onSelect} options={options} suffixIcon={<FilterSelectIcon />} />
   );
 };

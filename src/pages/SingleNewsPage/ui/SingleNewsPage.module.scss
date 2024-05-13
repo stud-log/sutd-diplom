@@ -95,3 +95,15 @@
         background: var(--white);
     }
 }
+
+.mobileHidden {
+    @include lessThan(sm) {
+        display: none;
+    }
+}
+
+.mobileShow {
+    @include moreThan(sm) {
+        display: none;
+    }
+}

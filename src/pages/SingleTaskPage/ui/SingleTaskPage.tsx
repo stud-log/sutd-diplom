@@ -63,7 +63,8 @@ const SingleTaskPage: FC = () => {
       <Layout.StickyHeader slots={{
         start: <Button outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>,
         end: <>
-          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={cls.headerBtn} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'Homework', recordId: Number(recordId) }));}}>Редактировать</Button>}
+          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={classNames(cls.headerBtn, {}, [ cls.mobileHidden ])} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'Homework', recordId: Number(recordId) }));}}>Редактировать</Button>}
+          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={classNames(cls.headerBtn, {}, [ cls.mobileShow ])} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'Homework', recordId: Number(recordId) }));}} />}
           {hw?.type == HomeworkType.group && meWorked?.length == 0 && <Button size='md' outline className={cls.headerBtn}>Выполнить в группе</Button>}
           {hw?.type == HomeworkType.individual && meWorked?.length == 0 && <Button size='md' outline loading={loading} onClick={async () => {
             setLoading(true);
@@ -91,7 +92,8 @@ const SingleTaskPage: FC = () => {
           
         </>
       }}/>
-      <Layout.StickyContent loading={!record}>
+      <Layout.StickyContent loading={!record} className={cls.onMobileContent}>
+        
         {record && hw &&
         <div>
           <div className={cls.top}>
@@ -99,10 +101,11 @@ const SingleTaskPage: FC = () => {
             <span className={cls.date}>{startDate}</span>
           </div>
           <div className={cls.title}>{hw.title}</div>
-          <Deadline startDate={hw.createdAt} endDate={hw.endDate} className={cls.deadline}/>
+          <Deadline startDate={hw.createdAt} endDate={hw.endDate} className={classNames(cls.deadline, {}, [ cls.mobileHidden ])}/>
           <div className={classNames(cls.content, {}, [ 'ck-content' ])}>
             <Interweave content={hw.content}/>
           </div>
+          <Deadline startDate={hw.createdAt} endDate={hw.endDate} className={classNames(cls.mobileDeadline, {}, [ cls.mobileShow ])}/>
           <div className={cls.filesWrapper}>
             <RecordFiles files={record.files} />
           </div>
@@ -114,7 +117,7 @@ const SingleTaskPage: FC = () => {
             </div>
             <div className={cls.views}>{record.views.length} {pluralize(record.views.length, 'просмотр', "просмотра", "просмотров")}</div>
           </div>
-          
+          {window.innerWidth <= 576 && <HomeworkDones className={cls.mobileWidget}/>}
           <div className={cls.comments}>
             <Comments comments={record.comments} recordId={record.id}/>
           </div>
