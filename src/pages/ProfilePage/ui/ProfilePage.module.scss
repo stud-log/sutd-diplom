@@ -1,7 +1,33 @@
+@import '../../../app/styles/mixins';
+
 .TaskPage{
     
 }
 
 .header{
     margin-bottom: 0;
+}
+
+.mobileHidden {
+    @include lessThan(sm) {
+        display: none;
+    }
+}
+
+.mobileShow {
+    @include moreThan(sm) {
+        display: none;
+    }
+}
+
+.onMobileContent{
+    @include lessThan(sm) {
+        border: 1px solid var(--black-stroke-translucent);
+        border-radius: 20px;
+        background: var(--white);
+    }
+}
+
+.mobileFavoriteSegmented{
+    padding: 0 20px;
 }

@@ -1,3 +1,5 @@
+@import '../../../app/styles/mixins';
+
 .TaskPage{
     position: relative;
 }
@@ -19,6 +21,10 @@
         font-weight: 600;
         color: var(--black-translucent-subtitle);
     }
+
+    @include lessThan(sm) {
+        flex-direction: column-reverse;
+    }
 }
 
 .title {
@@ -34,7 +40,14 @@
     top: 16px;
     padding: 0 20px;
     width: max-content;
+
 }
+
+.mobileDeadline {
+    margin-top: 15px;
+    height: 40px;
+}
+
 
 .content {
     overflow-wrap: anywhere;
@@ -67,4 +80,29 @@
 
 .selectWithStatuses{
     
+}
+
+
+.mobileHidden {
+    @include lessThan(sm) {
+        display: none;
+    }
+}
+
+.mobileShow {
+    @include moreThan(sm) {
+        display: none;
+    }
+}
+
+.onMobileContent{
+    @include lessThan(sm) {
+        border: 1px solid var(--black-stroke-translucent);
+        border-radius: 20px;
+        background: var(--white);
+    }
+}
+
+.mobileWidget{
+    margin-top: 20px;
 }

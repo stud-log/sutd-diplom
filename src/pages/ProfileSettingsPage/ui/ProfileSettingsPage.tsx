@@ -35,10 +35,11 @@ const ProfileSettingsPage: FC = () => {
       <Layout.StickyHeader slots={{
         start: <Button outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>,
         end: <>
-          <Button size='md' onClick={handleSubmit} loading={loading}>Сохранить данные</Button>
+          <Button style={{ maxWidth: 'max-content' }} size='md' onClick={handleSubmit} loading={loading}>Сохранить данные</Button>
+          <Button style={{ maxWidth: 'max-content' }} purpose='logout' size='md' outline onClick={() => {userService.logout();}} className={cls.mobileHidden}>Выйти</Button>
         </>
       }} />
-      <Layout.StickyContent>
+      <Layout.StickyContent className={cls.onMobileContent}>
         {user && <>
           <div className={cls.header}>Персональные данные</div>
           <div className={cls.formWrapper}>
@@ -46,6 +47,7 @@ const ProfileSettingsPage: FC = () => {
               innerRef={formRef}
               initialValues={{
                 avatarUrl: user.avatarUrl,
+                avatarColor: user.settings.nickColor,
                 nickname: user.nickname || '',
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -60,7 +62,10 @@ const ProfileSettingsPage: FC = () => {
               enableReinitialize
             >
               {({ values, setFieldValue }) => <Form>
-                <UserAvatars className={cls.avatarsBlock} onChange={(url) => setFieldValue('avatarUrl', url)} receivedAchievements={user.achievements.flatMap(achieve => achieve.achievement)}/>
+                <UserAvatars className={cls.avatarsBlock} onChange={(url, color) => {
+                  setFieldValue('avatarUrl', url);
+                  setFieldValue('avatarColor', color);
+                }} receivedAchievements={user.achievements.flatMap(achieve => achieve.achievement)}/>
                 <div className={cls.inputsWrapper}>
                   <Input name='nickname' label='Ник'/>
                   <Input name='firstName' label='Имя'/>
@@ -77,6 +82,9 @@ const ProfileSettingsPage: FC = () => {
           Настройки приватности
         </div>
         <InDevelopmentBlock />
+
+        <Button purpose='logout' size='md' outline onClick={() => {userService.logout();}} className={cls.mobileShowExitBtn}>Выйти</Button>
+
       </Layout.StickyContent>
     </Layout.Sticky>
   );

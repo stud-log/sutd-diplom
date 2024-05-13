@@ -5,8 +5,9 @@ $breakpoints: (
     sm: 576px,
     md: 768px,
     lg: 992px,
-    xl: 1200px,
-    xxl: 1400px
+    xl: 1190px,
+    xxl: 1400px,
+    xxxl: 1800px,
 );
 
 @mixin moreThan($breakpoint) {
@@ -23,7 +24,7 @@ $breakpoints: (
 
 @mixin lessThan($breakpoint) {
     @if map-has-key($breakpoints, $breakpoint) {
-        @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @media (max-width: map-get($breakpoints, $breakpoint)) {
             @content;
         }
     }

@@ -16,6 +16,7 @@ interface SelectProps {
   needSearch?: boolean;
   suffixIcon?: ReactNode;
   prefixIcon?: ReactNode;
+  mobileCentered?: boolean;
   /**
    * defaultText must be set
    */
@@ -36,10 +37,17 @@ interface SelectProps {
 const filterOption = (input: string, option?: DefaultOptionType) =>
   (option?.label as string ?? '').toLowerCase().includes(input.toLowerCase());
 
-export const Select: FC<SelectProps> = ({ className, options, onSelect, defaultOption, defaultText, popupMatchSelectWidth = true, needSearch = false, optionRender, suffixIcon, dropdownStyle, prefixIcon, shouldChangeValueOnSelect = true, asFormikField }) => {
+export const Select: FC<SelectProps> = ({ className, options, onSelect, mobileCentered = false, defaultOption, defaultText, popupMatchSelectWidth = true, needSearch = false, optionRender, suffixIcon, dropdownStyle, prefixIcon, shouldChangeValueOnSelect = true, asFormikField }) => {
   const [ isSelect, setIsSelect ] = useState(false);
+  const isMobile = window.innerWidth <= 1400; // слабо
   return (
-    <div className={classNames(cls.Dropdown, { 'errored': !!asFormikField?.error, 'justSelected': isSelect, 'noRotateSuffixIcon': !!suffixIcon || !!prefixIcon, 'prefixIcon': !!prefixIcon }, [ className, 'mySelect' ])}>
+    <div className={classNames(cls.Dropdown, {
+      'errored': !!asFormikField?.error,
+      'justSelected': isSelect,
+      'noRotateSuffixIcon': !!suffixIcon || !!prefixIcon,
+      'prefixIcon': !!prefixIcon,
+      'centered': isMobile && mobileCentered
+    }, [ className, 'mySelect' ])}>
       <ANTDSelect
         popupMatchSelectWidth={popupMatchSelectWidth}
         labelInValue={true}

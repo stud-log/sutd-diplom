@@ -1,3 +1,54 @@
+@import '../../../../app/styles/mixins';
+
 .ProfileTab{
     
+}
+
+.statsWrapper{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 34px;
+    gap: 20px;
+
+    @media (width <= 1748px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (width <= 1378px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* stylelint-disable-next-line order/order */
+    @include lessThan(sm) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+.controls{
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    margin-top: 20px;
+    gap: 7px;
+
+    @include moreThan(xxl) {
+        display: none;
+    }
+
+    @media (width <= 806px) {
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
+
+
+.userControls{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 7px;
+
+    @include moreThan(sm) {
+        display: none;
+    }
 }

@@ -7,6 +7,7 @@ export interface AddAndEditModalSchema {
 }
 
 export const NewsLabelsOptions = [
+  { label: 'Показать все', value: '-1' },
   { label: 'Информация', value: 'Информация' },
   { label: 'Перенос пары', value: 'Перенос пары' },
   { label: 'Отмена пары', value: 'Отмена пары' },

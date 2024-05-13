@@ -59,11 +59,12 @@ const SingleNewsPage: FC<SingleNewsPageProps> = ({ className }) => {
       <Layout.StickyHeader slots={{
         start: <Button outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>,
         end: <>
-          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={cls.headerBtn} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'News', recordId: Number(recordId) }));}}>Редактировать</Button>}
+          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={cls.mobileHidden} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'News', recordId: Number(recordId) }));}}>Редактировать</Button>}
+          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={cls.mobileShow} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'News', recordId: Number(recordId) }));}}/>}
 
         </>
       }} />
-      <Layout.StickyContent loading={!record}>
+      <Layout.StickyContent loading={!record} className={cls.onMobile}>
         {record && news && <div>
           <div className={cls.topRow}>
             <div className={cls.authorWrapper}>

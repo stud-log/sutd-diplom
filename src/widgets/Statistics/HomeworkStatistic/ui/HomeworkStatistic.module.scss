@@ -1,0 +1,88 @@
+.HomeworkStatistic{
+    border: 1px solid var(--black-stroke-translucent);
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.wrapper{
+    
+}
+
+.header{
+    font-weight: 600;
+    font-size: var(--fz-m);
+}
+
+.description {
+    margin-top: 10px;
+    line-height: 1.5;
+    color: var(--black-translucent-subtitle);
+}
+
+.tumbsWrapper {
+    display: grid;
+    align-items: flex-end;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 20px;
+    height: 250px;
+    gap: 8px;
+
+
+    .tumb {
+        border-radius: 10px;
+        padding: 8px;
+        min-height: 40px;
+        font-weight: 600;
+        font-size: var(--fz-s);
+        color: var(--white);
+
+        &.unTaken{
+            color: var(--black-main);
+            background: var(--black-buttons-back);
+        }
+
+        &.passed{
+            background: var(--black-main);
+        }
+
+        &.inProgress{
+            background: var(--accent);
+        }
+    }
+}
+
+.legend{
+    display: flex;
+    column-gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    row-gap: 12px;
+
+    .legendItem{
+        display: flex;
+        align-items: center;
+        font-size: var(--fz-s);
+
+        &::before {
+            content: '';
+            display: block;
+            margin-right: 6px;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            
+        }
+
+        &.inProgressLegend::before{
+            background: var(--accent);
+        }
+
+        &.unTakenLegend::before{
+            background: var(--black-buttons-back);
+        }
+
+        &.passedLegend::before{
+            background: var(--black-main);
+        }
+    }
+}

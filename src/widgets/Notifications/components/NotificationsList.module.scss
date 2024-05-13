@@ -1,0 +1,123 @@
+@import '../../../app/styles/mixins';
+
+.NotificationsList{
+    position: absolute;
+    left: 30px;
+    top: -17px;
+    z-index: -1;
+    border: 1px solid var(--black-stroke-translucent);
+    border-radius: 15px;
+    width: 350px;
+    min-height: calc(47px + 85px);
+    background: var(--white);
+    opacity: 0;
+    transition: .2s ease-in-out;
+    pointer-events: none;
+
+    @include lessThan(sm) {
+        position: fixed;
+        left: 0;
+        top: unset;
+        bottom: 70px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 100%;
+    }
+}
+
+.opened {
+    z-index: 100;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--black-stroke-translucent);
+    padding: 17px 15px;
+    font-weight: 600;
+    color: var(--black-main);
+}
+
+.list {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.notification{
+    margin: 0 15px;
+    border-bottom: 1px solid var(--black-stroke-translucent);
+    padding: 12px 0;
+
+
+    .noteContent {
+        margin: 10px 0;
+        
+    }
+
+    .header {
+        // font-weight: 600;
+
+        font-size: var(--fz-s);
+    }
+
+    .content {
+        font-weight: 500;
+        font-size: var(--fz-s);
+    }
+
+    .btn {
+        display: flex;
+        font-family: var(--ff);
+        font-weight: 600;
+        font-size: var(--fz-s);
+        gap: 5px;
+
+        svg {
+            margin-top: -2px;
+            rotate: 180deg;
+            scale: .7;
+        }
+    }
+
+    &:last-child {
+        border-bottom:  none;
+    }
+}
+
+.authorWrapper{
+    display: flex;
+    align-items: center;
+    font-size: var(--fz-s);
+    gap: 5px;
+
+    .newsAuthor{
+        
+    }
+
+    .labelSpanCircle {
+        font-size: 5px;
+        color: var(--black-translucent-subtitle);
+    }
+
+    .newsDate{
+        color: var(--black-translucent-subtitle);
+    }
+}
+
+.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px 15px;
+    height: 85px;
+    font-size: var(--fz-s);
+    color: var(--black-translucent-subtitle2);
+}
+
+.rightArrow{
+    cursor: pointer;
+    rotate: -90deg;
+}

@@ -45,6 +45,15 @@
             text-decoration: none;
             color: var(--black-translucent-subtitle);
         }
+
+        @media (width <= 400px) {
+            font-size: var(--fz-s);
+        }
+    }
+
+    @media (width <= 620px) {
+        padding: 20px;
+        width: 100%;
     }
 }
 

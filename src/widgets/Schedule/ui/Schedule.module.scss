@@ -1,6 +1,10 @@
+@import '../../../app/styles/mixins';
+
 .Schedule{
     flex-shrink: 0;
     width: var(--schedule-width);
+
+    
 }
 
 .weekdayWrapper{

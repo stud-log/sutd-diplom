@@ -22,7 +22,7 @@ export const TaskCard: FC<TaskCardProps> = ({ className, task, provided }) => {
   const dispatch = useDispatch();
   const homeworkTask = task.record?.homework ? task : null;
   const customTask = task.title ? task : null;
-  const ref = useRef<HTMLDivElement | null>(null);
+
   return (
     <div className={classNames(cls.TaskCard, {}, [ className ])}>
       <div
@@ -35,7 +35,7 @@ export const TaskCard: FC<TaskCardProps> = ({ className, task, provided }) => {
         }}
       >
         {homeworkTask && (
-          <div ref={ref} className={cls.innerWrapper} tabIndex={-1} onClick={() => ref.current?.focus()} onDoubleClick={() => dispatch(homeworkTaskModalActions.openModal({ recordId: homeworkTask.id }))}>
+          <div className={cls.innerWrapper} tabIndex={-1} onClick={() => dispatch(homeworkTaskModalActions.openModal({ recordId: homeworkTask.id }))}>
             <div className={cls.cardHeader}>
               <div className={cls.cardHeaderInner}>
                 <div className={cls.createdAt}>от {moment(homeworkTask.record!.homework!.createdAt).format('D MMM YYYY').replace('.', '')}</div>
@@ -49,7 +49,7 @@ export const TaskCard: FC<TaskCardProps> = ({ className, task, provided }) => {
           </div>
         )}
         {customTask && (
-          <div className={cls.innerWrapper}>
+          <div className={cls.innerWrapper} onClick={() => dispatch(homeworkTaskModalActions.openModal({ recordId: customTask.id }))}>
             <div className={cls.cardHeader}>
               <div className={cls.cardHeaderInner}>
                 <div className={cls.createdAt}>от {moment(customTask.createdAt).format('D MMM YYYY').replace('.', '')}</div>

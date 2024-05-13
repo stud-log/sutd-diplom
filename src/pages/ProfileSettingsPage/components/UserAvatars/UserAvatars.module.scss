@@ -1,7 +1,7 @@
+@import '../../../../app/styles/mixins';
+
 .UserAvatars{
-    overflow-x: auto;
-    width: max-content;
-    max-width: 100%;
+    
 }
 
 .title {
@@ -13,6 +13,9 @@
 
 .wrapperAvatars{
     display: flex;
+    overflow-x: auto;
+    width: max-content;
+    max-width: 100%;
     gap: 15px;
 
     .availableAvatar{
@@ -57,5 +60,66 @@
                 border-color: var(--white);
             }
         }
+    }
+
+    .unavailableAvatar{
+        position: relative;
+        display: flex;;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 4px solid transparent;
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        box-sizing: border-box;
+        transition: .2s ease-in-out;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            box-sizing: border-box;
+            background: rgba(#1E1E1E, 0.6);
+            transform: translate(-50%, -50%);
+            transition: .2s ease-in-out;
+            
+        }
+
+        .lock {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+
+        }
+
+        img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .2s ease-in-out;
+        }
+
+        &:hover {
+            img {
+                width: 120%;
+                height: 120%;
+            }
+        }
+
+        
+    }
+
+    @include lessThan(sm) {
+        padding-bottom: 15px;
     }
 }

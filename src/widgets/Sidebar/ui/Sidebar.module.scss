@@ -1,6 +1,13 @@
+@import '../../../app/styles/mixins';
+
 .Sidebar {
     flex-shrink: 0;
     width: var(--sidebar-width);
+
+    @include lessThan(sm) {
+        display: none !important;
+        width: 0 !important;
+    }
 }
 
 .collapsed {
@@ -11,6 +18,10 @@
 .logo {
     flex-shrink: 0;
     height: 73px;
+
+    @include lessThan(xxl) {
+        display: none;
+    }
 }
 
 .row {
@@ -18,15 +29,53 @@
     gap: 10px;
 }
 
-.profile{
-    margin-top: 10px;
+.mobile{
+    @include moreThan(xxl) {
+        display: none !important;   
+    }
 }
 
-menu {
+.mobile.notification {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 70px;
+    height: 70px;
+    background: var(--white);
+}
+
+.desktop{
+    @include lessThan(xxl) {
+        display: none;   
+    }
+}
+
+.profile{
+    margin-top: 10px;
+
+    @include lessThan(xxl) {   
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+}
+
+.infoClass {
+    @include lessThan(xxl) {
+        display: none;   
+    }
+}
+
+menu.desktopMenuMenu {
     display: flex;
     flex-direction: column;
     margin-top: 60px;
     gap: 35px;
+
+    @include lessThan(xxl) {
+        gap: 10px;
+    }
 }
 
 .menuItem {
@@ -51,6 +100,27 @@ menu {
 
         svg {
             stroke: var(--accent);
+        }
+    }
+
+    @include lessThan(xxl) {
+        justify-content: center;
+        border-radius: 20px;
+        width: 70px;
+        height: 70px;
+        background: var(--white);
+
+        .menuItemText {
+            display: none;
+        }
+
+        &.active {
+            color: var(--white);
+            background: var(--accent);
+
+            svg {
+                stroke: var(--white);
+            }
         }
     }
 }

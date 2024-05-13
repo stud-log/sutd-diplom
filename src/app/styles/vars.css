@@ -13,8 +13,10 @@
     /* colors */
     --bg-main: #F3F5FB;
     --accent: #2962FF;
+    --attention: #FFA000;
     --white: #FFF;
     --red: #EF2B2B;
+    --green: #319E4A;
     --red-input-back:rgb(239 43 43 / 2%);
     --black-blue: #214ECC;
     --black-main: #1E1E1E;
@@ -24,4 +26,8 @@
     --black-translucent-subtitle: rgb(30 30 30 / 60%);
     --black-translucent-subtitle2: #787878;
     --black-stroke-translucent: #E4E4E4;
+
+    @media (width <= 1400px) {
+        --sidebar-width: max-content;
+    }
 }

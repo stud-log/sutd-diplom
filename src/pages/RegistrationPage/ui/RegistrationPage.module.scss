@@ -3,6 +3,11 @@
     width: 100vw;
     height: 100vh;
     background-color: var(--white);
+
+    @media (height <= 900px) {
+        height: 900px;
+    }
+    
 }
 
 .logo{
@@ -27,6 +32,10 @@
         align-items: center;
         margin-bottom: 30px;
         gap: 12px;
+
+        @media (width <= 620px) {
+        margin-top: 20px;
+        }
 
         
     }
@@ -60,6 +69,20 @@
         a[href="/policy"]{
             text-decoration: underline;
         }
+
+        @media (width <= 620px) {
+            font-size: var(--fz-s);
+        }
+
+        @media (width <= 457px) {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    @media (width <= 620px) {
+        padding: 20px;
+        width: 100%;
     }
 }
 
@@ -74,4 +97,6 @@
         width: 100% !important;
         height: 55px !important; 
     }
+
+    
 }

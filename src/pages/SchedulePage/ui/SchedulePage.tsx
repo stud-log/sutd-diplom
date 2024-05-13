@@ -7,6 +7,7 @@ import { FCEvent } from '../types';
 import FullCalendar from '@fullcalendar/react';
 import { GetSchedule } from '@stud-log/news-types/server/schedule.response';
 import { Layout } from 'shared/ui/Layout';
+import { Schedule } from 'widgets/Schedule';
 import { Segmented } from 'antd';
 import { TooltipTemplate } from '../helpers/tooltip';
 import { ViewMountArg } from '@fullcalendar/core';
@@ -73,6 +74,22 @@ const SchedulePage: FC = () => {
         break;
     }
   };
+
+  if(window.innerWidth <= 576) {
+
+    return <Layout.Base className={cls.SchedulePage}>
+      <Layout.BaseHeader slots={{
+        start: <h1 className={cls.header}>
+          <span>Расписание</span>
+          <span className={cls.headerWeekparity}>{weekParity ? 'Неч.' : 'Чет.'}</span>
+          <span className={cls.mobileEdit}>{role.permissions.canEdit && <Button outline size='md' purpose='edit' onClick={() => {dispatch(scheduleModalActions.openModal());}} />}</span>
+        </h1>
+      }}/>
+      <Layout.BaseContent loading={!schedule} className={cls.mobileContent}>
+        <Schedule />
+      </Layout.BaseContent>;
+    </Layout.Base>;
+  }
   
   return (
     <Layout.Base className={cls.SchedulePage}>
@@ -80,15 +97,16 @@ const SchedulePage: FC = () => {
         start: <h1 className={cls.header}>
           <span>Расписание</span>
           <span className={cls.headerWeekparity}>{weekParity ? 'Неч.' : 'Чет.'}</span>
+          <span className={cls.mobileEdit}>{role.permissions.canEdit && <Button outline size='md' purpose='edit' onClick={() => {dispatch(scheduleModalActions.openModal());}} />}</span>
         </h1>,
-        middle: <div className={cls.calendarHeaderMiddle}>
+        middle: <div className={classNames(cls.calendarHeaderMiddle, {}, [ cls.desktop ])}>
           {role.permissions.canEdit && <Button outline size='md' purpose='edit' onClick={() => {dispatch(scheduleModalActions.openModal());}}>Изменить расписание</Button>}
           <Button size='md' purpose='back' outline onClick={() => go('back')} />
           {currentDatesRange}
           <Button size='md' purpose='back' style={{ transform: 'rotate(180deg)' }} outline onClick={() => go('next')} />
         </div>,
         end: <Segmented
-          defaultValue="Месяц"
+          defaultValue={window.innerWidth <= 1000 ? 'Неделя': 'Месяц'}
           className='mySegmented'
           onChange={(value: 'Месяц' | 'Неделя' | 'День') => changeView(value)}
           options={[ 'Месяц', 'Неделя', 'День' ]}
@@ -99,7 +117,7 @@ const SchedulePage: FC = () => {
           <FullCalendar
             viewDidMount={updateCurrentViewDataRange}
             ref={calendar}
-            initialView={"dayGridMonth"}
+            initialView={window.innerWidth <= 1000 ? 'timeGridWeek': 'dayGridMonth'}
             slotLabelFormat={e => `${e.date.hour}:${e.date.minute <= 9 ? `0${e.date.minute}` : e.date.minute}`}//24h in rows time display
             eventTimeFormat={{ hour12: false, hour: '2-digit', minute: '2-digit' }} //24h in event time display
             slotMinTime={`06:30:00`}
@@ -114,7 +132,7 @@ const SchedulePage: FC = () => {
               right: "timeGridWeek dayGridMonth timeGridDay listWeek"
             }}
             plugins={[ dayGridPlugin, timeGridPlugin, listPlugin ]}
-            height='calc(100vh - 160px)'
+            height={window.innerWidth <= 1190 ? 'calc(100vh - 160px - 60px)' : 'calc(100vh - 160px)'}
             events={schedule ? constructCalendar(schedule) as any : undefined }
             //displayEventTime={false} //убираем время начала
             eventDisplay="list-item"
@@ -156,6 +174,14 @@ const SchedulePage: FC = () => {
             }}
 
           />
+        </div>
+        <div className={classNames(cls.mobileControls, {}, [ cls.mobile ])}>
+          <div className={cls.calendarHeaderMiddle}>
+            <Button size='md' purpose='back' outline onClick={() => go('back')} />
+            {currentDatesRange}
+            <Button size='md' purpose='back' style={{ transform: 'rotate(180deg)' }} outline onClick={() => go('next')} />
+          </div>
+          
         </div>
       </Layout.BaseContent>
     </Layout.Base>

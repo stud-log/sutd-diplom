@@ -1,0 +1,27 @@
+
+.Notifications{
+    position: relative;
+}
+
+.NotificationsWrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.isSeen{
+    &::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        border: 2px solid var(--white);
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: var(--attention);
+        translate: -20% -20%;
+    }
+}

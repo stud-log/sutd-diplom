@@ -11,6 +11,27 @@
     .steps{
     
     }
+
+    @media (width <= 576px) {
+        bottom: 60px;
+
+        & > div {
+            flex-direction: row !important;
+
+            & > div {
+                flex: 0 !important;
+
+                & > div > div > div {
+                    display: none !important;
+                }
+            }
+        }
+    }
+
+    @media (width <= 553px) {
+        display: none;
+
+    }
 }
 
 .stepWrapper{
@@ -62,6 +83,12 @@
     max-width: 70%;
     font-weight: 600;
     line-height: 1.5;
+
+    @media (width <= 480px) {
+        margin-top: 20px;
+        max-width: 100%;
+
+    }
 }
 
 .controls {
@@ -72,5 +99,14 @@
 
     button {
         width: max-content;
+    }
+
+    @media (width <= 375px) {
+        flex-direction: column-reverse;
+        gap: 10px;
+
+        button {
+            width: 100%;
+        }
     }
 }
