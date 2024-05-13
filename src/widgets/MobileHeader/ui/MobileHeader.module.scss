@@ -1,0 +1,32 @@
+@import '../../../app/styles/mixins';
+
+.MobileHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    gap: 12px;
+
+    @include moreThan(sm) {
+        display: none !important;
+    }
+}
+
+.logo {
+
+}
+
+.clock{
+
+
+}
+
+.profile{
+    width: max-content;
+}
+
+.infoClass {
+    display: none;   
+    
+}

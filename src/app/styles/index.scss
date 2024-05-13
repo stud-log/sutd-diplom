@@ -33,6 +33,7 @@ body {
 
     @include lessThan(xl) {
         display: none;
+        width: 0 !important;
     }
 }
 

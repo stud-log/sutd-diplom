@@ -1,3 +1,5 @@
+@import '../../../../app/styles/mixins';
+
 .Button{
     position: relative;
     display: flex;
@@ -45,6 +47,10 @@
     &:active {
         color: var(--accent);
         background-color: var(--background-color-schedule);
+    }
+
+    @include lessThan(sm) {
+        background: var(--white);
     }
 }
 

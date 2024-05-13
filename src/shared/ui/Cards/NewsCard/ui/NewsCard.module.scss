@@ -1,7 +1,14 @@
+@import '../../../../../app/styles/mixins';
+
 .NewsCard{
     border: 1px solid var(--black-stroke-translucent);
     border-radius: 20px;
     padding: 21px 15px;
+
+    @include lessThan(sm) {
+        border: none;
+        background: var(--white);
+    }
 }
 
 .topRow {
@@ -36,6 +43,12 @@
         .infoLabel{
             
         }
+    }
+
+    @include lessThan(sm) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 12px;
     }
 }
 

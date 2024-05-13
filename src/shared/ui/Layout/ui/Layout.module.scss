@@ -9,6 +9,13 @@
     @include lessThan(xxl) {
         gap: 10px
     }
+
+    @include lessThan(sm){
+        display: block;
+        padding: 0;
+        height: initial;
+        gap: 0;
+    }
 }
 
 .LayoutPage{
@@ -20,9 +27,13 @@
     min-width: 0;
     background-color: var(--white);
 
-    // @include lessThan(xxl) {
-    //     background: transparent;
-    // }
+
+    @include lessThan(sm){
+        flex: initial;
+        border-radius: 20px;
+        height: initial;
+        background: transparent;
+    }
 }
 
 
@@ -54,11 +65,20 @@ $header-height: 94px;
     @include lessThan(xxl) {
         border-top-left-radius: 25px;
         border-top-right-radius: 25px;
-        background: var(--white);
+
+        // background: var(--white);
 
         .endSlot{
             gap: 7px;
         }
+    }
+
+    @include lessThan(sm){    
+        border: none;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 0 10px;  
+        height: 64px;
     }
 }
 
@@ -82,8 +102,16 @@ $header-height: 94px;
 
     @include lessThan(xxl) {
         border-bottom-right-radius: 25px;
-        border-bottom-left-radius: 25px;
-        
+        border-bottom-left-radius: 25px;   
+    }
+
+    @include lessThan(sm){      
+        position: relative;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        padding: 10px;
+        padding-bottom: 70px;
+        inset: initial;
     }
 }
 
@@ -113,11 +141,19 @@ $header-height: 94px;
     @include lessThan(xxl) {
         border-top-left-radius: 25px;
         border-top-right-radius: 25px;
-        background: var(--white);
+
+        // background: var(--white);
 
         .endSlot{
             gap: 7px;
         }
+    }
+
+    @include lessThan(sm){
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 0 10px;      
+        height: 64px;
     }
 }
 
@@ -129,6 +165,14 @@ $header-height: 94px;
         border-bottom-right-radius: 25px;
         border-bottom-left-radius: 25px;
         
+    }
+
+    @include lessThan(sm){      
+        position: relative;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        padding: 10px;
+        padding-bottom: 70px;
     }
 }
 

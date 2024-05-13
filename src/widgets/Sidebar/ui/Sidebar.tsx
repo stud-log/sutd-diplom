@@ -34,7 +34,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         <Notifications />
       </div>
 
-      <menu>
+      <menu className={cls.desktopMenuMenu}>
         {menuRoutes.map((item, index) => {
           const Icon = item.icon!;
           return (

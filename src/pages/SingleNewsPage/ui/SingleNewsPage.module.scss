@@ -1,3 +1,4 @@
+@import '../../../app/styles/mixins';
 
 .topRow {
     display: flex;
@@ -85,4 +86,12 @@
 
 .filesWrapper{
     margin: 25px 0 15px;
+}
+
+.onMobile{
+    @include lessThan(sm) {
+        border: 1px solid var(--black-stroke-translucent);
+        border-radius: 20px;
+        background: var(--white);
+    }
 }

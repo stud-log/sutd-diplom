@@ -9,6 +9,8 @@ import { GuideModal } from 'widgets/Modals/GuideModal';
 import { HomeworkTaskModal } from 'widgets/Modals/HomeworkTaskModal';
 import { Layout } from 'shared/ui/Layout';
 import { ManageGroupModal } from 'widgets/Modals/ProfileModals/ManageGroupModal';
+import { MobileHeader } from 'widgets/MobileHeader';
+import { MobileMenu } from 'widgets/MobileMenu';
 import { ScheduleModal } from 'widgets/Modals/ProfileModals/ScheduleModal';
 import { Sidebar } from 'widgets/Sidebar';
 import { guideModalActions } from 'widgets/Modals/GuideModal/slice';
@@ -49,12 +51,16 @@ export const App: FC = () => {
   if(!isReady) return <AppLoader />;
   return (
     <>
+      
       <div className='root'>
+        <MobileHeader />
         <Layout.App>
           <Sidebar />
           <AppRouter />
           {/* Right sidebar (widgets) incoming with pages using `withWidget` hook */}
+          <MobileMenu />
         </Layout.App>
+        
       </div>
       <AddAndEditModal />
       <ScheduleModal />
@@ -62,6 +68,7 @@ export const App: FC = () => {
       <ManageGroupModal />
       <HomeworkTaskModal />
       <AddAndEditCustomTodo />
+      
     </>
   );
 };

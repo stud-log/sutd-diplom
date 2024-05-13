@@ -63,7 +63,7 @@ const SingleNewsPage: FC<SingleNewsPageProps> = ({ className }) => {
 
         </>
       }} />
-      <Layout.StickyContent loading={!record}>
+      <Layout.StickyContent loading={!record} className={cls.onMobile}>
         {record && news && <div>
           <div className={cls.topRow}>
             <div className={cls.authorWrapper}>

@@ -32,7 +32,7 @@ const MainPage: FC = () => {
           
         </>
       }} />
-      <Layout.StickyContent loading={!news} emptyData={news && news.rows.length == 0 ? 'Здесь пока ничего нет' : undefined}>
+      <Layout.StickyContent loading={!news} className={cls.mobileClass} emptyData={news && news.rows.length == 0 ? 'Здесь пока ничего нет' : undefined}>
         <div className={cls.newsWrapper}>
           {news && news.rows.map((record, index) => (
             <NewsCard key={index} {...record}/>

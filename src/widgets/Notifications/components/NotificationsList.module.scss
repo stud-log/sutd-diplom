@@ -1,3 +1,5 @@
+@import '../../../app/styles/mixins';
+
 .NotificationsList{
     position: absolute;
     left: 30px;
@@ -11,6 +13,11 @@
     opacity: 0;
     transition: .2s ease-in-out;
     pointer-events: none;
+
+    @include lessThan(sm) {
+        left: initial;
+        right: 30px;
+    }
 }
 
 .opened {
