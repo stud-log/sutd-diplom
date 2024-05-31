@@ -18,6 +18,8 @@ import socketService from 'services/socket.service'; // here we already initiali
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import userService from 'services/user.service';
+import { AddAndEditCustomActivity } from 'widgets/Modals/ProfileModals/AddAndEditCustomActivity';
+import { CustomActivityModal } from 'widgets/Modals/CustomActivityModal';
 
 export const App: FC = () => {
   const [ isReady, setIsReady ] = useState(false);
@@ -68,6 +70,8 @@ export const App: FC = () => {
       <ManageGroupModal />
       <HomeworkTaskModal />
       <AddAndEditCustomTodo />
+      <AddAndEditCustomActivity />
+      <CustomActivityModal />
       
     </>
   );

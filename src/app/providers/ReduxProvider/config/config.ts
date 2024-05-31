@@ -10,6 +10,8 @@ import { notificationsReducer } from "widgets/Notifications/model/slice";
 import { scheduleModalReducer } from "widgets/Modals/ProfileModals/ScheduleModal/slice";
 import { sidebarReducer } from "widgets/Sidebar";
 import { trophyReducer } from "features/TrophyButton/model/slice";
+import { addAndEditCustomActivityReducer } from "widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice";
+import { customActivityModalReducer } from "widgets/Modals/CustomActivityModal/slice";
 
 export function createReduxStore(initialState?: RootStateSchema) {
   return configureStore<RootStateSchema>({
@@ -23,7 +25,9 @@ export function createReduxStore(initialState?: RootStateSchema) {
       homeworkTaskModal: homeworkTaskModalReducer,
       notifications: notificationsReducer,
       trophy: trophyReducer,
-      addAndEditCustomTodo: addAndEditCustomTodoReducer
+      addAndEditCustomTodo: addAndEditCustomTodoReducer,
+      addAndEditCustomActivity: addAndEditCustomActivityReducer,
+      customActivityModal: customActivityModalReducer
     },
     devTools: __IS_DEV__,
     preloadedState: initialState

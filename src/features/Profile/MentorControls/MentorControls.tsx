@@ -9,6 +9,8 @@ import { manageGroupModalActions } from 'widgets/Modals/ProfileModals/ManageGrou
 import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal/slice';
 import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
+import { addAndEditCustomActivityActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice';
+import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
 
 interface MentorControlsProps {
   className?: string;
@@ -31,7 +33,22 @@ export const MentorControls: FC<MentorControlsProps> = ({ className }) => {
           onSelect={selected => {dispatch(addAndEditModalActions.openModal({ recordId: -1, recordTable: selected.value as "News" | "Homework" }));}}
         />
         <Button size='md' outline purpose='editGroup' onClick={() => dispatch(manageGroupModalActions.openModal())}>Управление группой</Button>
-        <Button size='md' outline purpose='editSchedule' onClick={() => dispatch(scheduleModalActions.openModal())}>Изменить расписание</Button>
+        
+        <Select
+          defaultText='Изменить расписание'
+          shouldChangeValueOnSelect={false}
+          className={cls.select}
+          options={[ { label: 'Изменить учебное', value: 'Timetable' }, { label: 'Добавить событие', value: 'Custom' } ]}
+          prefixIcon={<EditScheduleIcon />}
+          mobileCentered
+          onSelect={selected => {
+            if(selected.value === 'Custom') {
+              dispatch(addAndEditCustomActivityActions.openModal({ recordId: -1 }));
+            } else if (selected.value === 'Timetable') {
+              dispatch(scheduleModalActions.openModal());
+            }
+          }}
+        />
       </>
     );
 

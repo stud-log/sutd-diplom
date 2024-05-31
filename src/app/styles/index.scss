@@ -203,6 +203,10 @@ body {
         .ant-select {
             width: 100%;
             text-align: center;
+
+            .ant-select-selection-item {
+                padding: 0 !important;
+            }
         }
 
 /* stylelint-disable-next-line no-descending-specificity */

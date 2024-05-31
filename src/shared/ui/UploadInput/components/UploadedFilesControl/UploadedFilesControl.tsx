@@ -11,6 +11,10 @@ interface UploadedFilesControlProps {
   name: string;
 }
 
+/**
+ *
+ * Formik initialValues must contain `filesToDelete as number[]`
+ */
 export const UploadedFilesControl: FC<UploadedFilesControlProps> = ({ className, name }) => {
   const { values, setFieldValue } = useFormikContext<{filesToDelete: number[]}>();
 

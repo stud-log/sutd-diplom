@@ -11,14 +11,14 @@ export const constructCalendar = (schedule: GetSchedule[]) => {
     const type = record.calendar.activityType;
     const isTT = type == CalendarActivityType.timetable;
     const calendarElement = type == CalendarActivityType.custom ? record.calendar.customActivity[0] : record.calendar.timetable[0];
-      
+
     if(calendarElement) {
     
       const tt = calendarElement as Timetable;
       const ca = calendarElement as CustomActivity;
     
-      const start = record.calendar.startDate;
-      const end = record.calendar.endDate;
+      const start = isTT ? record.calendar.startDate : moment(record.calendar.startDate).format('YYYY-MM-DD HH:mm');
+      const end = isTT ? record.calendar.endDate : moment(record.calendar.endDate).format('YYYY-MM-DD HH:mm');
       const isActiveNow = moment().isBetween(moment(start), moment(end));
       const isDO = isTT && tt.classroom == 'ДО';
 
@@ -37,7 +37,8 @@ export const constructCalendar = (schedule: GetSchedule[]) => {
           link: isTT ? tt.link : '',
           teacher: isTT ? tt.subject.teacherName : '',
           type: isTT ? tt.type : '',
-          fullTitle: isTT ? tt.subject.title : ca.title
+          fullTitle: isTT ? tt.subject.title : ca.title,
+          desc: !isTT ? ca.description : ''
         } as FCExtendedProps,
       });
     }

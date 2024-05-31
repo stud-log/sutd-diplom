@@ -1,15 +1,24 @@
+@import '../../../app/styles/mixins';
+
+
 .MentorControls{
     
 }
 
 .select {
     & > div {
+        width: auto !important;
         height: 42px !important;
     }
 
     & > div > div  {
         border-radius: 8px !important;
-        
+    }
 
+    @include lessThan(xxl) {
+        & > div {
+            width: 100% !important;
+            
+        }
     }
 }

@@ -23,6 +23,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import tippy from 'tippy.js';
 import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
+import { store } from 'app/providers/ReduxProvider/ui/ReduxProvider';
+import { customActivityModalActions } from 'widgets/Modals/CustomActivityModal/slice';
 
 const SchedulePage: FC = () => {
   const { group, role } = userService.getUser();
@@ -140,24 +142,30 @@ const SchedulePage: FC = () => {
               // const _isActive = !args.isFuture && !args.isPast; // think is working too
               const myEvent = args.event._def.extendedProps as unknown as FCEvent['info'];
               let extraClass = '';
-              if (myEvent.isCustom) {extraClass = cls.customEvent;}
               if (myEvent.isDO) {extraClass = cls.doEvent;}
               if (myEvent.isActiveNow) {extraClass = cls.activeEvent;}
               if (myEvent.weekparity == 'even' && weekParity == 1) {extraClass = cls.notEqualTodayWeekparity;}
               if (myEvent.weekparity == 'odd' && weekParity == 2) {extraClass = cls.notEqualTodayWeekparity;}
+              if (myEvent.isCustom) {extraClass = cls.customEvent;}
               
               return [ extraClass, cls.commonEventClass ];
             }}
             nowIndicator={true}
             allDaySlot={true} //отключаем поле All Day
             eventDidMount={({ el, event }) => {
+              const extraProps = event._def.extendedProps as unknown as FCEvent['info'];
               const eventDesc = {
                 title: event._def.title,
                 date: moment(event.start).format('DD.MM.YYYY'),
-                start: moment(event.start).format('HH:mm'),
-                end: moment(event.end).format('HH:mm'),
+                start: !extraProps.isCustom ? moment(event.start).format('HH:mm') : moment(event.start).format('DD.MM HH:mm'),
+                end: !extraProps.isCustom ? moment(event.end).format('HH:mm') : moment(event.end).format('DD.MM HH:mm'),
                 info: event._def.extendedProps,
               } as FCEvent;
+              const customLinkEvent = (e: any) => {
+                e.preventDefault();
+                store.dispatch(customActivityModalActions.openModal({ recordId: eventDesc.info.recordId }));
+              };
+
               tippy(el, {
                 content: TooltipTemplate(eventDesc),
                 allowHTML: true,
@@ -168,9 +176,14 @@ const SchedulePage: FC = () => {
                 offset: [ 0, 5 ],
                 duration: [ 250, 100 ],
                 appendTo: () => document.body,
-                
+                onMount: instance => {
+                  document.getElementById(`custom-${eventDesc.info.recordId}`)?.addEventListener('click', customLinkEvent);
+                },
+                onDestroy: instance => {
+                  document.getElementById(`custom-${eventDesc.info.recordId}`)?.removeEventListener('click', customLinkEvent);
+                },
               });
-
+              
             }}
 
           />
