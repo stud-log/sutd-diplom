@@ -9,7 +9,8 @@ import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal
 import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
 import { addAndEditCustomActivityActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice';
-
+import AddIcon from 'shared/assets/img/icons/add.svg';
+import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
 interface MentorControlsProps {
   className?: string;
 }
@@ -24,6 +25,7 @@ export const MentorControls: FC<MentorControlsProps> = ({ className }) => {
         <Select
           id='addSelect'
           defaultText='Добавить'
+          prefixIcon={<AddIcon />} // нужно передавать не компонент, а просто свгшку и все будет ок и не нужен будет проп prefixVariant
           shouldChangeValueOnSelect={false}
           className={cls.select}
           options={[ { label: 'Новость', value: 'News' }, { label: 'Домашку', value: 'Homework' } ]}
@@ -40,6 +42,7 @@ export const MentorControls: FC<MentorControlsProps> = ({ className }) => {
           className={cls.select}
           options={[ { label: 'Изменить учебное', value: 'Timetable' }, { label: 'Добавить событие', value: 'Custom' } ]}
           prefixVariant='schedule'
+          prefixIcon={<EditScheduleIcon />}
           mobileCentered
           onSelect={selected => {
             if(selected.value === 'Custom') {

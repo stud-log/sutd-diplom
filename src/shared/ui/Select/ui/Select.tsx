@@ -69,7 +69,7 @@ export const Select: FC<SelectProps> = ({ id, className, prefixVariant, options,
       
         labelRender={({ label }) => {
           //TODO: Какой-то костыль вышел - переделать
-          if(prefixVariant) {
+          if(prefixVariant && isMobile && mobileCentered) {
             switch(prefixVariant) {
               case 'add':
                 return <>
