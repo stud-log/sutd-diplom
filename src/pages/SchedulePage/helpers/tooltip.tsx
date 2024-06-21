@@ -1,7 +1,11 @@
-import { store } from "app/providers/ReduxProvider/ui/ReduxProvider";
 import { FCEvent } from "../types";
-import { customActivityModalActions } from '../../../widgets/Modals/CustomActivityModal/slice';
-import { useDispatch } from "react-redux";
+
+const removeImagesFromString = (str: string) => {
+  // Regular expression to match <img> tags
+  const imgTagRegex = /<img\b[^>]*>/gi;
+  // Replace all <img> tags with an empty string
+  return str.replace(imgTagRegex, '');
+};
 
 export function TooltipTemplate(eventDesc: FCEvent) {
   
@@ -35,7 +39,7 @@ export function TooltipTemplate(eventDesc: FCEvent) {
     
     ${eventDesc.info.isCustom ?
       `<div class="event-desc__text">
-                    ${eventDesc.info.desc}
+                    ${removeImagesFromString(eventDesc.info.desc)}
                 </div>` : ''
     }
             </div>
