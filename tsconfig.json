@@ -7,7 +7,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "webworker"
     ],
     "outDir": "./build/",
     "allowJs": true,
@@ -30,6 +31,7 @@
     "src",
     "config",
     "./webpack.config.ts",
+    "./src/service.worker.js",
     ".eslintrc.js"
   ],
   "ts-node": {

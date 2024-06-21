@@ -15,3 +15,12 @@ declare module '*.jpg';
 declare module '*.jpeg';
 
 declare const __IS_DEV__: boolean;
+
+interface CustomExtendableEvent extends Event {
+  waitUntil(promise: Promise<any>): void;
+}
+
+interface CustomFetchEvent extends Event {
+  request: Request;
+  respondWith(response: Response | Promise<Response>): void;
+}
