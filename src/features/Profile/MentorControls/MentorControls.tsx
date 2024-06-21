@@ -1,4 +1,3 @@
-import AddIcon from 'shared/assets/img/icons/add.svg';
 import { Button } from 'shared/ui/Button';
 import { FC } from 'react';
 import { Select } from 'shared/ui/Select';
@@ -10,7 +9,6 @@ import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal
 import { useDispatch } from 'react-redux';
 import userService from 'services/user.service';
 import { addAndEditCustomActivityActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice';
-import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
 
 interface MentorControlsProps {
   className?: string;
@@ -24,22 +22,24 @@ export const MentorControls: FC<MentorControlsProps> = ({ className }) => {
     return (
       <>
         <Select
+          id='addSelect'
           defaultText='Добавить'
           shouldChangeValueOnSelect={false}
           className={cls.select}
           options={[ { label: 'Новость', value: 'News' }, { label: 'Домашку', value: 'Homework' } ]}
-          prefixIcon={<AddIcon />}
+          prefixVariant='add'
           mobileCentered
           onSelect={selected => {dispatch(addAndEditModalActions.openModal({ recordId: -1, recordTable: selected.value as "News" | "Homework" }));}}
         />
         <Button size='md' outline purpose='editGroup' onClick={() => dispatch(manageGroupModalActions.openModal())}>Управление группой</Button>
         
         <Select
+          id='changeSelect'
           defaultText='Изменить расписание'
           shouldChangeValueOnSelect={false}
           className={cls.select}
           options={[ { label: 'Изменить учебное', value: 'Timetable' }, { label: 'Добавить событие', value: 'Custom' } ]}
-          prefixIcon={<EditScheduleIcon />}
+          prefixVariant='schedule'
           mobileCentered
           onSelect={selected => {
             if(selected.value === 'Custom') {

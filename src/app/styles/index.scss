@@ -23,6 +23,13 @@ html {
     font-size: var(--fz);
 }
 
+input {
+    @include lessThan(md) {
+        // to avoid zoom on mobile devices
+        font-size: 16px !important;
+    }
+  }
+
 body {
     background-color: var(--bg-main);
 }
@@ -217,9 +224,16 @@ body {
             }
         }
 
+        .mobile-select-arrow-centered{
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
 /* stylelint-disable-next-line no-descending-specificity */
 .ant-select-arrow{
-    display: none;
+    display: none;  
 }
 
         &.prefixIcon{

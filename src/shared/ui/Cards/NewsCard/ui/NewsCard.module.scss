@@ -82,8 +82,10 @@
 
 .bottomInfo {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .views{
@@ -93,6 +95,8 @@
 
 .controls {
     display: flex;
+
+    // flex-wrap: wrap;
     align-items: center;
     gap: 22px;
 }

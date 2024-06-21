@@ -1,4 +1,6 @@
-import { CSSProperties, FC, ReactNode, useState } from 'react';
+import { CSSProperties, FC, ReactNode, useEffect, useLayoutEffect, useState } from 'react';
+import AddIcon from 'shared/assets/img/icons/add.svg';
+import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
 
 import { Select as ANTDSelect } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
@@ -16,6 +18,7 @@ interface SelectProps {
   needSearch?: boolean;
   suffixIcon?: ReactNode;
   prefixIcon?: ReactNode;
+  prefixVariant?: 'add' | 'schedule';
   mobileCentered?: boolean;
   /**
    * defaultText must be set
@@ -31,15 +34,17 @@ interface SelectProps {
     index: number;
   }) => ReactNode);
   popupMatchSelectWidth?: boolean;
+  id?: string;
 }
 
 // Filter `option.label` match the user type `input`
 const filterOption = (input: string, option?: DefaultOptionType) =>
   (option?.label as string ?? '').toLowerCase().includes(input.toLowerCase());
 
-export const Select: FC<SelectProps> = ({ className, options, onSelect, mobileCentered = false, defaultOption, defaultText, popupMatchSelectWidth = true, needSearch = false, optionRender, suffixIcon, dropdownStyle, prefixIcon, shouldChangeValueOnSelect = true, asFormikField }) => {
+export const Select: FC<SelectProps> = ({ id, className, prefixVariant, options, onSelect, mobileCentered = false, defaultOption, defaultText, popupMatchSelectWidth = true, needSearch = false, optionRender, suffixIcon, dropdownStyle, prefixIcon, shouldChangeValueOnSelect = true, asFormikField }) => {
   const [ isSelect, setIsSelect ] = useState(false);
   const isMobile = window.innerWidth <= 1400; // слабо
+
   return (
     <div className={classNames(cls.Dropdown, {
       'errored': !!asFormikField?.error,
@@ -47,7 +52,7 @@ export const Select: FC<SelectProps> = ({ className, options, onSelect, mobileCe
       'noRotateSuffixIcon': !!suffixIcon || !!prefixIcon,
       'prefixIcon': !!prefixIcon,
       'centered': isMobile && mobileCentered
-    }, [ className, 'mySelect' ])}>
+    }, [ className, 'mySelect', `id-${id}` ])}>
       <ANTDSelect
         popupMatchSelectWidth={popupMatchSelectWidth}
         labelInValue={true}
@@ -56,12 +61,35 @@ export const Select: FC<SelectProps> = ({ className, options, onSelect, mobileCe
         className={cls.select}
         defaultActiveFirstOption={true}
         {...(!shouldChangeValueOnSelect ? { value: { label: defaultText!, value: defaultText! } }: {})}
+        {...(id ? { id }: {})}
         onChange={(v, o) => onSelect(o)}
         onDropdownVisibleChange={(e) => e && setIsSelect(false)}
         onBlur={() => setIsSelect(false)}
         onSelect={() => setIsSelect(true)}
-        
-        labelRender={({ label }) => <div className={classNames(cls.label, {}, [ 'myLabel' ])}>{label}</div>}
+      
+        labelRender={({ label }) => {
+          //TODO: Какой-то костыль вышел - переделать
+          if(prefixVariant) {
+            switch(prefixVariant) {
+              case 'add':
+                return <>
+                  <div className='mobile-select-arrow-centered'>
+                    <AddIcon />
+                    <div className={classNames(cls.label, {}, [ 'myLabel' ])}>{label}</div>
+                  </div>
+                </>;
+              case 'schedule':
+                return <>
+                  <div className='mobile-select-arrow-centered'>
+                    <EditScheduleIcon />
+                    <div className={classNames(cls.label, {}, [ 'myLabel' ])}>{label}</div>
+                  </div>
+                </>;
+            }
+            
+          }
+          return <div className={classNames(cls.label, {}, [ 'myLabel' ])}>{label}</div>;
+        }}
         
         {...(needSearch ? {
           showSearch: true,

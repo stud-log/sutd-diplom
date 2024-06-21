@@ -17,7 +17,8 @@
     @include lessThan(sm) {
         position: fixed;
         left: 0;
-        top: 70px;
+        top: unset;
+        bottom: 70px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         width: 100%;
