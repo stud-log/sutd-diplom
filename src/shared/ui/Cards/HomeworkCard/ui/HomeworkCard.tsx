@@ -37,7 +37,7 @@ export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) =>
             <div className={cls.status}><TaskStatusLabel recordId={record.id} status={record.meWorked.at(0)?.status}/></div>
           </div>
         </div>
-        <div className={cls.subject} onClick={goToTask}>{truncate.apply(hw.subject.title, [ 27, false ])}</div>
+        <div className={cls.subject} onClick={goToTask}>{truncate.apply(hw.subject.title, [ 24, false ])}</div>
         <div className={cls.title} onClick={goToTask}>{truncate.apply(hw.title, [ 45, false ])}</div>
         <div className={cls.content} onClick={goToTask}>
           <Interweave content={truncate.apply(hw.content, [ 92, false ])} transform={transform} />
