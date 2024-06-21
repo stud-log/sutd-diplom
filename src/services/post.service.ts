@@ -8,6 +8,7 @@ import { ErrorResponse } from "@stud-log/news-types/server";
 import { NewsLabelsOptions } from "widgets/Modals/ProfileModals/AddAndEditModal/types";
 import { UserReaction } from "@stud-log/news-types/models";
 import { notification } from "antd";
+import dayjs from 'dayjs';
 
 class PostService {
 
@@ -36,8 +37,8 @@ class PostService {
       // Homework properties
       formData.append('subjectId', values.subjectId.toString());
       formData.append('type', values.type || HomeworkType.individual);
-      formData.append('startDate', values.startDate);
-      formData.append('endDate', values.endDate);
+      formData.append('startDate', dayjs(values.startDate).format('YYYY-MM-DD HH:mm:ss'));
+      formData.append('endDate', dayjs(values.endDate).format('YYYY-MM-DD HH:mm:ss'));
 
       await $api.post(`/api/record/post/${values.recordTable}/${values.recordId}`, formData, {
         headers: {
@@ -141,9 +142,19 @@ class PostService {
     recordId: number,
   ) {
     try {
-      return (await $api.post(`/api/record/post/remove`, { recordId })).data;
+      (await $api.post(`/api/record/post/remove`, { recordId })).data;
+      notification.success({
+        message: 'Успешно!',
+        description: `Запись удалена`,
+      });
+      return true;
     } catch (e) {
       console.log(e);
+      const error = e as AxiosError<ErrorResponse>;
+      notification.warning({
+        message: 'Что-то пошло не так...',
+        description: error.response?.data.message,
+      });
       return false;
     }
   }

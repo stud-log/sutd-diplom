@@ -101,7 +101,7 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
                     setFieldValue('endDate', endDate);
                   }} />
               </div>}
-              {isNews && <Select asFormikField={{ error: touched.label ? errors.label as string : undefined, passed: !!touched.label && !errors.label }} className={cls.select} options={NewsLabelsOptions} onSelect={v => setFieldValue('label', v.value)} defaultOption={NewsLabelsOptions.find(({ value }) => value == values.label)} defaultText={'Выберите тему'}/>}
+              {isNews && <Select asFormikField={{ error: touched.label ? errors.label as string : undefined, passed: !!touched.label && !errors.label }} className={cls.select} options={NewsLabelsOptions.slice(1)} onSelect={v => setFieldValue('label', v.value)} defaultOption={NewsLabelsOptions.find(({ value }) => value == values.label)} defaultText={'Выберите тему'}/>}
               <Input name='title' label='Заголовок' className={cls.mb} inputClassName={cls.headerInput} maxLength={65} required/>
               <RichEditor name="content" label='Описание' className={cls.mb} required/>
               <div className={cls.uploadSection}>
@@ -113,8 +113,13 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
                 <Button onClick={submitForm} size='md' loading={loading}>{isPostExists ? 'Сохранить' : 'Опубликовать'}</Button>
                 {isPostExists && <Button purpose='delete' showIcon={false} outline onClick={async () => {
                   setLoading(true);
-                  postService.removePost(recordId);
+                  const res = await postService.removePost(post.id);
                   setLoading(false);
+                  if(res == true) {
+                    globalMutate((key: string) => key.includes('api/record'));
+                    closeModal();
+                  }
+                  
                 }} size='md' loading={loading}>Удалить</Button>}
 
               </div>

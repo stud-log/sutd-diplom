@@ -54,6 +54,14 @@ body {
     color: var(--black-translucent-subtitle);
 }
 
+// common classes
+.c-accent {
+    color: var(--accent);
+}
+
+.c-attention {
+    color: var(--attention);
+}
 
 /**
     CHANGES FOR ANTD STEPS COMPONENT

@@ -95,8 +95,12 @@ export const AddAndEditCustomActivity: FC<AddAndEditCustomActivityProps> = ({ cl
                 <Button onClick={submitForm} size='md' loading={loading}>{isExists ? 'Сохранить' : 'Опубликовать'}</Button>
                 {isExists && <Button purpose='delete' showIcon={false} outline onClick={async () => {
                   setLoading(true);
-                  postService.removePost(recordId);
+                  const result = await postService.removePost(recordId);
                   setLoading(false);
+                  if(result == true) {
+                    globalMutate((key: string) => key.includes('/api/schedule'));
+                    closeModal();
+                  }
                 }} size='md' loading={loading}>Удалить</Button>}
 
               </div>

@@ -11,6 +11,7 @@ import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
 import { guideModalActions } from '../slice';
 import { steps } from '../types';
 import userService from 'services/user.service';
+import { Interweave } from 'interweave';
 
 interface GuideModalProps {
   className?: string;
@@ -40,7 +41,7 @@ export const GuideModal: FC<GuideModalProps> = ({ className }) => {
               <div className={cls.label}>Обучение</div>
             </div>
             <div className={cls.text}>
-              {step.myDescription}
+              <Interweave content={step.myDescription} />
             </div>
           </div>
         )

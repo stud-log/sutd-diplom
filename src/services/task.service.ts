@@ -4,6 +4,7 @@ import { CreateNewTaskFromValues } from "shared/lib/types/services";
 import { ErrorResponse } from "@stud-log/news-types/server";
 import { UserTaskStatus } from "@stud-log/news-types/enums";
 import { notification } from "antd";
+import dayjs from 'dayjs';
 
 class TaskService {
 
@@ -47,8 +48,8 @@ class TaskService {
         }
       });
       
-      formData.append('startDate', values.startDate);
-      formData.append('endDate', values.endDate);
+      formData.append('startDate', dayjs(values.startDate).format('YYYY-MM-DD HH:mm:ss'));
+      formData.append('endDate', dayjs(values.endDate).format('YYYY-MM-DD HH:mm:ss'));
       
       const response = await $api.post(`/api/users/notifications/updateOrCreate`, formData, {
         headers: {

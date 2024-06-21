@@ -22,7 +22,7 @@ interface HomeworkCardProps extends GetEntity {
 
 export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) => {
   const hw = record.homework!;
-  const startDate = moment(hw.createdAt).format('D MMM YYYY').replace('.', '');
+  const startDate = moment(hw.createdAt).format('D MMM').replace('.', '');
   
   const navigate = useNavigate();
   const goToTask = () => navigate(`/homework/${hw.id}`);

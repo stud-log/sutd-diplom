@@ -32,7 +32,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
   useEffect(() => {
     
     if(schedule) {
-   
+     
       const today = moment().format('ddd');
       const todayElement = document.getElementById(today);
       if(!scheduleContainerRef.current) return;
@@ -65,6 +65,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
             {groupedData[day].map((item, idx) => (
               <ScheduleCard
                 key={idx}
+                record={item}
                 startDate={item.calendar.startDate}
                 endDate={item.calendar.endDate}
                 type={item.calendar.activityType}
@@ -97,6 +98,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
                 {groupedData[day].map((item, idx) => (
                   <ScheduleCard
                     key={idx}
+                    record={item}
                     startDate={item.calendar.startDate}
                     endDate={item.calendar.endDate}
                     type={item.calendar.activityType}

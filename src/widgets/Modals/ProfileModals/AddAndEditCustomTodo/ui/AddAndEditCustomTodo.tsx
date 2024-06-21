@@ -93,8 +93,12 @@ export const AddAndEditCustomTodo: FC<AddAndEditCustomTodoProps> = ({ className 
                 <Button onClick={submitForm} size='md' loading={loading}>{isExists ? 'Сохранить' : 'Опубликовать'}</Button>
                 {isExists && <Button purpose='delete' showIcon={false} outline onClick={async () => {
                   setLoading(true);
-                  postService.removePost(recordId);
+                  const result = await postService.removePost(post.id);
                   setLoading(false);
+                  if(result == true) {
+                    globalMutate((key: string) => key.includes('/api/users/myTasks'));
+                    closeModal();
+                  }
                 }} size='md' loading={loading}>Удалить</Button>}
 
               </div>
