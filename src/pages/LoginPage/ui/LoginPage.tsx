@@ -28,7 +28,7 @@ const LoginPage: FC = () => {
           initialValues={initialValues}
           onSubmit={async (values) => {
             setLoading(true);
-            const result = await userService.login(values.email, values.password);
+            const result = await userService.login(values.email, values.password, 'student');
             setLoading(false);
             if(result == true) { navigate('/main'); }
           }}

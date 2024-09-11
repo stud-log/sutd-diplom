@@ -61,9 +61,9 @@ class UserService {
     }));
   }
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string, role: 'teacher' | 'student') {
     try {
-      const response = await $api.post<UserAfterLoginOrRegistrationResponse>('/api/users/login', { email, password });
+      const response = await $api.post<UserAfterLoginOrRegistrationResponse>('/api/users/login', { email, password, role });
       localStorage.setItem('token', response.data.accessToken);
       this.saveLocalUser(response.data.user);
       notification.success({
