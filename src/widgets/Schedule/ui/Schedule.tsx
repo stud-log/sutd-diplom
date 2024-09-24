@@ -52,7 +52,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
   const weekParity = moment().week() % 2;
 
   const isMobile = window.innerWidth <= 576;
-  
+
   if(isMobile) {
     return <div>
       {Object.keys(groupedData).map(day => (
@@ -65,7 +65,8 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
             {groupedData[day].map((item, idx) => (
               <ScheduleCard
                 key={idx}
-                record={item}
+                // TODO: wtf??? resolve types!
+                record={item as any}
                 startDate={item.calendar.startDate}
                 endDate={item.calendar.endDate}
                 type={item.calendar.activityType}
@@ -98,7 +99,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
                 {groupedData[day].map((item, idx) => (
                   <ScheduleCard
                     key={idx}
-                    record={item}
+                    record={item as any}
                     startDate={item.calendar.startDate}
                     endDate={item.calendar.endDate}
                     type={item.calendar.activityType}

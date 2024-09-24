@@ -77,8 +77,9 @@ const SchedulePage: FC = () => {
     }
   };
 
-  if(window.innerWidth <= 576) {
+  const isMobile = window.innerWidth <= 576;
 
+  if(isMobile) {
     return <Layout.Base className={cls.SchedulePage}>
       <Layout.BaseHeader slots={{
         start: <h1 className={cls.header}>

@@ -60,10 +60,12 @@ export const CustomActivityModal: FC<CustomActivityModalProps> = ({ className })
               <Interweave content={customActivity.description}/>
             </div>
             <div className={cls.filesWrapper}>
-              <RecordFiles files={innerRecord.files} />
+              {/* TODO: wtf??? resolve types! */}
+              <RecordFiles files={(innerRecord as any).files} />
             </div>
             <div className={cls.comments}>
-              <Comments afterChange={mutate} variant='comments' comments={innerRecord.comments} recordId={innerRecord.id}/>
+              {/* TODO: wtf??? resolve types! */}
+              <Comments afterChange={mutate} variant='comments' comments={(innerRecord as any).comments} recordId={innerRecord.id}/>
             </div>
           </div>
         )}

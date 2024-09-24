@@ -101,11 +101,11 @@ const SingleTaskPage: FC = () => {
             <span className={cls.date}>{startDate}</span>
           </div>
           <div className={cls.title}>{hw.title}</div>
-          <Deadline startDate={hw.createdAt} endDate={hw.endDate} className={classNames(cls.deadline, {}, [ cls.mobileHidden ])}/>
+          <Deadline startDate={hw.startDate} endDate={hw.endDate} className={classNames(cls.deadline, {}, [ cls.mobileHidden ])}/>
           <div className={classNames(cls.content, {}, [ 'ck-content' ])}>
             <Interweave content={hw.content}/>
           </div>
-          <Deadline startDate={hw.createdAt} endDate={hw.endDate} className={classNames(cls.mobileDeadline, {}, [ cls.mobileShow ])}/>
+          <Deadline startDate={hw.startDate} endDate={hw.endDate} className={classNames(cls.mobileDeadline, {}, [ cls.mobileShow ])}/>
           <div className={cls.filesWrapper}>
             <RecordFiles files={record.files} />
           </div>

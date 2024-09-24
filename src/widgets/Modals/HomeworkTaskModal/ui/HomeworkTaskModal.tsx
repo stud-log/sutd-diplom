@@ -48,7 +48,7 @@ export const HomeworkTaskModal: FC<HomeworkTaskModalProps> = ({ className }) => 
               <span className={cls.date}>{moment(hw?.createdAt).format('D MMM YYYY').replace('.', '')}</span>
             </div>
             <div className={cls.title}>{hw.title}</div>
-            <Deadline startDate={hw.createdAt} endDate={hw.endDate} className={cls.deadline}/>
+            <Deadline startDate={hw.startDate} endDate={hw.endDate} className={cls.deadline}/>
             <div className={classNames(cls.content, {}, [ 'ck-content' ])}>
               <Interweave content={hw.content}/>
             </div>

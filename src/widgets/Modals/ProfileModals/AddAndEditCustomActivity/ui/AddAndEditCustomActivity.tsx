@@ -55,7 +55,8 @@ export const AddAndEditCustomActivity: FC<AddAndEditCustomActivityProps> = ({ cl
             activityId: isExists ? customActivity.id : -1, // id of this entity
             title: (isExists ? customActivity?.title : '') as string,
             description: (isExists ? customActivity?.description : '') as string,
-            modalFiles: isExists && innerPost ? innerPost.files.map(file => ({ name: file.fileName, size: file.fileSize, id: file.id })) as unknown as File[] : [] as File[],
+            // TODO: wtf??? resolve types!
+            modalFiles: isExists && innerPost ? (innerPost as any).files.map((file: any) => ({ name: file.fileName, size: file.fileSize, id: file.id })) as unknown as File[] : [] as File[],
             filesToDelete: [],
             isPersonal: '1' as '1' | '0',
             startDate: (isExists ? customActivity.startDate : '') as string,

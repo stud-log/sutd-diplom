@@ -789,3 +789,20 @@ body {
   .ant-notification-notice-icon {
     top: 25px;
   }
+
+  /* interweave */
+
+  .markup-replacement{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: .5em;
+    border: 1px solid  var(--black-translucent-subtitle2);
+    border-radius: 4px;
+    padding: 0 3px;
+    padding-bottom: 1px;
+    width: fit-content;
+    box-sizing: border-box;
+    font-size: var(--fz-s);
+    line-height: 1;
+  }
