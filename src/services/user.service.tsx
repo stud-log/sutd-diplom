@@ -39,6 +39,10 @@ class UserService {
     
   }
 
+  getUserPreferredName (user: User) {
+    return user.settings.displayingName === 'fio' ? `${user.firstName} ${user.lastName}` : user.nickname;
+  }
+
   getUser () {
     const localUser = localStorage.getItem('user');
     return JSON.parse(localUser as string) as User;

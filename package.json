@@ -85,7 +85,7 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "start": "webpack serve --env port=4000",
+    "start": "webpack serve --env port=4000 mode=development",
     "build": "webpack --env mode=production",
     "build:dev": "webpack  --env mode=development",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",

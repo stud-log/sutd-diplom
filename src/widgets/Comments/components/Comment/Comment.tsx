@@ -31,7 +31,7 @@ export const Comment: FC<CommentProps> = ({ className, onReply, comment, myUserI
         </div>
         <div className={cls.commentControls}>
           {variant == 'comments' && <Reactions variant='expanded' afterChange={globalMutate} meReacted={comment.myRecord.reactions.find( react => react.userId == myUserId) ? [ comment.myRecord.reactions.find( react => react.userId == myUserId)! ] : []} reactions={comment.myRecord.reactions} recordId={comment.myRecordId}/>}
-          {variant == 'comments' && <div className={cls.replyBtn} role='button' onClick={() => onReply(comment.id, comment.user.id, `@${comment.user.nickname || comment.user.firstName}, `)}><ReplyIcon /> Ответить</div> }
+          {variant == 'comments' && <div className={cls.replyBtn} role='button' onClick={() => onReply(comment.id, comment.user.id, `@${comment.user.settings.displayingName == 'nickname' ? comment.user.nickname : comment.user.firstName}, `)}><ReplyIcon /> Ответить</div> }
         </div>
       </div>
       <div className={cls.children}>
@@ -43,7 +43,7 @@ export const Comment: FC<CommentProps> = ({ className, onReply, comment, myUserI
                 key={childComment.id}
                 comment={childComment}
                 variant={variant}
-                onReply={() => onReply(comment.id, childComment.user.id, `@${childComment.user.nickname || childComment.user.firstName}, `)}
+                onReply={() => onReply(comment.id, childComment.user.id, `@${comment.user.settings.displayingName == 'nickname' ? comment.user.nickname : comment.user.firstName}, `)}
                 myUserId={myUserId}
                 globalMutate={globalMutate}
               />
