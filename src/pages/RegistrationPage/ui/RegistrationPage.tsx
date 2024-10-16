@@ -86,7 +86,6 @@ const RegistrationPage: FC = () => {
                 <Form>
                   <Steps current={currentStep} items={steps} className={classNames('mySteps', {}, [ cls.steps ])}/>
                   <h1 className={classNames(cls.header, { [cls.headerActive]: currentStep !== 0 })} onClick={goBackStep}>{currentStep !== 0 ? <ArrowLeft /> : ''}Регистрация</h1>
-                  {/* <Form inner> */}
                   {
                     currentStep == 0 && (
                       <>

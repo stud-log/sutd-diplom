@@ -61,8 +61,7 @@ export const EditableWeekday: FC<EditableWeekdayProps> = ({ className, weekday, 
         className={cls.select}
         options={subjects}
         optionRender={(option) =>{
-          console.log(option);
-          return <div className={cls.subjectLabel}>{option.label} <span>{option.data.teacherName}</span></div>;
+          return <div className={cls.subjectLabel} title={`${option.data.teacherName} - ${option.label}`}>{option.label} <span>{option.data.teacherName}</span></div>;
         }}
         onSelect={v => {
           setFieldValue(`${weekday}[${idx}].subjectId`, v.id);

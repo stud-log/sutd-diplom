@@ -1,13 +1,24 @@
+$border-radius: 10px;
+
 .ScheduleCard{
     display: flex;
     justify-content: space-between;
     border: 1px solid var(--accent);
-    border-radius: 10px;
+    border-radius: $border-radius;
     padding: 9px 18px;
     font-size: var(--fz-s);
     color: var(--accent);
     background: var(--white);
+    transition: .2s ease-in-out;
+    cursor: pointer;
 
+    &.open {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+
+.state {
     &.DO {
         // TODO: replace with vars
         border: 1px solid transparent;
@@ -26,7 +37,6 @@
         color: var(--white);
         background: var(--accent);
     }
-    
 }
 
 .leftSide{
@@ -62,4 +72,22 @@
 
 .reactions{
     margin-top: 6px;
+}
+
+.extraContent {
+
+}
+
+.extraContentInner{
+    display: flex;
+    flex-direction: column;
+    padding: 9px 18px;
+    padding-top: 1em;
+    gap: 10px;
+
+
+    &.open {
+        border-bottom-right-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+    }
 }
