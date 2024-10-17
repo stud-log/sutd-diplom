@@ -12,6 +12,7 @@ import RecoveryPage from '@/pages/RecoveryPage/';
 import { ReduxProvider } from '@/app/providers/ReduxProvider';
 import RegistrationPage from '@/pages/RegistrationPage';
 import { ToastContainer } from 'react-toastify';
+import moment from 'moment';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
