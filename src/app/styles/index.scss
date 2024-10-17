@@ -4,6 +4,32 @@
 @import '../../shared/assets/fonts/fonts.css';
 @import './mixins';
 
+.less-sm-hidden {
+    @include lessThan(sm) {
+        display: none !important;
+    }
+}
+
+.less-xsm-hidden {
+    @include lessThan(xsm) {
+        display: none !important;
+    }
+}
+
+.more-sm-hidden {
+    @include moreThan(sm) {
+        display: none !important;
+    }
+}
+
+.more-xsm-hidden {
+    @include moreThan(xsm) {
+        display: none !important;
+    }
+}
+
+
+
 * {
     &::-webkit-scrollbar {
         width: 5px;

@@ -1,7 +1,7 @@
 import EmojiPicker, { Emoji, EmojiClickData } from 'emoji-picker-react';
 import { FC, useState } from 'react';
 
-import HeartAddIcon from '@/shared/assets/img/icons/heart.svg?reactrepo-com.svg?react';
+import HeartAddIcon from '@/shared/assets/img/icons/heart-svgrepo-com.svg?react';
 import HeartIcon from '@/shared/assets/img/icons/heart.svg?react';
 import { UserReaction } from '@stud-log/news-types/models';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';

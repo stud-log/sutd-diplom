@@ -46,7 +46,7 @@ export const AddAndEditModal: FC<AddAndEditModalProps> = ({ className }) => {
 
   const headerText = recordId !== -1 ? `Редактирование ${isNews ? "новости" : "домашки"}` : `Добавление ${isNews ? "новости" : "домашки"}`;
   return (
-    <Modal destroyOnClose styles={{ body: { padding: 30 } }} width={650} closeIcon={<CloseIcon onClick={closeModal} />} className={classNames(cls.AddAndEditModal, {}, [ className ])} open={isModalOpen} footer={<div></div>}>
+    <Modal  destroyOnClose styles={{ body: { padding: 30 } }} width={650} closeIcon={<CloseIcon onClick={closeModal} />} className={classNames(cls.AddAndEditModal, {}, [ className ])} open={isModalOpen} footer={<div></div>}>
       <div className='h1'>{headerText}</div>
       <div className={cls.formWrapper}>
         <Formik

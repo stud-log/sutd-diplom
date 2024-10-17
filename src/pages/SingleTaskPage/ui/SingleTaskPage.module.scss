@@ -24,6 +24,10 @@
 
     @include lessThan(sm) {
         flex-direction: column-reverse;
+
+        .date {
+            font-size: var(--fz-s);
+        }
     }
 }
 

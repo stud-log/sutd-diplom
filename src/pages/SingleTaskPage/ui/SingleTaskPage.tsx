@@ -60,10 +60,13 @@ const SingleTaskPage: FC = () => {
   return (
     <Layout.Sticky className={cls.SchedulePage}>
       <Layout.StickyHeader slots={{
-        start: <Button outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>,
+        start: <>
+          <Button className='less-xsm-hidden' outline purpose='back' size='md' onClick={() => navigate(-1)}>Назад</Button>
+          <Button className='more-xsm-hidden' outline purpose='back' size='md' onClick={() => navigate(-1)}></Button>
+        </>,
         end: <>
-          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={classNames(cls.headerBtn, {}, [ cls.mobileHidden ])} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'Homework', recordId: Number(recordId) }));}}>Редактировать</Button>}
-          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={classNames(cls.headerBtn, {}, [ cls.mobileShow ])} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'Homework', recordId: Number(recordId) }));}} />}
+          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={classNames(cls.headerBtn, {}, [ 'less-sm-hidden' ])} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'Homework', recordId: Number(recordId) }));}}>Редактировать</Button>}
+          {role.permissions.canEdit && recordId && <Button outline size='md' purpose='edit' className={classNames(cls.headerBtn, {}, [ 'more-sm-hidden' ])} onClick={() => {dispatch(addAndEditModalActions.openModal({ recordTable: 'Homework', recordId: Number(recordId) }));}} />}
           {hw?.type == HomeworkType.group && meWorked?.length == 0 && <Button size='md' outline className={cls.headerBtn}>Выполнить в группе</Button>}
           {hw?.type == HomeworkType.individual && meWorked?.length == 0 && <Button size='md' outline loading={loading} onClick={async () => {
             setLoading(true);

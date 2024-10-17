@@ -7,6 +7,7 @@ import { HomeworkCard } from '@/shared/ui/Cards/HomeworkCard';
 import { NewsCard } from '@/shared/ui/Cards/NewsCard';
 import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './FavoriteTab.module.scss';
+import { EmptyData } from '@/shared/ui/EmptyData';
 
 interface ProfileTabProps {
   className?: string;
@@ -29,14 +30,14 @@ export const FavoriteTab: FC<ProfileTabProps> = ({ className, favoriteTable }) =
     <div className={classNames(cls.FavoriteTab, {}, [ className ])}>
       {favorites && (favoriteTable == 'Домашка' ?
         <div className={cls.homeworkWrapper}>
-          {favorites.rows.map((record, index) => (
+          {favorites.rows.length > 0 ? favorites.rows.map((record, index) => (
             <HomeworkCard key={index} {...record}/>
-          ))}
+          )) : <EmptyData text='Здесь пока ничего нет' />}
         </div> :
         <div className={cls.newsWrapper} >
-          {favorites.rows.map((record, index) => (
+          {favorites.rows.length > 0 ? favorites.rows.map((record, index) => (
             <NewsCard key={index} {...record}/>
-          ))}
+          ))  : <EmptyData text='Здесь пока ничего нет' />}
         </div>)}
     </div>
   );
