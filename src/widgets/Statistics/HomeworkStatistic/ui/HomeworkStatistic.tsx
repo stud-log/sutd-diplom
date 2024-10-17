@@ -1,8 +1,8 @@
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkStatistic.module.scss';
 
 interface HomeworkStatisticProps {

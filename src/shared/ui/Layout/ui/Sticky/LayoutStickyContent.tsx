@@ -1,8 +1,8 @@
 import { FC, MutableRefObject, ReactNode } from 'react';
 
-import { EmptyData } from 'shared/ui/EmptyData';
-import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { EmptyData } from '@/shared/ui/EmptyData';
+import { PageLoader } from '@/shared/ui/PageLoader/PageLoader';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from '../Layout.module.scss';
 
 interface LayoutProps {

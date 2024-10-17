@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import { Reactions } from 'features/Reactions';
-import ReplyIcon from 'shared/assets/img/icons/reply.svg';
+import { Reactions } from '@/features/Reactions';
+import ReplyIcon from '@/shared/assets/img/icons/reply.svg?react';
 import { UserComment } from '@stud-log/news-types/models';
-import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { UserWithAvatar } from '@/shared/ui/UserWithAvatar';
 import cls from './Comment.module.scss';
-import { formatDate } from 'widgets/Comments/helpers';
+import { formatDate } from '@/widgets/Comments/helpers';
 
 interface CommentProps {
   className?: string;

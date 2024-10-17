@@ -1,11 +1,11 @@
 import { CSSProperties, FC, ReactNode, useEffect, useLayoutEffect, useState } from 'react';
-import AddIcon from 'shared/assets/img/icons/add.svg';
-import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
+import AddIcon from '@/shared/assets/img/icons/add.svg?react';
+import EditScheduleIcon from '@/shared/assets/img/icons/edit-schedule.svg?react';
 
 import { Select as ANTDSelect } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
-import DropdownArrow from 'shared/assets/img/select-arrow.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import DropdownArrow from '@/shared/assets/img/select-arrow.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Select.module.scss';
 
 export type Option = { value: string; label: string; default?: boolean};

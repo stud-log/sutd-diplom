@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './MobileMenu.module.scss';
-import { menuRoutes } from 'shared/config/routes';
+import { menuRoutes } from '@/shared/config/routes';
 
 interface MobileMenuProps {
   className?: string;

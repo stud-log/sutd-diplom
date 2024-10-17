@@ -3,24 +3,23 @@ import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
-import CloseIcon from 'shared/assets/img/icons/x-close.svg';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
+import CloseIcon from '@/shared/assets/img/icons/x-close.svg?react';
 import { GetEntity } from '@stud-log/news-types/server/post.response';
-import { Input } from 'shared/ui/Input';
+import { Input } from '@/shared/ui/Input';
 import { Modal } from 'antd';
-import { RangePicker } from 'shared/ui/DatePicker/RangePicker/RangePicker';
-import { RichEditor } from 'shared/ui/RichEditor';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { UploadInput } from 'shared/ui/UploadInput/ui/UploadInput';
-import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
+import { RangePicker } from '@/shared/ui/DatePicker/RangePicker/RangePicker';
+import { RichEditor } from '@/shared/ui/RichEditor';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
+import { UploadInput } from '@/shared/ui/UploadInput/ui/UploadInput';
+import { UploadedFilesControl } from '@/shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
 import { addAndEditCustomTodoActions } from '../slice';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './AddAndEditCustomTodo.module.scss';
 import { mutate as globalMutate } from 'swr';
-import postService from 'services/post.service';
-import taskService from 'services/task.service';
-import useGroupSubjects from 'shared/hooks/useGroupSubjects';
+import postService from '@/services/post.service';
+import taskService from '@/services/task.service';
 import { validationSchema } from '../types';
 
 interface AddAndEditCustomTodoProps {

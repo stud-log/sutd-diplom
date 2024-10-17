@@ -1,8 +1,7 @@
 import { FC, HTMLInputAutoCompleteAttribute, MutableRefObject } from 'react';
 import { Field, FieldProps, useFormikContext } from 'formik';
 
-import { RegDTO } from '@stud-log/news-types/dto/reg.dto';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Input.module.scss';
 
 interface InputProps {

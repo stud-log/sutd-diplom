@@ -5,25 +5,24 @@ import { HomeworksTypeOptions, NewsLabelsOptions, validationSchema } from '../ty
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
-import CloseIcon from 'shared/assets/img/icons/x-close.svg';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
+import CloseIcon from '@/shared/assets/img/icons/x-close.svg?react';
 import { GetEntity } from '@stud-log/news-types/server/post.response';
-import { Input } from 'shared/ui/Input';
-import { RangePicker } from 'shared/ui/DatePicker/RangePicker/RangePicker';
-import { RichEditor } from 'shared/ui/RichEditor';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { Select } from 'shared/ui/Select';
-import { UploadInput } from 'shared/ui/UploadInput/ui/UploadInput';
-import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
+import { Input } from '@/shared/ui/Input';
+import { RangePicker } from '@/shared/ui/DatePicker/RangePicker/RangePicker';
+import { RichEditor } from '@/shared/ui/RichEditor';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
+import { Select } from '@/shared/ui/Select';
+import { UploadInput } from '@/shared/ui/UploadInput/ui/UploadInput';
+import { UploadedFilesControl } from '@/shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
 import { addAndEditModalActions } from '../slice';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './AddAndEditModal.module.scss';
 import { mutate as globalMutate } from 'swr';
-import modalCls from '../../../Modals.module.scss';
-import postService from 'services/post.service';
-import { truncate } from 'shared/lib/helpers/truncateWords';
-import useGroupSubjects from 'shared/hooks/useGroupSubjects';
+import postService from '@/services/post.service';
+import { truncate } from '@/shared/lib/helpers/truncateWords';
+import useGroupSubjects from '@/shared/hooks/useGroupSubjects';
 
 interface AddAndEditModalProps {
   className?: string;

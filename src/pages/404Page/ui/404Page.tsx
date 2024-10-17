@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
-import AppHistory from 'shared/config/history';
-import { Button } from 'shared/ui/Button';
-import LogoIcon from 'shared/assets/img/logo.svg';
-import NotFoundIcon from 'shared/assets/img/icons/404.svg';
+import AppHistory from '@/shared/config/history';
+import { Button } from '@/shared/ui/Button';
+import LogoIcon from '@/shared/assets/img/logo.svg?react';
+import NotFoundIcon from '@/shared/assets/img/icons/404.svg?react';
 import cls from './404Page.module.scss';
 
 /**

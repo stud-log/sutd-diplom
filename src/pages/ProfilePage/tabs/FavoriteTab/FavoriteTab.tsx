@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { GetAllEntities } from '@stud-log/news-types/server/post.response';
-import { HomeworkCard } from 'shared/ui/Cards/HomeworkCard';
-import { NewsCard } from 'shared/ui/Cards/NewsCard';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { HomeworkCard } from '@/shared/ui/Cards/HomeworkCard';
+import { NewsCard } from '@/shared/ui/Cards/NewsCard';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './FavoriteTab.module.scss';
 
 interface ProfileTabProps {

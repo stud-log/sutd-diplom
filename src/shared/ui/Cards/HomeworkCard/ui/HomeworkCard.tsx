@@ -1,19 +1,19 @@
 import 'moment/locale/ru';
 
-import { ChatBubble } from 'features/ChatBubble';
-import { Deadline } from 'features/Deadline';
+import { ChatBubble } from '@/features/ChatBubble';
+import { Deadline } from '@/features/Deadline';
 import { FC } from 'react';
-import { FavoriteBubble } from 'features/FavoriteBubble';
+import { FavoriteBubble } from '@/features/FavoriteBubble';
 import { GetEntity } from '@stud-log/news-types/server/post.response';
 import { Interweave } from 'interweave';
-import { Reactions } from 'features/Reactions';
-import { TaskStatusLabel } from 'shared/ui/TaskStatusLabel';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Reactions } from '@/features/Reactions';
+import { TaskStatusLabel } from '@/shared/ui/TaskStatusLabel';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkCard.module.scss';
 import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
-import { transform } from 'shared/lib/helpers/interweave';
-import { truncate } from 'shared/lib/helpers/truncateWords';
+import { transform } from '@/shared/lib/helpers/interweave';
+import { truncate } from '@/shared/lib/helpers/truncateWords';
 import { useNavigate } from 'react-router-dom';
 
 interface HomeworkCardProps extends GetEntity {

@@ -1,21 +1,20 @@
 import { FC, useMemo, useState } from 'react';
 import { Segmented, Tabs } from 'antd';
 
-import { Button } from 'shared/ui/Button';
-import { EditProfile } from 'features/Profile/EditProfile/EditProfile';
+import { Button } from '@/shared/ui/Button';
+import { EditProfile } from '@/features/Profile/EditProfile/EditProfile';
 import { FavoriteTab } from '../tabs/FavoriteTab/FavoriteTab';
-import { Layout } from 'shared/ui/Layout';
+import { Layout } from '@/shared/ui/Layout';
 import { ProfileTab } from '../tabs/ProfileTab/ProfileTab';
-import { Schedule } from 'widgets/Schedule';
+import { Schedule } from '@/widgets/Schedule';
 import type { TabsProps } from 'antd';
 import { TodoTab } from '../tabs/TodoTab/TodoTab';
-import { TrophyButton } from 'features/TrophyButton';
-import { addAndEditCustomTodoActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomTodo/slice';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { TrophyButton } from '@/features/TrophyButton';
+import { addAndEditCustomTodoActions } from '@/widgets/Modals/ProfileModals/AddAndEditCustomTodo/slice';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ProfilePage.module.scss';
 import { useDispatch } from 'react-redux';
-import userService from 'services/user.service';
-import { withWidget } from 'shared/hooks/withWidget';
+import { withWidget } from '@/shared/hooks/withWidget';
 
 enum TabsItemsKeys { profile = 'profile', favorite = 'favorite', todo = 'todo'}
 const TabsItems: TabsProps['items'] = [ { key: TabsItemsKeys.profile, label: 'Профиль' }, { key: TabsItemsKeys.favorite, label: 'Избранное', } ];

@@ -1,11 +1,11 @@
-import { AchievementsStatistic, HomeworkStatistic } from 'widgets/Statistics';
+import { AchievementsStatistic, HomeworkStatistic } from '@/widgets/Statistics';
 
-import { EditProfile } from 'features/Profile/EditProfile/EditProfile';
+import { EditProfile } from '@/features/Profile/EditProfile/EditProfile';
 import { FC } from 'react';
-import { MentorControls } from 'features/Profile/MentorControls/MentorControls';
-import { TrophyButton } from 'features/TrophyButton';
-import { UserProfile } from 'widgets/UserProfile';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { MentorControls } from '@/features/Profile/MentorControls/MentorControls';
+import { TrophyButton } from '@/features/TrophyButton';
+import { UserProfile } from '@/widgets/UserProfile';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ProfileTab.module.scss';
 
 interface ProfileTabProps {

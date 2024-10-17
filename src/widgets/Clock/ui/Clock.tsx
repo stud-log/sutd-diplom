@@ -1,10 +1,9 @@
 import 'moment/locale/ru';
 
-import { ActivityTimer } from 'widgets/ActivityTimer';
 import { CurrentTime } from './CurrentTime';
 import { FC } from 'react';
-import { Notifications } from 'widgets/Notifications';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Notifications } from '@/widgets/Notifications';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Clock.module.scss';
 import moment from 'moment';
 

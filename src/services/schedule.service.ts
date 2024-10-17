@@ -1,9 +1,9 @@
-import { $api } from "shared/http/host";
+import { $api } from "@/shared/http/host";
 import { AxiosError } from "axios";
 import { ErrorResponse } from "@stud-log/news-types/server";
 import { Timetable } from "@stud-log/news-types/models";
 import { notification } from "antd";
-import { CreateNewCustomActivity } from "shared/lib/types/services";
+import { CreateNewCustomActivity } from "@/shared/lib/types/services";
 import dayjs from 'dayjs';
 
 class SubjectService {

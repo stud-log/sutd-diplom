@@ -4,7 +4,7 @@ import { FCEvent, FCExtendedProps } from "../types";
 import { CalendarActivityType } from "@stud-log/news-types/enums";
 import { GetSchedule } from "@stud-log/news-types/server/schedule.response";
 import moment from "moment";
-import { truncate } from "shared/lib/helpers/truncateWords";
+import { truncate } from "@/shared/lib/helpers/truncateWords";
 
 export const constructCalendar = (schedule: GetSchedule[]) => {
   return schedule.map(record => {

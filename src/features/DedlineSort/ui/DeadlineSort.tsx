@@ -1,7 +1,7 @@
-import { DefaultOptionType, Select } from 'shared/ui/Select';
+import { DefaultOptionType, Select } from '@/shared/ui/Select';
 
 import { FC } from 'react';
-import SortSelectIcon from 'shared/assets/img/select-sort.svg';
+import SortSelectIcon from '@/shared/assets/img/select-sort.svg?react';
 import cls from './DeadlineSort.module.scss';
 
 interface DeadlineSortProps {

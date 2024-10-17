@@ -1,10 +1,8 @@
-import { DefaultOptionType, Select } from 'shared/ui/Select';
+import { DefaultOptionType, Select } from '@/shared/ui/Select';
 
 import { FC } from 'react';
-import FilterSelectIcon from 'shared/assets/img/select-filter.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
-import cls from './SubjectSort.module.scss';
-import useGroupSubjects from 'shared/hooks/useGroupSubjects';
+import FilterSelectIcon from '@/shared/assets/img/select-filter.svg?react';
+import useGroupSubjects from '@/shared/hooks/useGroupSubjects';
 
 interface SubjectFilterProps {
   className?: string;

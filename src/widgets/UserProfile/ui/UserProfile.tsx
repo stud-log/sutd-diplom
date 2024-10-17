@@ -1,11 +1,11 @@
-import AvatarPlaceholder from 'shared/assets/img/avatar-placeholder.svg';
+import AvatarPlaceholder from '@/shared/assets/img/avatar-placeholder.svg?react';
 import { FC } from 'react';
-import { MentorControls } from 'features/Profile/MentorControls/MentorControls';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { MentorControls } from '@/features/Profile/MentorControls/MentorControls';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './UserProfile.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
+import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
 import { useNavigate } from 'react-router-dom';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
 
 interface UserProfileProps {
   className?: string;

@@ -3,7 +3,7 @@ import { useField, useFormikContext } from 'formik';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './RichEditor.module.scss';
 
 interface RichEditorProps {
@@ -35,7 +35,7 @@ export const RichEditor:FC<RichEditorProps> = ({ required = false, label, classN
         onBlur={() => setTouched({ ...touched, [field.name]: true })}
         config={{
           ckfinder: {
-            uploadUrl: `${process.env.API_URL}/api/uploads/ckeditor`,
+            uploadUrl: `${import.meta.env.VITE_APP_API_URL}/api/uploads/ckeditor`,
           },
         }}
         

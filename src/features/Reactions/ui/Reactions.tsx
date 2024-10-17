@@ -1,15 +1,15 @@
 import EmojiPicker, { Emoji, EmojiClickData } from 'emoji-picker-react';
 import { FC, useState } from 'react';
 
-import HeartAddIcon from 'shared/assets/img/icons/heart-svgrepo-com.svg';
-import HeartIcon from 'shared/assets/img/icons/heart.svg';
+import HeartAddIcon from '@/shared/assets/img/icons/heart.svg?reactrepo-com.svg?react';
+import HeartIcon from '@/shared/assets/img/icons/heart.svg?react';
 import { UserReaction } from '@stud-log/news-types/models';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Reactions.module.scss';
 import { groupedReactions } from '../helpers';
-import postService from 'services/post.service';
-import { useOutsideClick } from 'shared/hooks/useClickOutside';
-import userService from 'services/user.service';
+import postService from '@/services/post.service';
+import { useOutsideClick } from '@/shared/hooks/useClickOutside';
+import userService from '@/services/user.service';
 
 interface ReactionProps {
   className?: string;

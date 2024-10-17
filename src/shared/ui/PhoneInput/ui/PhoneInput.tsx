@@ -2,7 +2,7 @@ import { Field, FieldProps, useFormikContext } from 'formik';
 
 import { FC } from 'react';
 import RPIPhoneInput from 'react-phone-input-2';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './PhoneInput.module.scss';
 
 interface PhoneInputProps {

@@ -1,16 +1,14 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import { Clock } from 'widgets/Clock';
-import Logo from 'shared/assets/img/logo.svg';
-import { Notifications } from 'widgets/Notifications';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { UserProfile } from 'widgets/UserProfile';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Clock } from '@/widgets/Clock';
+import Logo from '@/shared/assets/img/logo.svg?react';
+import { Notifications } from '@/widgets/Notifications';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
+import { UserProfile } from '@/widgets/UserProfile';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Sidebar.module.scss';
-import { menuRoutes } from 'shared/config/routes';
-import { sidebarActions } from '../model/slice';
-import { useDispatch } from 'react-redux';
+import { menuRoutes } from '@/shared/config/routes';
 import { useSelector } from 'react-redux';
 
 interface SidebarProps {

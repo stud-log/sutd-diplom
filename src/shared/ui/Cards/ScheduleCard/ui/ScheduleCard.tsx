@@ -2,11 +2,11 @@ import { CustomActivity, Record, Timetable } from '@stud-log/news-types/models';
 
 import { CalendarActivityType } from '@stud-log/news-types/enums';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ScheduleCard.module.scss';
 import moment from 'moment';
-import { truncate } from 'shared/lib/helpers/truncateWords';
-import { Reactions } from 'features/Reactions';
+import { truncate } from '@/shared/lib/helpers/truncateWords';
+import { Reactions } from '@/features/Reactions';
 import { mutate as globalMutate } from 'swr';
 
 interface ScheduleCardProps{

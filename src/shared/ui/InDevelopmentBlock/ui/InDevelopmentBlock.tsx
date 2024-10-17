@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Icon from 'shared/assets/img/icons/inDevelopment.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import Icon from '@/shared/assets/img/icons/inDevelopment.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './InDevelopmentBlock.module.scss';
 
 interface InDevelopmentBlockProps {

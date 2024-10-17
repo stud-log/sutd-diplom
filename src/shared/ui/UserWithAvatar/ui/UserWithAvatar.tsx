@@ -1,10 +1,10 @@
-import AvatarPlaceholder from 'shared/assets/img/avatar-placeholder.svg';
+import AvatarPlaceholder from '@/shared/assets/img/avatar-placeholder.svg?react';
 import { FC } from 'react';
 import { User } from '@stud-log/news-types/models';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './UserWithAvatar.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
-import userService from 'services/user.service';
+import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
+import userService from '@/services/user.service';
 
 interface UserWithAvatarProps {
   className?: string;

@@ -1,6 +1,6 @@
-import { $api } from "shared/http/host";
+import { $api } from "@/shared/http/host";
 import { AxiosError } from "axios";
-import { CreateNewTaskFromValues } from "shared/lib/types/services";
+import { CreateNewTaskFromValues } from "@/shared/lib/types/services";
 import { ErrorResponse } from "@stud-log/news-types/server";
 import { UserTaskStatus } from "@stud-log/news-types/enums";
 import { notification } from "antd";

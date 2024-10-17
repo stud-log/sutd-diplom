@@ -1,11 +1,11 @@
 import { HomeworkType, UserTaskStatus } from "@stud-log/news-types/enums";
 
-import { $api } from "shared/http/host";
+import { $api } from "@/shared/http/host";
 import { AxiosError } from "axios";
-import { CreateNewPostFromValues } from "shared/lib/types/services";
+import { CreateNewPostFromValues } from "@/shared/lib/types/services";
 import { EmojiClickData } from "emoji-picker-react";
 import { ErrorResponse } from "@stud-log/news-types/server";
-import { NewsLabelsOptions } from "widgets/Modals/ProfileModals/AddAndEditModal/types";
+import { NewsLabelsOptions } from "@/widgets/Modals/ProfileModals/AddAndEditModal/types";
 import { UserReaction } from "@stud-log/news-types/models";
 import { notification } from "antd";
 import dayjs from 'dayjs';

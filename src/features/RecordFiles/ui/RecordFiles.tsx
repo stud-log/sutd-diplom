@@ -1,9 +1,9 @@
 import { AppFiles } from '@stud-log/news-types/models/files.model';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './RecordFiles.module.scss';
-import { downloadFile } from 'shared/lib/helpers/downloadByClick';
-import { getFilenameAndExtension } from 'shared/lib/helpers/getFileNameAndExt';
+import { downloadFile } from '@/shared/lib/helpers/downloadByClick';
+import { getFilenameAndExtension } from '@/shared/lib/helpers/getFileNameAndExt';
 
 interface RecordFilesProps {
   className?: string;

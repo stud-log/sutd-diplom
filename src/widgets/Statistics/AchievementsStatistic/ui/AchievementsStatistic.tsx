@@ -1,12 +1,12 @@
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { FC } from 'react';
 import { User } from '@stud-log/news-types/models';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './AchievementsStatistic.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
-import { truncate } from 'shared/lib/helpers/truncateWords';
+import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
+import { truncate } from '@/shared/lib/helpers/truncateWords';
 
 interface AchievementsStatisticProps {
   className?: string;

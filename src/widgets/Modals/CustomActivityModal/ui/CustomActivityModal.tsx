@@ -2,25 +2,21 @@ import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
-import CloseIcon from 'shared/assets/img/icons/x-close.svg';
-import { Comments } from 'widgets/Comments';
-import { Deadline } from 'features/Deadline';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
+import CloseIcon from '@/shared/assets/img/icons/x-close.svg?react';
+import { Comments } from '@/widgets/Comments';
 import { Interweave } from 'interweave';
 import { Modal } from 'antd';
-import { RecordFiles } from 'features/RecordFiles';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { UserTask } from '@stud-log/news-types/models';
-import { addAndEditCustomTodoActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomTodo/slice';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { RecordFiles } from '@/features/RecordFiles';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './CustomActivityModal.module.scss';
 import { customActivityModalActions } from '../slice';
 import moment from 'moment';
-import userService from 'services/user.service';
-import { GetEntity } from '@stud-log/news-types/server/post.response';
+import userService from '@/services/user.service';
 import { GetSchedule } from '@stud-log/news-types/server';
-import { addAndEditCustomActivityActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice';
+import { addAndEditCustomActivityActions } from '@/widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice';
 
 interface CustomActivityModalProps {
   className?: string;

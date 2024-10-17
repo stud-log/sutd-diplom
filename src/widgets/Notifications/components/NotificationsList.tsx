@@ -1,10 +1,10 @@
 import { FC, MutableRefObject } from 'react';
 
-import ArrowIcon from 'shared/assets/img/select-arrow.svg';
-import ArrowRightIcon from 'shared/assets/img/arrow-left.svg';
+import ArrowIcon from '@/shared/assets/img/select-arrow.svg?react';
+import ArrowRightIcon from '@/shared/assets/img/arrow-left.svg?react';
 import { UserNotification } from '@stud-log/news-types/models';
-import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { UserWithAvatar } from '@/shared/ui/UserWithAvatar';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './NotificationsList.module.scss';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';

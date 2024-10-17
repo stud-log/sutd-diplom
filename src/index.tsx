@@ -1,20 +1,20 @@
 import 'react-toastify/dist/ReactToastify.css';
 import 'tippy.js/animations/shift-toward.css';
 import './app/styles/index.scss';
+import 'moment/locale/ru';
 import './app/styles/mobile.scss';
-
+moment().locale('ru');
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AddAndEditModal } from 'widgets/Modals/ProfileModals/AddAndEditModal';
-import { AntdConfigProvider } from 'app/providers/AntdConfigProvider';
-import { App } from 'app/App';
-import LoginPage from 'pages/LoginPage';
-import Page404 from 'pages/404Page/ui/404Page';
+import { AntdConfigProvider } from '@/app/providers/AntdConfigProvider';
+import { App } from '@/app/App';
+import LoginPage from '@/pages/LoginPage';
 import ReactDOM from 'react-dom/client';
-import RecoveryPage from 'pages/RecoveryPage/';
-import { ReduxProvider } from 'app/providers/ReduxProvider';
-import RegistrationPage from 'pages/RegistrationPage';
+import RecoveryPage from '@/pages/RecoveryPage/';
+import { ReduxProvider } from '@/app/providers/ReduxProvider';
+import RegistrationPage from '@/pages/RegistrationPage';
 import { ToastContainer } from 'react-toastify';
+import moment from 'moment';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

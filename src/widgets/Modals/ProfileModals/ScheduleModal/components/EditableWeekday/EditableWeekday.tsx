@@ -3,18 +3,15 @@ import { Collapse, CollapseProps } from 'antd';
 import { DistantOptions, InitialValues, TimetableType, WeekparityTypes } from '../../types';
 import { FieldArray, FieldArrayRenderProps, FormikErrors, useFormikContext } from 'formik';
 
-import { Button } from 'shared/ui/Button';
-import { Input } from 'shared/ui/Input';
-import { RangePicker } from 'shared/ui/DatePicker/RangePicker/RangePicker';
-import { Select } from 'shared/ui/Select';
-import { TimePicker } from 'shared/ui/DatePicker/TimePicker/TimePicker';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Select } from '@/shared/ui/Select';
+import { TimePicker } from '@/shared/ui/DatePicker/TimePicker/TimePicker';
 import { Timetable } from '@stud-log/news-types/models';
 import { TimetableWeekdaysRU } from '@stud-log/news-types/enums';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import cls from './EditableWeekday.module.scss';
-import useAllSubjects from 'shared/hooks/useAllSubjects';
-import useGroupSubjects from 'shared/hooks/useGroupSubjects';
-import userService from 'services/user.service';
+import useAllSubjects from '@/shared/hooks/useAllSubjects';
+import userService from '@/services/user.service';
 
 interface EditableWeekdayProps{
   className?: string;

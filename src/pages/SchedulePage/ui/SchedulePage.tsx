@@ -1,30 +1,30 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
 import { FCEvent } from '../types';
 import FullCalendar from '@fullcalendar/react';
 import { GetSchedule } from '@stud-log/news-types/server/schedule.response';
-import { Layout } from 'shared/ui/Layout';
-import { Schedule } from 'widgets/Schedule';
+import { Layout } from '@/shared/ui/Layout';
+import { Schedule } from '@/widgets/Schedule';
 import { Segmented } from 'antd';
 import { TooltipTemplate } from '../helpers/tooltip';
 import { ViewMountArg } from '@fullcalendar/core';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './SchedulePage.module.scss';
 import { constructCalendar } from '../helpers';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from '@fullcalendar/list';
 import moment from 'moment';
 import ruLocalce from '@fullcalendar/core/locales/ru';
-import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal/slice';
+import { scheduleModalActions } from '@/widgets/Modals/ProfileModals/ScheduleModal/slice';
 import timeGridPlugin from "@fullcalendar/timegrid";
 import tippy from 'tippy.js';
 import { useDispatch } from 'react-redux';
-import userService from 'services/user.service';
-import { store } from 'app/providers/ReduxProvider/ui/ReduxProvider';
-import { customActivityModalActions } from 'widgets/Modals/CustomActivityModal/slice';
+import userService from '@/services/user.service';
+import { store } from '@/app/providers/ReduxProvider/ui/ReduxProvider';
+import { customActivityModalActions } from '@/widgets/Modals/CustomActivityModal/slice';
 
 const SchedulePage: FC = () => {
   const { group, role } = userService.getUser();

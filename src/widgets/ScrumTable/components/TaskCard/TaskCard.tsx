@@ -1,15 +1,15 @@
 import { FC, useRef } from 'react';
 
-import CustomIcon from 'shared/assets/img/icons/customact.svg';
-import { Deadline } from 'features/Deadline';
+import CustomIcon from '@/shared/assets/img/icons/customact.svg?react';
+import { Deadline } from '@/features/Deadline';
 import { DraggableProvided } from 'react-beautiful-dnd';
-import SutdIcon from 'shared/assets/img/icons/sutd.svg';
+import SutdIcon from '@/shared/assets/img/icons/sutd.svg?react';
 import { UserTask } from '@stud-log/news-types/models';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './TaskCard.module.scss';
-import { homeworkTaskModalActions } from 'widgets/Modals/HomeworkTaskModal/slice';
+import { homeworkTaskModalActions } from '@/widgets/Modals/HomeworkTaskModal/slice';
 import moment from 'moment';
-import { truncate } from 'shared/lib/helpers/truncateWords';
+import { truncate } from '@/shared/lib/helpers/truncateWords';
 import { useDispatch } from 'react-redux';
 
 interface TaskCardProps {

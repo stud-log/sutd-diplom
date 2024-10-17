@@ -1,4 +1,4 @@
-import { $api } from "shared/http/host";
+import { $api } from "@/shared/http/host";
 import { AxiosError } from "axios";
 import { ErrorResponse } from "@stud-log/news-types/server";
 import { UserStatus } from "@stud-log/news-types/enums";

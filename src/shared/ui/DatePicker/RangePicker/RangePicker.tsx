@@ -2,7 +2,7 @@ import dayjs, { Dayjs } from 'dayjs';
 
 import { DatePicker } from 'antd';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './RangePicker.module.scss';
 import ru from 'antd/es/date-picker/locale/ru_RU';
 

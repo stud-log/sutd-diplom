@@ -1,14 +1,14 @@
 import { FC, useState } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { Achievement } from '@stud-log/news-types/models';
-import LockIcon from 'shared/assets/img/icons/lock-02.svg';
+import LockIcon from '@/shared/assets/img/icons/lock-02.svg?react';
 import { Tooltip } from 'antd';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './UserAvatars.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
-import userService from 'services/user.service';
+import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
+import userService from '@/services/user.service';
 
 interface UserAvatarsProps {
   className?: string;

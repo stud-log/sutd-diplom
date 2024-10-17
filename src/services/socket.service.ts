@@ -11,7 +11,7 @@ class SocketService {
   
   private initSocket() {
     // Connect to the Socket.IO server
-    this.socket = io(process.env.SOCKET_URL as string);
+    this.socket = io(import.meta.env.VITE_APP_SOCKET_URL as string);
     this.connectPromise = new Promise<void>((resolve, reject) => {
       if (this.socket) {
         this.socket.on('connect', () => {

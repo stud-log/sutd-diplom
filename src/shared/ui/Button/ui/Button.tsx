@@ -1,15 +1,15 @@
 import { ButtonHTMLAttributes, FC, ReactNode, useMemo } from 'react';
 
-import AddIcon from 'shared/assets/img/icons/add.svg';
-import BackIcon from 'shared/assets/img/icons/back.svg';
-import EditGroupIcon from 'shared/assets/img/icons/edit-group.svg';
-import EditIcon from 'shared/assets/img/icons/edit.svg';
-import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
-import LogoutIcon from 'shared/assets/img/icons/log-out.svg';
-import SettingsIcon from 'shared/assets/img/icons/settings.svg';
-import TrashIcon from 'shared/assets/img/icons/trash.svg';
-import TrophyIcon from 'shared/assets/img/icons/trophy.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import AddIcon from '@/shared/assets/img/icons/add.svg?react';
+import BackIcon from '@/shared/assets/img/icons/back.svg?react';
+import EditGroupIcon from '@/shared/assets/img/icons/edit-group.svg?react';
+import EditIcon from '@/shared/assets/img/icons/edit.svg?react';
+import EditScheduleIcon from '@/shared/assets/img/icons/edit-schedule.svg?react';
+import LogoutIcon from '@/shared/assets/img/icons/log-out.svg?react';
+import SettingsIcon from '@/shared/assets/img/icons/settings.svg?react';
+import TrashIcon from '@/shared/assets/img/icons/trash.svg?react';
+import TrophyIcon from '@/shared/assets/img/icons/trophy.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Button.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

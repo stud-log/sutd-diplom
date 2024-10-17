@@ -1,16 +1,16 @@
 import { FC, useEffect, useRef } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { CalendarActivityType } from '@stud-log/news-types/enums';
 import { GetSchedule } from '@stud-log/news-types/server/schedule.response';
-import { Layout } from 'shared/ui/Layout';
-import { ScheduleCard } from 'shared/ui/Cards/ScheduleCard';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Layout } from '@/shared/ui/Layout';
+import { ScheduleCard } from '@/shared/ui/Cards/ScheduleCard';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Schedule.module.scss';
 import { groupByDay } from '../helpers';
 import moment from 'moment';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
 
 interface ScheduleProps {
   className?: string;

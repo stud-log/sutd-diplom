@@ -2,15 +2,14 @@ import { FC, useState } from 'react';
 import { Modal, Steps } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from 'shared/ui/Button';
-import CloseIcon from 'shared/assets/img/icons/x-close.svg';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Button } from '@/shared/ui/Button';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './GuideModal.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
+import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
 import { guideModalActions } from '../slice';
 import { steps } from '../types';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
 import { Interweave } from 'interweave';
 
 interface GuideModalProps {

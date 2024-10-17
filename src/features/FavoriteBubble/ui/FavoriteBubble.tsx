@@ -1,11 +1,11 @@
 import { FC, useMemo, useState } from 'react';
 import { UserFavorite, UserReaction } from '@stud-log/news-types/models';
 
-import FavoriteIcon from 'shared/assets/img/icons/favorite.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import FavoriteIcon from '@/shared/assets/img/icons/favorite.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './FavoriteBubble.module.scss';
-import postService from 'services/post.service';
-import userService from 'services/user.service';
+import postService from '@/services/post.service';
+import userService from '@/services/user.service';
 
 interface ReactionProps {
   className?: string;

@@ -1,16 +1,15 @@
-import { Button } from 'shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { FC } from 'react';
-import { Select } from 'shared/ui/Select';
-import { addAndEditModalActions } from 'widgets/Modals/ProfileModals/AddAndEditModal/slice';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Select } from '@/shared/ui/Select';
+import { addAndEditModalActions } from '@/widgets/Modals/ProfileModals/AddAndEditModal/slice';
 import cls from './MentorControls.module.scss';
-import { manageGroupModalActions } from 'widgets/Modals/ProfileModals/ManageGroupModal/slice';
-import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal/slice';
+import { manageGroupModalActions } from '@/widgets/Modals/ProfileModals/ManageGroupModal/slice';
+import { scheduleModalActions } from '@/widgets/Modals/ProfileModals/ScheduleModal/slice';
 import { useDispatch } from 'react-redux';
-import userService from 'services/user.service';
-import { addAndEditCustomActivityActions } from 'widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice';
-import AddIcon from 'shared/assets/img/icons/add.svg';
-import EditScheduleIcon from 'shared/assets/img/icons/edit-schedule.svg';
+import userService from '@/services/user.service';
+import { addAndEditCustomActivityActions } from '@/widgets/Modals/ProfileModals/AddAndEditCustomActivity/slice';
+import AddIcon from '@/shared/assets/img/icons/add.svg?react';
+import EditScheduleIcon from '@/shared/assets/img/icons/edit-schedule.svg?react';
 interface MentorControlsProps {
   className?: string;
 }
