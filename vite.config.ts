@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
           name: 'Studlog',
           short_name: 'Studlog',
           description: 'Your life - your studlog.',
-          theme_color: '#2962FF',
+          theme_color: '#F3F5FB',
           icons
         }
       })
