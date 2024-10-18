@@ -1,17 +1,14 @@
-import { User, UserTask } from '@stud-log/news-types/models';
-import { useNavigate, useParams } from 'react-router-dom';
+import { UserTask } from '@stud-log/news-types/models';
+import { useParams } from 'react-router-dom';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { EmptyData } from 'shared/ui/EmptyData';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { FC } from 'react';
-import { Layout } from 'shared/ui/Layout';
+import { Layout } from '@/shared/ui/Layout';
 import { UserTaskStatus } from '@stud-log/news-types/enums';
-import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { UserWithAvatar } from '@/shared/ui/UserWithAvatar';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkDones.module.scss';
-import { useDispatch } from 'react-redux';
-import userService from 'services/user.service';
 
 interface HomeworkDonesProps {
   className?: string;

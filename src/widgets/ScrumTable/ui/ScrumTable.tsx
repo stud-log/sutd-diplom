@@ -5,10 +5,9 @@ import { Column } from '../types';
 import { TaskCard } from '../components/TaskCard/TaskCard';
 import { UserTask } from '@stud-log/news-types/models';
 import { UserTaskStatus } from '@stud-log/news-types/enums';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ScrumTable.module.scss';
-import postService from 'services/post.service';
-import taskService from 'services/task.service';
+import taskService from '@/services/task.service';
 
 interface ScrumTableProps {
   className?: string;

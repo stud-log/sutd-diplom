@@ -2,19 +2,19 @@ import { FC, useMemo, useRef, useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
-import { InDevelopmentBlock } from 'shared/ui/InDevelopmentBlock';
-import { Input } from 'shared/ui/Input';
-import { Layout } from 'shared/ui/Layout';
-import { PhoneInput } from 'shared/ui/PhoneInput';
-import { Schedule } from 'widgets/Schedule';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
+import { InDevelopmentBlock } from '@/shared/ui/InDevelopmentBlock';
+import { Input } from '@/shared/ui/Input';
+import { Layout } from '@/shared/ui/Layout';
+import { PhoneInput } from '@/shared/ui/PhoneInput';
+import { Schedule } from '@/widgets/Schedule';
 import { User } from '@stud-log/news-types/models';
 import { UserAvatars } from '../components/UserAvatars/UserAvatars';
 import cls from './ProfileSettingsPage.module.scss';
 import { useNavigate } from 'react-router-dom';
-import userService from 'services/user.service';
-import { withWidget } from 'shared/hooks/withWidget';
+import userService from '@/services/user.service';
+import { withWidget } from '@/shared/hooks/withWidget';
 
 const ProfileSettingsPage: FC = () => {
   const [ loading, setLoading ] = useState(false);

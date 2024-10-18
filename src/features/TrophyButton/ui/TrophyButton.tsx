@@ -1,11 +1,11 @@
-import { Button } from 'shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { FC } from 'react';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './TrophyButton.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
 
 interface TrophyButtonProps {
   className?: string;

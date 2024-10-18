@@ -1,9 +1,8 @@
-import EmojiPicker, { Emoji } from 'emoji-picker-react';
 import { FC, useState } from 'react';
-import { UserComment, UserReaction } from '@stud-log/news-types/models';
+import { UserComment } from '@stud-log/news-types/models';
 
-import ChatIcon from 'shared/assets/img/icons/chatbubble.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import ChatIcon from '@/shared/assets/img/icons/chatbubble.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ChatBubble.module.scss';
 
 interface ReactionProps {

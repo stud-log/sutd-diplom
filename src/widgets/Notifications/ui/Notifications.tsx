@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $api } from 'shared/http/host';
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import BellIcon from 'shared/assets/img/icons/bell.svg';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import BellIcon from '@/shared/assets/img/icons/bell.svg?react';
 import { FC } from 'react';
 import { NotificationsList } from '../components/NotificationsList';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
 import { UserNotification } from '@stud-log/news-types/models';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Notifications.module.scss';
 import { notificationsActions } from '../model/slice';
-import { useOutsideClick } from 'shared/hooks/useClickOutside';
-import userService from 'services/user.service';
+import { useOutsideClick } from '@/shared/hooks/useClickOutside';
+import userService from '@/services/user.service';
 
 interface NotificationsProps {
   className?: string;

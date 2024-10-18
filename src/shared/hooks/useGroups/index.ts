@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { $api } from "shared/http/host";
-import { DefaultOptionType } from "shared/ui/Select";
+import { $api } from "@/shared/http/host";
+import { DefaultOptionType } from "@/shared/ui/Select";
 import { Group } from "@stud-log/news-types/models";
 
 function useGroups() {

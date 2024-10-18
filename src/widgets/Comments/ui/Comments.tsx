@@ -1,20 +1,15 @@
 import { FC, useRef, useState } from 'react';
 import { Form, Formik } from 'formik';
 
-import { Button } from 'shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { Comment } from '../components/Comment/Comment';
-import { Input } from 'shared/ui/Input';
-import { Reactions } from 'features/Reactions';
-import { UploadInput } from 'shared/ui/UploadInput/ui/UploadInput';
-import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
+import { Input } from '@/shared/ui/Input';
 import { UserComment } from '@stud-log/news-types/models';
-import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Comments.module.scss';
-import { formatDate } from '../helpers';
 import { mutate as globalMutate } from 'swr';
-import postService from 'services/post.service';
-import userService from 'services/user.service';
+import postService from '@/services/post.service';
+import userService from '@/services/user.service';
 
 interface CommentsProps {
   className?: string;

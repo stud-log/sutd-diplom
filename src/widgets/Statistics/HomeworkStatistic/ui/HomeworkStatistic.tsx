@@ -1,8 +1,8 @@
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkStatistic.module.scss';
 
 interface HomeworkStatisticProps {
@@ -37,12 +37,12 @@ export const HomeworkStatistic: FC<HomeworkStatisticProps> = ({ className }) => 
         </div>
         <div className={cls.tumbsWrapper}>
           <div className={classNames(cls.tumb, {}, [ cls.unTaken ])} style={{ height: getPercent(hwStats.unTaken, hwStats.total) }}>{hwStats.unTaken}</div>
-          <div className={classNames(cls.tumb, {}, [ cls.passed ])} style={{ height: getPercent(hwStats.passed, hwStats.total) }}>{hwStats.passed}</div>
           <div className={classNames(cls.tumb, {}, [ cls.inProgress ])} style={{ height: getPercent(hwStats.inProgress + hwStats.feedback, hwStats.total) }}>{hwStats.inProgress + hwStats.feedback}</div>
+          <div className={classNames(cls.tumb, {}, [ cls.passed ])} style={{ height: getPercent(hwStats.passed, hwStats.total) }}>{hwStats.passed}</div>
         </div>
         <div className={cls.legend}>
-          <div className={classNames(cls.legendItem, {}, [ cls.inProgressLegend ])}>В процессе</div>
           <div className={classNames(cls.legendItem, {}, [ cls.unTakenLegend ])}>Не начато</div>
+          <div className={classNames(cls.legendItem, {}, [ cls.inProgressLegend ])}>В процессе</div>
           <div className={classNames(cls.legendItem, {}, [ cls.passedLegend ])}>Сделано</div>
         </div>
       </div>}

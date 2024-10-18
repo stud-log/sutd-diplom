@@ -1,4 +1,4 @@
-import { Button } from 'shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { FC } from 'react';
 import { Modal } from 'antd';
 import { ModalConfig } from '../config/type';

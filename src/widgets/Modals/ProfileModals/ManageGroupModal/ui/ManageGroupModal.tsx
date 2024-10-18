@@ -1,31 +1,21 @@
-import { Checkbox, DatePicker, Modal } from 'antd';
+import { Checkbox, Modal } from 'antd';
 import { FC, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
-import CloseIcon from 'shared/assets/img/icons/x-close.svg';
-import { GetEntity } from '@stud-log/news-types/server/post.response';
-import { Input } from 'shared/ui/Input';
-import { RangePicker } from 'shared/ui/DatePicker/RangePicker/RangePicker';
-import { RichEditor } from 'shared/ui/RichEditor';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { Select } from 'shared/ui/Select';
-import { UploadInput } from 'shared/ui/UploadInput/ui/UploadInput';
-import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
+import CloseIcon from '@/shared/assets/img/icons/x-close.svg?react';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
 import { User } from '@stud-log/news-types/models';
 import { UserStatus } from '@stud-log/news-types/enums';
-import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { UserWithAvatar } from '@/shared/ui/UserWithAvatar';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ManageGroupModal.module.scss';
-import groupService from 'services/group.service';
+import groupService from '@/services/group.service';
 import { manageGroupModalActions } from '../slice';
-import modalCls from '../../../Modals.module.scss';
-import postService from 'services/post.service';
-import { truncate } from 'shared/lib/helpers/truncateWords';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
 
 interface ManageGroupModalProps {
   className?: string;

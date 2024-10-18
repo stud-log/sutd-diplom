@@ -1,5 +1,5 @@
 import moment from "moment";
-import { pluralize } from "shared/lib/helpers/dates";
+import { pluralize } from "@/shared/lib/helpers/dates";
 
 export function formatDate(dateString:string) {
   const now = moment();

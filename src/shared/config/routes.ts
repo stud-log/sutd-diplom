@@ -1,17 +1,17 @@
 import React, { FC, LazyExoticComponent, ReactElement } from 'react';
 
-import MainPageIcon from 'shared/assets/img/menu/news.svg';
-import SchedulePageIcon from 'shared/assets/img/menu/schedule.svg';
-import TaskPageIcon from 'shared/assets/img/menu/hw.svg';
+import MainPageIcon from '@/shared/assets/img/menu/news.svg?react';
+import SchedulePageIcon from '@/shared/assets/img/menu/schedule.svg?react';
+import TaskPageIcon from '@/shared/assets/img/menu/hw.svg?react';
 
-const MainPage = React.lazy(() => import('pages/MainPage'));
-const ProfilePage = React.lazy(() => import('pages/ProfilePage'));
-const AchievementsPage = React.lazy(() => import('pages/AchievementsPage'));
-const ProfileSettingsPage = React.lazy(() => import('pages/ProfileSettingsPage'));
-const TaskPage = React.lazy(() => import('pages/TaskPage'));
-const SingleTaskPage = React.lazy(() => import('pages/SingleTaskPage'));
-const SingleNewsPage = React.lazy(() => import('pages/SingleNewsPage'));
-const SchedulePage = React.lazy(() => import('pages/SchedulePage'));
+const MainPage = React.lazy(() => import('@/pages/MainPage'));
+const ProfilePage = React.lazy(() => import('@/pages/ProfilePage'));
+const AchievementsPage = React.lazy(() => import('@/pages/AchievementsPage'));
+const ProfileSettingsPage = React.lazy(() => import('@/pages/ProfileSettingsPage'));
+const TaskPage = React.lazy(() => import('@/pages/TaskPage'));
+const SingleTaskPage = React.lazy(() => import('@/pages/SingleTaskPage'));
+const SingleNewsPage = React.lazy(() => import('@/pages/SingleNewsPage'));
+const SchedulePage = React.lazy(() => import('@/pages/SchedulePage'));
 
 export interface IRoute {
   path: string;

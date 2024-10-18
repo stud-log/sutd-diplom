@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import FileIcon from 'shared/assets/img/icons/file.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import FileIcon from '@/shared/assets/img/icons/file.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './FileLabel.module.scss';
-import { pluralize } from 'shared/lib/helpers/dates';
+import { pluralize } from '@/shared/lib/helpers/dates';
 
 interface FileLabelProps {
   className?: string;

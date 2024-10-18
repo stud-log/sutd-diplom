@@ -23,13 +23,18 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "strictPropertyInitialization": false,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+    }
   },
   "include": [
     "src",
     "config",
-    "./webpack.config.ts",
+    "./vite.config.ts",
     ".eslintrc.js"
   ],
   "ts-node": {

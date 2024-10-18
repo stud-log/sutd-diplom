@@ -1,20 +1,20 @@
-import { ChatBubble } from 'features/ChatBubble';
+import { ChatBubble } from '@/features/ChatBubble';
 import { FC } from 'react';
-import { FavoriteBubble } from 'features/FavoriteBubble';
-import { FileLabel } from 'shared/ui/FileLabel';
+import { FavoriteBubble } from '@/features/FavoriteBubble';
+import { FileLabel } from '@/shared/ui/FileLabel';
 import { GetEntity } from '@stud-log/news-types/server/post.response';
 import { Interweave } from 'interweave';
 import { NewsLabel } from '../components/NewsLabel';
-import { Reactions } from 'features/Reactions';
-import { UserWithAvatar } from 'shared/ui/UserWithAvatar';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Reactions } from '@/features/Reactions';
+import { UserWithAvatar } from '@/shared/ui/UserWithAvatar';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './NewsCard.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
+import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
 import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
-import { pluralize } from 'shared/lib/helpers/dates';
-import { transform } from 'shared/lib/helpers/interweave';
-import { truncate } from 'shared/lib/helpers/truncateWords';
+import { pluralize } from '@/shared/lib/helpers/dates';
+import { transform } from '@/shared/lib/helpers/interweave';
+import { trimHtml } from '@/shared/lib/helpers/truncateWords';
 import { useNavigate } from 'react-router-dom';
 
 interface NewsCardProps extends GetEntity{
@@ -47,7 +47,7 @@ export const NewsCard: FC<NewsCardProps> = ({ className, ...record }) => {
         <img src={getStaticLink(news.coverImage)} alt="cover" />
       </div>}
       <div className={cls.content} >
-        <Interweave content={truncate.apply(news.content, [ 143, false ])} transform={transform} />
+        <Interweave content={trimHtml(news.content, 143)} transform={transform} />
       </div>
       <div className={cls.bottomInfo}>
         <div className={cls.controls}>

@@ -19,4 +19,5 @@ export interface FCExtendedProps {
   type: string;
   fullTitle: string;
   link: string;
+  desc: string;
 }

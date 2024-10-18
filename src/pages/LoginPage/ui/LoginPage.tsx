@@ -2,12 +2,12 @@ import { FC, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Button } from 'shared/ui/Button';
-import { Input } from 'shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 import { LoginDTO } from '@stud-log/news-types/dto';
-import LogoIcon from 'shared/assets/img/logo.svg';
+import LogoIcon from '@/shared/assets/img/logo.svg?react';
 import cls from './LoginPage.module.scss';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
 import { validationSchema } from '../config/yup';
 
 const initialValues: LoginDTO = {
@@ -28,7 +28,7 @@ const LoginPage: FC = () => {
           initialValues={initialValues}
           onSubmit={async (values) => {
             setLoading(true);
-            const result = await userService.login(values.email, values.password);
+            const result = await userService.login(values.email, values.password, 'student');
             setLoading(false);
             if(result == true) { navigate('/main'); }
           }}

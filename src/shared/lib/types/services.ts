@@ -24,3 +24,15 @@ export interface CreateNewTaskFromValues {
   taskId: number;
   parentId: number;
 }
+
+export interface CreateNewCustomActivity {
+  title: string;
+  description: string;
+  modalFiles: File[];
+  startDate: string;
+  endDate: string;
+  filesToDelete: number[];
+  activityId: number;
+  isPersonal: '0' | '1';
+  recordId: number;
+}

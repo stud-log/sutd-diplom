@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { $api } from "shared/http/host";
-import { DefaultOptionType } from "shared/ui/Select";
+import { $api } from "@/shared/http/host";
+import { DefaultOptionType } from "@/shared/ui/Select";
 import { Subject } from "@stud-log/news-types/models";
-import userService from "services/user.service";
 
 function useAllSubjects() {
   const [ subjects, setSubjects ] = useState<DefaultOptionType[]>([]);

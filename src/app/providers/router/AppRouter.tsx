@@ -1,9 +1,9 @@
 import { FC, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Page404 from 'pages/404Page/ui/404Page';
-import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
-import { routes } from 'shared/config/routes';
+import Page404 from '@/pages/404Page/ui/404Page';
+import { PageLoader } from '@/shared/ui/PageLoader/PageLoader';
+import { routes } from '@/shared/config/routes';
 
 export const AppRouter: FC = () => {
 

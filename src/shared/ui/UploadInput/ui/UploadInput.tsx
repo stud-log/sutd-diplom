@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, ReactNode, useState } from 'react';
-import { Field, FieldProps, useField, useFormikContext } from 'formik';
+import { useField, useFormikContext } from 'formik';
 
-import FileIcon from 'shared/assets/img/icons/file.svg';
-import ImageIcon from 'shared/assets/img/icons/image.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import FileIcon from '@/shared/assets/img/icons/file.svg?react';
+import ImageIcon from '@/shared/assets/img/icons/image.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './UploadInput.module.scss';
 import { notification } from 'antd';
 
@@ -49,6 +49,7 @@ export const UploadInput: FC<UploadInputProps> = ({ className, children, require
         type='file'
         disabled={loading}
         required={required}
+        value=''
         className={classNames(cls.inputField, {}, [ inputClassName ])}
         multiple={multiple}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {

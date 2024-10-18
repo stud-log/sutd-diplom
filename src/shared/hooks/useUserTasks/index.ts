@@ -1,9 +1,8 @@
-import { Subject, UserTask } from "@stud-log/news-types/models";
+import { UserTask } from "@stud-log/news-types/models";
 import { useEffect, useState } from "react";
 
-import { $api } from "shared/http/host";
-import { DefaultOptionType } from "shared/ui/Select";
-import userService from "services/user.service";
+import { $api } from "@/shared/http/host";
+import { DefaultOptionType } from "@/shared/ui/Select";
 
 function useUserTasks() {
   const [ tasks, setTasks ] = useState<DefaultOptionType[]>([]);

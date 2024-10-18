@@ -1,8 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { Field, useFormikContext } from 'formik';
 
-import { RegDTO } from '@stud-log/news-types/dto/reg.dto';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './RadioInput.module.scss';
 
 interface IRadio {

@@ -4,6 +4,32 @@
 @import '../../shared/assets/fonts/fonts.css';
 @import './mixins';
 
+.less-sm-hidden {
+    @include lessThan(sm) {
+        display: none !important;
+    }
+}
+
+.less-xsm-hidden {
+    @include lessThan(xsm) {
+        display: none !important;
+    }
+}
+
+.more-sm-hidden {
+    @include moreThan(sm) {
+        display: none !important;
+    }
+}
+
+.more-xsm-hidden {
+    @include moreThan(xsm) {
+        display: none !important;
+    }
+}
+
+
+
 * {
     &::-webkit-scrollbar {
         width: 5px;
@@ -22,6 +48,13 @@ html {
     font-weight: var(--fw);
     font-size: var(--fz);
 }
+
+input {
+    @include lessThan(md) {
+        // to avoid zoom on mobile devices
+        font-size: 16px !important;
+    }
+  }
 
 body {
     background-color: var(--bg-main);
@@ -54,6 +87,14 @@ body {
     color: var(--black-translucent-subtitle);
 }
 
+// common classes
+.c-accent {
+    color: var(--accent);
+}
+
+.c-attention {
+    color: var(--attention);
+}
 
 /**
     CHANGES FOR ANTD STEPS COMPONENT
@@ -203,11 +244,22 @@ body {
         .ant-select {
             width: 100%;
             text-align: center;
+
+            .ant-select-selection-item {
+                padding: 0 !important;
+            }
+        }
+
+        .mobile-select-arrow-centered{
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .ant-select-arrow{
-    display: none;
+    display: none;  
 }
 
         &.prefixIcon{
@@ -762,4 +814,21 @@ body {
   /* antd notifications */
   .ant-notification-notice-icon {
     top: 25px;
+  }
+
+  /* interweave */
+
+  .markup-replacement{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: .5em;
+    border: 1px solid  var(--black-translucent-subtitle2);
+    border-radius: 4px;
+    padding: 0 3px;
+    padding-bottom: 1px;
+    width: fit-content;
+    box-sizing: border-box;
+    font-size: var(--fz-s);
+    line-height: 1;
   }

@@ -1,12 +1,12 @@
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { Achievement } from '@stud-log/news-types/models';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './AchievementsList.module.scss';
-import { getStaticLink } from 'shared/lib/helpers/getStaticLink';
-import { pluralize } from 'shared/lib/helpers/dates';
+import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
+import { pluralize } from '@/shared/lib/helpers/dates';
 
 interface AchievementsListProps {
   className?: string;

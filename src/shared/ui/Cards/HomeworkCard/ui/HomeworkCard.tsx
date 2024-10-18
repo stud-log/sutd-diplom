@@ -1,19 +1,19 @@
 import 'moment/locale/ru';
 
-import { ChatBubble } from 'features/ChatBubble';
-import { Deadline } from 'features/Deadline';
+import { ChatBubble } from '@/features/ChatBubble';
+import { Deadline } from '@/features/Deadline';
 import { FC } from 'react';
-import { FavoriteBubble } from 'features/FavoriteBubble';
+import { FavoriteBubble } from '@/features/FavoriteBubble';
 import { GetEntity } from '@stud-log/news-types/server/post.response';
 import { Interweave } from 'interweave';
-import { Reactions } from 'features/Reactions';
-import { TaskStatusLabel } from 'shared/ui/TaskStatusLabel';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Reactions } from '@/features/Reactions';
+import { TaskStatusLabel } from '@/shared/ui/TaskStatusLabel';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkCard.module.scss';
 import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
-import { transform } from 'shared/lib/helpers/interweave';
-import { truncate } from 'shared/lib/helpers/truncateWords';
+import { transform } from '@/shared/lib/helpers/interweave';
+import { trimHtml, truncate } from '@/shared/lib/helpers/truncateWords';
 import { useNavigate } from 'react-router-dom';
 
 interface HomeworkCardProps extends GetEntity {
@@ -22,12 +22,12 @@ interface HomeworkCardProps extends GetEntity {
 
 export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) => {
   const hw = record.homework!;
-  const startDate = moment(hw.createdAt).format('D MMM YYYY').replace('.', '');
+  const startDate = moment(hw.createdAt).format('D MMM').replace('.', '');
   
   const navigate = useNavigate();
   const goToTask = () => navigate(`/homework/${hw.id}`);
   const globMutate = () => globalMutate((key: string) => key.includes('api/record'));
-
+  console.log(truncate.apply(hw.content, [ 90, false ]));
   return (
     <div className={classNames(cls.HomeworkCard, {}, [ className ])} >
       <div className={cls.block}>
@@ -37,10 +37,10 @@ export const HomeworkCard: FC<HomeworkCardProps> = ({ className, ...record }) =>
             <div className={cls.status}><TaskStatusLabel recordId={record.id} status={record.meWorked.at(0)?.status}/></div>
           </div>
         </div>
-        <div className={cls.subject} onClick={goToTask}>{truncate.apply(hw.subject.title, [ 27, false ])}</div>
+        <div className={cls.subject} onClick={goToTask}>{truncate.apply(hw.subject.title, [ 24, false ])}</div>
         <div className={cls.title} onClick={goToTask}>{truncate.apply(hw.title, [ 45, false ])}</div>
         <div className={cls.content} onClick={goToTask}>
-          <Interweave content={truncate.apply(hw.content, [ 92, false ])} transform={transform} />
+          <Interweave content={trimHtml(hw.content, 90)} transform={transform} />
         </div>
         <Deadline onClick={goToTask} startDate={hw.startDate} endDate={hw.endDate} />
         <div className={cls.controls}>

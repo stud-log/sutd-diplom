@@ -1,16 +1,20 @@
 import { FC, useRef } from 'react';
 import { FieldArray, FieldArrayRenderProps, useFormikContext } from 'formik';
 
-import CrossIcon from 'shared/assets/img/icons/x-close-red.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import CrossIcon from '@/shared/assets/img/icons/x-close-red.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './UploadedFilesControl.module.scss';
-import { getFilenameAndExtension } from 'shared/lib/helpers/getFileNameAndExt';
+import { getFilenameAndExtension } from '@/shared/lib/helpers/getFileNameAndExt';
 
 interface UploadedFilesControlProps {
   className?: string;
   name: string;
 }
 
+/**
+ *
+ * Formik initialValues must contain `filesToDelete as number[]`
+ */
 export const UploadedFilesControl: FC<UploadedFilesControlProps> = ({ className, name }) => {
   const { values, setFieldValue } = useFormikContext<{filesToDelete: number[]}>();
 

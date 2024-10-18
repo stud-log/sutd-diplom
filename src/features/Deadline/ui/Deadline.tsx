@@ -1,8 +1,8 @@
-import ClockIcon from 'shared/assets/img/icons/clock.svg';
 import { FC } from 'react';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import ClockIcon from '@/shared/assets/img/icons/clock.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Deadline.module.scss';
-import { getRemainDeadline } from 'shared/lib/helpers/getRemainDeadline';
+import { getRemainDeadline } from '@/shared/lib/helpers/getRemainDeadline';
 import moment from 'moment';
 
 interface DeadlineProps {

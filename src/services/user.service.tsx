@@ -1,19 +1,17 @@
 import { Achievement, Group, User, UserNotification } from "@stud-log/news-types/models";
 import { ErrorResponse, StudlogEvent, UserAfterLoginOrRegistrationResponse } from "@stud-log/news-types/server";
 import axios, { AxiosError } from 'axios';
-import { message, notification } from 'antd';
+import { notification } from 'antd';
 
-import { $api } from 'shared/http/host';
-import AppHistory from "shared/config/history";
-import NotificationIcon from 'shared/assets/img/icons/bell.svg';
+import { $api } from '@/shared/http/host';
+import AppHistory from "@/shared/config/history";
+import NotificationIcon from '@/shared/assets/img/icons/bell.svg?react';
 import { RegDTO } from "@stud-log/news-types/dto/reg.dto";
 import { ResetPasswordDTO } from "@stud-log/news-types/dto";
-import { getStaticLink } from "shared/lib/helpers/getStaticLink";
-import { mutate as globalMutate } from "swr";
-import { notificationsActions } from "widgets/Notifications/model/slice";
+import { notificationsActions } from "@/widgets/Notifications/model/slice";
 import socketService from "./socket.service";
-import { store } from "app/providers/ReduxProvider/ui/ReduxProvider";
-import { trophyActions } from "features/TrophyButton/model/slice";
+import { store } from "@/app/providers/ReduxProvider/ui/ReduxProvider";
+import { trophyActions } from "@/features/TrophyButton/model/slice";
 
 class UserService {
 
@@ -39,6 +37,10 @@ class UserService {
     
   }
 
+  getUserPreferredName (user: User) {
+    return user.settings.displayingName === 'fio' ? `${user.firstName} ${user.lastName}` : user.nickname;
+  }
+
   getUser () {
     const localUser = localStorage.getItem('user');
     return JSON.parse(localUser as string) as User;
@@ -61,9 +63,9 @@ class UserService {
     }));
   }
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string, role: 'teacher' | 'student') {
     try {
-      const response = await $api.post<UserAfterLoginOrRegistrationResponse>('/api/users/login', { email, password });
+      const response = await $api.post<UserAfterLoginOrRegistrationResponse>('/api/users/login', { email, password, role });
       localStorage.setItem('token', response.data.accessToken);
       this.saveLocalUser(response.data.user);
       notification.success({
@@ -128,7 +130,7 @@ class UserService {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('guide');
-      window.location.href = `${process.env.THIS_URL}/login`;
+      window.location.href = `${import.meta.env.VITE_APP_THIS_URL}/login`;
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
       notification.warning({
@@ -158,14 +160,14 @@ class UserService {
 
   async checkAuth() {
     try {
-      const response = await axios.get<UserAfterLoginOrRegistrationResponse>(`${process.env.API_URL}/api/users/refresh`, { withCredentials: true });
+      const response = await axios.get<UserAfterLoginOrRegistrationResponse>(`${import.meta.env.VITE_APP_API_URL}/api/users/refresh`, { withCredentials: true });
       localStorage.setItem('token', response.data.accessToken);
       this.saveLocalUser(response.data.user);
       return true;
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>;
       if(error.response && error.response.status === 401) {
-        window.location.href = `${process.env.THIS_URL}/login`;
+        window.location.href = `${import.meta.env.VITE_APP_THIS_URL}/login`;
       }
     }
   }

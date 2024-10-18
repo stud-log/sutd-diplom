@@ -1,10 +1,10 @@
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { FC } from 'react';
-import { ScrumTable } from 'widgets/ScrumTable';
+import { ScrumTable } from '@/widgets/ScrumTable';
 import { UserTask } from '@stud-log/news-types/models';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './TodoTab.module.scss';
 
 interface TodoTabProps {

@@ -4,25 +4,19 @@ import { InitialValues, validationSchema } from '../types';
 import { useDispatch, useSelector } from 'react-redux';
 import useSWR, { SWRResponse, mutate as globalMutate } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
-import CloseIcon from 'shared/assets/img/icons/x-close.svg';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
+import CloseIcon from '@/shared/assets/img/icons/x-close.svg?react';
 import { EditableWeekday } from '../components/EditableWeekday/EditableWeekday';
-import { Input } from 'shared/ui/Input';
 import { Modal } from 'antd';
-import { RangePicker } from 'shared/ui/DatePicker/RangePicker/RangePicker';
-import { RichEditor } from 'shared/ui/RichEditor';
-import { RootStateSchema } from 'app/providers/ReduxProvider';
-import { Select } from 'shared/ui/Select';
+import { RootStateSchema } from '@/app/providers/ReduxProvider';
 import { Timetable } from '@stud-log/news-types/models';
 import { TimetableWeekdays } from '@stud-log/news-types/enums';
-import { UploadInput } from 'shared/ui/UploadInput/ui/UploadInput';
-import { UploadedFilesControl } from 'shared/ui/UploadInput/components/UploadedFilesControl/UploadedFilesControl';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ScheduleModal.module.scss';
 import { scheduleModalActions } from '../slice';
-import scheduleService from 'services/schedule.service';
-import userService from 'services/user.service';
+import scheduleService from '@/services/schedule.service';
+import userService from '@/services/user.service';
 
 interface ScheduleModalProps {
   className?: string;

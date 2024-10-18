@@ -3,17 +3,17 @@ import { Form, Formik } from 'formik';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { validationSchema1, validationSchema2 } from '../config/yup';
 
-import { Button } from 'shared/ui/Button';
-import { InfoModal } from 'widgets/Modals/InfoModal';
-import { Input } from 'shared/ui/Input';
-import LogoIcon from 'shared/assets/img/logo.svg';
-import { ModalConfig } from 'widgets/Modals/InfoModal/config/type';
-import ModalIcon from 'shared/assets/img/modalIcon.svg';
+import { Button } from '@/shared/ui/Button';
+import { InfoModal } from '@/widgets/Modals/InfoModal';
+import { Input } from '@/shared/ui/Input';
+import LogoIcon from '@/shared/assets/img/logo.svg?react';
+import ModalIcon from '@/shared/assets/img/modalIcon.svg?react';
+import SuccessIcon from '@/shared/assets/img/regsuccess.svg?react';
+import { ModalConfig } from '@/widgets/Modals/InfoModal/config/type';
 import { ResetPasswordDTO } from '@stud-log/news-types/dto';
-import SuccessIcon from 'shared/assets/img/regsuccess.svg';
 import cls from './RecoveryPage.module.scss';
-import { getEmailSiteUrl } from 'shared/lib/helpers/getEmailSiteUrl/getEmailSiteUrl';
-import userService from 'services/user.service';
+import { getEmailSiteUrl } from '@/shared/lib/helpers/getEmailSiteUrl/getEmailSiteUrl';
+import userService from '@/services/user.service';
 
 const RequestForm: FC = () => {
   const [ loading, setLoading ] = useState(false);
@@ -54,7 +54,7 @@ const RequestForm: FC = () => {
                   <Input name='email' label='E-mail' className={cls.field} />
                   <Button onClick={submitForm} size='lg' className={cls.submitBtn} loading={loading}>Восстановить</Button>
                   <div className={cls.navigation}>
-                    <a href={`mailto:${process.env.EMAIL}`}>Написать в поддержку</a>
+                    <a href={`mailto:${import.meta.env.VITE_APP_EMAIL}`}>Написать в поддержку</a>
                     <Link to='/login'>Войти</Link>
                   </div>
                 </Form>
@@ -111,7 +111,7 @@ const RecoveryForm: FC<{userId: string; recoveryId: string; hash: string}> = ({ 
                   <Input name='passwordConfirmation' type='password' label='Повторите новый пароль' className={cls.field} required/>
                   <Button onClick={submitForm} size='lg' className={cls.submitBtn} loading={loading}>Сохранить</Button>
                   <div className={cls.navigation}>
-                    <a href={`mailto:${process.env.EMAIL}`}>Написать в поддержку</a>
+                    <a href={`mailto:${import.meta.env.VITE_APP_EMAIL}`}>Написать в поддержку</a>
                     <Link to='/login'>Войти</Link>
                   </div>
                 </Form>

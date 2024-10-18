@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import LogoIcon from 'shared/assets/img/logo.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import LogoIcon from '@/shared/assets/img/logo.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './PageLoader.module.scss';
 
 interface PageLoaderProps {

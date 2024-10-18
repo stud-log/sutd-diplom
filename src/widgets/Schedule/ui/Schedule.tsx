@@ -1,16 +1,16 @@
 import { FC, useEffect, useRef } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
 import { CalendarActivityType } from '@stud-log/news-types/enums';
 import { GetSchedule } from '@stud-log/news-types/server/schedule.response';
-import { Layout } from 'shared/ui/Layout';
-import { ScheduleCard } from 'shared/ui/Cards/ScheduleCard';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { Layout } from '@/shared/ui/Layout';
+import { ScheduleCard } from '@/shared/ui/Cards/ScheduleCard';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './Schedule.module.scss';
 import { groupByDay } from '../helpers';
 import moment from 'moment';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
 
 interface ScheduleProps {
   className?: string;
@@ -32,7 +32,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
   useEffect(() => {
     
     if(schedule) {
-   
+     
       const today = moment().format('ddd');
       const todayElement = document.getElementById(today);
       if(!scheduleContainerRef.current) return;
@@ -52,7 +52,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
   const weekParity = moment().week() % 2;
 
   const isMobile = window.innerWidth <= 576;
-  
+
   if(isMobile) {
     return <div>
       {Object.keys(groupedData).map(day => (
@@ -65,6 +65,8 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
             {groupedData[day].map((item, idx) => (
               <ScheduleCard
                 key={idx}
+                // TODO: wtf??? resolve types!
+                record={item as any}
                 startDate={item.calendar.startDate}
                 endDate={item.calendar.endDate}
                 type={item.calendar.activityType}
@@ -97,6 +99,7 @@ export const Schedule: FC<ScheduleProps> = ({ className }) => {
                 {groupedData[day].map((item, idx) => (
                   <ScheduleCard
                     key={idx}
+                    record={item as any}
                     startDate={item.calendar.startDate}
                     endDate={item.calendar.endDate}
                     type={item.calendar.activityType}

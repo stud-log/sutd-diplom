@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { TimetableTypes, TimetableWeekparities } from '@stud-log/news-types/enums';
+import { TimetableWeekparities } from '@stud-log/news-types/enums';
 
 import { Timetable } from '@stud-log/news-types/models';
 

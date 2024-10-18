@@ -1,15 +1,15 @@
 import { FC, useState } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { DeadlineSort } from 'features/DedlineSort';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { DeadlineSort } from '@/features/DedlineSort';
 import { GetAllEntities } from '@stud-log/news-types/server/post.response';
-import { HomeworkCard } from 'shared/ui/Cards/HomeworkCard';
-import { Layout } from 'shared/ui/Layout';
-import { Schedule } from 'widgets/Schedule';
-import { SubjectFilter } from 'features/SubjectFilter';
+import { HomeworkCard } from '@/shared/ui/Cards/HomeworkCard';
+import { Layout } from '@/shared/ui/Layout';
+import { Schedule } from '@/widgets/Schedule';
+import { SubjectFilter } from '@/features/SubjectFilter';
 import cls from './TaskPage.module.scss';
-import { withWidget } from 'shared/hooks/withWidget';
+import { withWidget } from '@/shared/hooks/withWidget';
 
 const TaskPage: FC = () => {
   const [ queryOptions, setQueryOptions ] = useState({ page: 1, limit: 25, subjectId: -1, publishDateSort: 'DESC', deadlineDateSort: 'none' });

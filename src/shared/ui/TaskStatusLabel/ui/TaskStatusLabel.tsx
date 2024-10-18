@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { HomeworksStatusRU } from 'shared/lib/types/homework';
+import { HomeworksStatusRU } from '@/shared/lib/types/homework';
 import { UserTaskStatus } from '@stud-log/news-types/enums';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './TaskStatusLabel.module.scss';
 
 interface TaskStatusLabelProps {

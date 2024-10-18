@@ -1,9 +1,9 @@
-import { Clock } from 'widgets/Clock';
+import { Clock } from '@/widgets/Clock';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from 'shared/assets/img/logo.svg';
-import { UserProfile } from 'widgets/UserProfile';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import Logo from '@/shared/assets/img/logo.svg?react';
+import { UserProfile } from '@/widgets/UserProfile';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './MobileHeader.module.scss';
 
 interface MobileHeaderProps {

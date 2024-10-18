@@ -1,6 +1,5 @@
 export function downloadFile(url: string, filename: string, ext: string){
-  // Замените URL на путь к вашему файлу
-  const fileUrl = process.env.API_URL + '/static' + url.replaceAll('\\', '/');
+  const fileUrl = import.meta.env.VITE_APP_API_URL + '/static' + url.replaceAll('\\', '/');
     
   // Создаем ссылку на скачивание
   const link = document.createElement('a');

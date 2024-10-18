@@ -1,28 +1,30 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import useSWR, { SWRResponse } from 'swr';
 
-import { $apiGet } from 'shared/http/helpers/apiGet';
-import { Button } from 'shared/ui/Button';
+import { $apiGet } from '@/shared/http/helpers/apiGet';
+import { Button } from '@/shared/ui/Button';
 import { FCEvent } from '../types';
 import FullCalendar from '@fullcalendar/react';
 import { GetSchedule } from '@stud-log/news-types/server/schedule.response';
-import { Layout } from 'shared/ui/Layout';
-import { Schedule } from 'widgets/Schedule';
+import { Layout } from '@/shared/ui/Layout';
+import { Schedule } from '@/widgets/Schedule';
 import { Segmented } from 'antd';
 import { TooltipTemplate } from '../helpers/tooltip';
 import { ViewMountArg } from '@fullcalendar/core';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './SchedulePage.module.scss';
 import { constructCalendar } from '../helpers';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from '@fullcalendar/list';
 import moment from 'moment';
 import ruLocalce from '@fullcalendar/core/locales/ru';
-import { scheduleModalActions } from 'widgets/Modals/ProfileModals/ScheduleModal/slice';
+import { scheduleModalActions } from '@/widgets/Modals/ProfileModals/ScheduleModal/slice';
 import timeGridPlugin from "@fullcalendar/timegrid";
 import tippy from 'tippy.js';
 import { useDispatch } from 'react-redux';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
+import { store } from '@/app/providers/ReduxProvider/ui/ReduxProvider';
+import { customActivityModalActions } from '@/widgets/Modals/CustomActivityModal/slice';
 
 const SchedulePage: FC = () => {
   const { group, role } = userService.getUser();
@@ -75,8 +77,9 @@ const SchedulePage: FC = () => {
     }
   };
 
-  if(window.innerWidth <= 576) {
+  const isMobile = window.innerWidth <= 576;
 
+  if(isMobile) {
     return <Layout.Base className={cls.SchedulePage}>
       <Layout.BaseHeader slots={{
         start: <h1 className={cls.header}>
@@ -140,24 +143,30 @@ const SchedulePage: FC = () => {
               // const _isActive = !args.isFuture && !args.isPast; // think is working too
               const myEvent = args.event._def.extendedProps as unknown as FCEvent['info'];
               let extraClass = '';
-              if (myEvent.isCustom) {extraClass = cls.customEvent;}
               if (myEvent.isDO) {extraClass = cls.doEvent;}
               if (myEvent.isActiveNow) {extraClass = cls.activeEvent;}
               if (myEvent.weekparity == 'even' && weekParity == 1) {extraClass = cls.notEqualTodayWeekparity;}
               if (myEvent.weekparity == 'odd' && weekParity == 2) {extraClass = cls.notEqualTodayWeekparity;}
+              if (myEvent.isCustom) {extraClass = cls.customEvent;}
               
               return [ extraClass, cls.commonEventClass ];
             }}
             nowIndicator={true}
             allDaySlot={true} //отключаем поле All Day
             eventDidMount={({ el, event }) => {
+              const extraProps = event._def.extendedProps as unknown as FCEvent['info'];
               const eventDesc = {
                 title: event._def.title,
                 date: moment(event.start).format('DD.MM.YYYY'),
-                start: moment(event.start).format('HH:mm'),
-                end: moment(event.end).format('HH:mm'),
+                start: !extraProps.isCustom ? moment(event.start).format('HH:mm') : moment(event.start).format('DD.MM HH:mm'),
+                end: !extraProps.isCustom ? moment(event.end).format('HH:mm') : moment(event.end).format('DD.MM HH:mm'),
                 info: event._def.extendedProps,
               } as FCEvent;
+              const customLinkEvent = (e: any) => {
+                e.preventDefault();
+                store.dispatch(customActivityModalActions.openModal({ recordId: eventDesc.info.recordId }));
+              };
+
               tippy(el, {
                 content: TooltipTemplate(eventDesc),
                 allowHTML: true,
@@ -168,9 +177,14 @@ const SchedulePage: FC = () => {
                 offset: [ 0, 5 ],
                 duration: [ 250, 100 ],
                 appendTo: () => document.body,
-                
+                onMount: instance => {
+                  document.getElementById(`custom-${eventDesc.info.recordId}`)?.addEventListener('click', customLinkEvent);
+                },
+                onDestroy: instance => {
+                  document.getElementById(`custom-${eventDesc.info.recordId}`)?.removeEventListener('click', customLinkEvent);
+                },
               });
-
+              
             }}
 
           />

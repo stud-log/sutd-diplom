@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import TimerIcon from 'shared/assets/img/timer.svg';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import TimerIcon from 'shared/assets/img/timer.svg?react';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './ActivityTimer.module.scss';
 
 interface ActivityTimerProps {

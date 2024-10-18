@@ -1,23 +1,25 @@
 import { FC, useEffect, useState } from 'react';
 
-import { AddAndEditCustomTodo } from 'widgets/Modals/ProfileModals/AddAndEditCustomTodo';
-import { AddAndEditModal } from 'widgets/Modals/ProfileModals/AddAndEditModal';
-import AppHistory from 'shared/config/history';
-import { AppLoader } from 'shared/ui/AppLoader/AppLoader';
+import { AddAndEditCustomTodo } from '@/widgets/Modals/ProfileModals/AddAndEditCustomTodo';
+import { AddAndEditModal } from '@/widgets/Modals/ProfileModals/AddAndEditModal';
+import AppHistory from '@/shared/config/history';
+import { AppLoader } from '@/shared/ui/AppLoader/AppLoader';
 import { AppRouter } from './providers/router/AppRouter';
-import { GuideModal } from 'widgets/Modals/GuideModal';
-import { HomeworkTaskModal } from 'widgets/Modals/HomeworkTaskModal';
-import { Layout } from 'shared/ui/Layout';
-import { ManageGroupModal } from 'widgets/Modals/ProfileModals/ManageGroupModal';
-import { MobileHeader } from 'widgets/MobileHeader';
-import { MobileMenu } from 'widgets/MobileMenu';
-import { ScheduleModal } from 'widgets/Modals/ProfileModals/ScheduleModal';
-import { Sidebar } from 'widgets/Sidebar';
-import { guideModalActions } from 'widgets/Modals/GuideModal/slice';
-import socketService from 'services/socket.service'; // here we already initialized socket
+import { GuideModal } from '@/widgets/Modals/GuideModal';
+import { HomeworkTaskModal } from '@/widgets/Modals/HomeworkTaskModal';
+import { Layout } from '@/shared/ui/Layout';
+import { ManageGroupModal } from '@/widgets/Modals/ProfileModals/ManageGroupModal';
+import { MobileHeader } from '@/widgets/MobileHeader';
+import { MobileMenu } from '@/widgets/MobileMenu';
+import { ScheduleModal } from '@/widgets/Modals/ProfileModals/ScheduleModal';
+import { Sidebar } from '@/widgets/Sidebar';
+import { guideModalActions } from '@/widgets/Modals/GuideModal/slice';
+import socketService from '@/services/socket.service'; // here we already initialized socket
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import userService from 'services/user.service';
+import userService from '@/services/user.service';
+import { AddAndEditCustomActivity } from '@/widgets/Modals/ProfileModals/AddAndEditCustomActivity';
+import { CustomActivityModal } from '@/widgets/Modals/CustomActivityModal';
 
 export const App: FC = () => {
   const [ isReady, setIsReady ] = useState(false);
@@ -68,6 +70,8 @@ export const App: FC = () => {
       <ManageGroupModal />
       <HomeworkTaskModal />
       <AddAndEditCustomTodo />
+      <AddAndEditCustomActivity />
+      <CustomActivityModal />
       
     </>
   );

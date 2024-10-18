@@ -4,22 +4,22 @@ import { Form, Formik } from 'formik';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Steps, message, notification } from 'antd';
 
-import ArrowLeft from 'shared/assets/img/arrow-left.svg';
-import { Button } from 'shared/ui/Button';
-import { InfoModal } from 'widgets/Modals/InfoModal';
-import { Input } from 'shared/ui/Input';
-import LogoIcon from 'shared/assets/img/logo.svg';
-import { ModalConfig } from 'widgets/Modals/InfoModal/config/type';
-import { PhoneInput } from 'shared/ui/PhoneInput';
-import { RadioInput } from 'shared/ui/RadioInput';
+import ArrowLeft from '@/shared/assets/img/arrow-left.svg?react';
+import { Button } from '@/shared/ui/Button';
+import { InfoModal } from '@/widgets/Modals/InfoModal';
+import { Input } from '@/shared/ui/Input';
+import LogoIcon from '@/shared/assets/img/logo.svg?react';
+import { ModalConfig } from '@/widgets/Modals/InfoModal/config/type';
+import { PhoneInput } from '@/shared/ui/PhoneInput';
+import { RadioInput } from '@/shared/ui/RadioInput';
 import { RegDTO } from '@stud-log/news-types/dto/reg.dto';
-import RegSuccessIcon from 'shared/assets/img/regsuccess.svg';
-import { Select } from 'shared/ui/Select';
-import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import RegSuccessIcon from '@/shared/assets/img/regsuccess.svg?react';
+import { Select } from '@/shared/ui/Select';
+import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './RegistrationPage.module.scss';
 import { steps } from '../config/steps';
-import useGroups from 'shared/hooks/useGroups';
-import userService from 'services/user.service';
+import useGroups from '@/shared/hooks/useGroups';
+import userService from '@/services/user.service';
 import { validationSchema } from '../config/yup';
 
 const RegistrationPage: FC = () => {
@@ -86,7 +86,6 @@ const RegistrationPage: FC = () => {
                 <Form>
                   <Steps current={currentStep} items={steps} className={classNames('mySteps', {}, [ cls.steps ])}/>
                   <h1 className={classNames(cls.header, { [cls.headerActive]: currentStep !== 0 })} onClick={goBackStep}>{currentStep !== 0 ? <ArrowLeft /> : ''}Регистрация</h1>
-                  {/* <Form inner> */}
                   {
                     currentStep == 0 && (
                       <>
