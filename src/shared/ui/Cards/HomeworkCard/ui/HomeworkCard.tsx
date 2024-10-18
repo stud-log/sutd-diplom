@@ -12,8 +12,8 @@ import { classNames } from '@/shared/lib/helpers/classNames/classNames';
 import cls from './HomeworkCard.module.scss';
 import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
-import { transform } from 'shared/lib/helpers/interweave';
-import { trimHtml, truncate } from 'shared/lib/helpers/truncateWords';
+import { transform } from '@/shared/lib/helpers/interweave';
+import { trimHtml, truncate } from '@/shared/lib/helpers/truncateWords';
 import { useNavigate } from 'react-router-dom';
 
 interface HomeworkCardProps extends GetEntity {
