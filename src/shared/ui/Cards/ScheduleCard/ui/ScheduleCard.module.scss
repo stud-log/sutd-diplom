@@ -13,14 +13,16 @@ $border-radius: 10px;
     cursor: pointer;
 
     &.open {
+        border-bottom-color: transparent;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
+        gap: 10px;
     }
 }
 
 .state {
+    // TODO: replace with vars
     &.DO {
-        // TODO: replace with vars
         border: 1px solid transparent;
         color: #FF6F00;
         background: #FFF8E1;
@@ -81,8 +83,12 @@ $border-radius: 10px;
 .extraContentInner{
     display: flex;
     flex-direction: column;
+    margin-top: -1px;
+    border: 1px solid var(--accent);
+    border-top: transparent;
     padding: 9px 18px;
     padding-top: 1em;
+    color: var(--accent);
     gap: 10px;
 
 

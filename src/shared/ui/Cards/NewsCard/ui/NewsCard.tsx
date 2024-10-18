@@ -12,9 +12,9 @@ import cls from './NewsCard.module.scss';
 import { getStaticLink } from '@/shared/lib/helpers/getStaticLink';
 import { mutate as globalMutate } from 'swr';
 import moment from 'moment';
-import { pluralize } from 'shared/lib/helpers/dates';
-import { transform } from 'shared/lib/helpers/interweave';
-import { trimHtml } from 'shared/lib/helpers/truncateWords';
+import { pluralize } from '@/shared/lib/helpers/dates';
+import { transform } from '@/shared/lib/helpers/interweave';
+import { trimHtml } from '@/shared/lib/helpers/truncateWords';
 import { useNavigate } from 'react-router-dom';
 
 interface NewsCardProps extends GetEntity{
